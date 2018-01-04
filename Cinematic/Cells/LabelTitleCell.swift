@@ -1,17 +1,16 @@
 //
-//  MovieInfoCell.swift
+//  LabelTitleCell.swift
 //  Cinematic
 //
-//  Created by Khant Zaw Ko on 19/12/17.
+//  Created by Khant Zaw Ko on 22/12/17.
 //  Copyright © 2017 Khant Zaw Ko. All rights reserved.
 //
 
 import UIKit
 
-class MovieInfoCell: UITableViewCell {
-
-    @IBOutlet weak var movieInfoTitle: UILabel!
-    @IBOutlet weak var movieInfoDescription: UILabel!
+class LabelTitleCell: UITableViewCell {
+    
+    @IBOutlet weak var ticketShowTimesTitle: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

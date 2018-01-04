@@ -1,17 +1,18 @@
 //
-//  MovieInfoCell.swift
+//  TrailerCell.swift
 //  Cinematic
 //
-//  Created by Khant Zaw Ko on 19/12/17.
+//  Created by Khant Zaw Ko on 22/12/17.
 //  Copyright © 2017 Khant Zaw Ko. All rights reserved.
 //
 
 import UIKit
+import WebKit
 
-class MovieInfoCell: UITableViewCell {
-
-    @IBOutlet weak var movieInfoTitle: UILabel!
-    @IBOutlet weak var movieInfoDescription: UILabel!
+class TrailerCell: UITableViewCell {
+    
+    @IBOutlet weak var trailerTitle: UILabel!
+    @IBOutlet weak var webView: WKWebView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

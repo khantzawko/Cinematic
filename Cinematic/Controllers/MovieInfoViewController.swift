@@ -7,23 +7,11 @@
 //
 
 import UIKit
-import WebKit
 
 class MovieInfoViewController: UITableViewController {
     
-
-    @IBOutlet weak var webView: WKWebView!
-    
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        webView.loadHTMLString("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/zNCz4mQzfEI\" frameborder=\"0\" gesture=\"media\" allow=\"encrypted-media\" allowfullscreen></iframe>", baseURL: nil)
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        super.viewDidLoad()        
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,27 +21,36 @@ class MovieInfoViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 4
     }
     
-
-}
-
-extension CinemaCell: UICollectionViewDataSource {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CinemaCell", for: indexPath)
-        cell.layer.cornerRadius = 10
-        return cell
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MovieCell
+            cell.infoMovieTitle.text = "Coco"
+            cell.infoMovieImage.image = UIImage(named: "justiceleague.jpg")
+            cell.infoMovieImage.layer.cornerRadius = 5
+            cell.infoMovieImage.clipsToBounds = true
+            return cell
+        } else if indexPath.row == 1{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "MovieInfoCell", for: indexPath) as! MovieInfoCell
+            cell.movieInfoTitle.text = " Movie Info"
+            cell.movieInfoDescription.text = "Despite his family's baffling generations-old ban on music, Miguel (voice of newcomer Anthony Gonzalez) dreams of becoming an accomplished musician like his idol, Ernesto de la Cruz (voice of Benjamin Bratt). Desperate to prove his talent, Miguel finds himself in the stunning and colorful Land of the Dead following a mysterious chain of events. Along the way, he meets charming trickster Hector (voice of Gael García Bernal), and together, they set off on an extraordinary journey to unlock the real story behind Miguel's family history."
+            return cell
+        } else if indexPath.row == 2 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TrailerCell", for: indexPath) as! TrailerCell
+            cell.trailerTitle.text = " Trailers"
+            cell.webView.loadHTMLString("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/zNCz4mQzfEI\" frameborder=\"0\" gesture=\"media\" allow=\"encrypted-media\" allowfullscreen></iframe>", baseURL: nil)
+            return cell
+        } else if indexPath.row == 3 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewCell", for: indexPath) as! ReviewCell
+            cell.reviewTitle.text = " Reviews"
+            return cell
+        } else {
+            return UITableViewCell()
+        }
     }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 12
-    }
 }
-
