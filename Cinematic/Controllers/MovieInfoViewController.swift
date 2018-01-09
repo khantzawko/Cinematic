@@ -11,7 +11,8 @@ import UIKit
 class MovieInfoViewController: UITableViewController {
     
     override func viewDidLoad() {
-        super.viewDidLoad()        
+        super.viewDidLoad()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,7 +32,7 @@ class MovieInfoViewController: UITableViewController {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MovieCell
             cell.infoMovieTitle.text = "Coco"
-            cell.infoMovieImage.image = UIImage(named: "justiceleague.jpg")
+            cell.infoMovieImage.image = UIImage(named: "coco.jpg")
             cell.infoMovieImage.layer.cornerRadius = 5
             cell.infoMovieImage.clipsToBounds = true
             return cell

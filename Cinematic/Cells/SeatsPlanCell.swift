@@ -13,8 +13,8 @@ var numbersOfSeatsInARow: Int?
 
 class SeatsPlanCell: UITableViewCell {
 
-    var label1: UILabel!
-    var label2: UILabel!
+    var leftLabel: UILabel!
+    var rightLabel: UILabel!
     var testNumber = 10
     
     let screenSize = UIScreen.main.bounds
@@ -42,23 +42,23 @@ class SeatsPlanCell: UITableViewCell {
         let seatsPerRow: CGFloat = CGFloat(numbersOfSeatsInARow!)
         let startingPointX = spacingBeforeAndAfterSeats + (spacingWidthLeftForSeats - (spacingBetweenSeats * (seatsPerRow - 1)) - (seatWidth * seatsPerRow))/2
         
-        label1 = UILabel()
-        label1.frame = CGRect(x: labelOffsetX, y: labelOffsetY, width: labelWidth, height: labelHeight)
-        label1.textColor = UIColor.white
-        label1.backgroundColor = UIColor.black
-        label1.textAlignment = .center
-        label1.layer.cornerRadius = 5
-        label1.layer.masksToBounds = true
-        contentView.addSubview(label1)
+        leftLabel = UILabel()
+        leftLabel.frame = CGRect(x: labelOffsetX, y: labelOffsetY, width: labelWidth, height: labelHeight)
+        leftLabel.textColor = UIColor.white
+        leftLabel.backgroundColor = UIColor.black
+        leftLabel.textAlignment = .center
+        leftLabel.layer.cornerRadius = 5
+        leftLabel.layer.masksToBounds = true
+        contentView.addSubview(leftLabel)
         
-        label2 = UILabel()
-        label2.frame = CGRect(x: screenWidth-labelWidth-labelOffsetX, y: labelOffsetY, width: labelWidth, height: labelHeight)
-        label2.textColor = UIColor.white
-        label2.backgroundColor = UIColor.black
-        label2.textAlignment = .center
-        label2.layer.masksToBounds = true
-        label2.layer.cornerRadius = 5
-        contentView.addSubview(label2)
+        rightLabel = UILabel()
+        rightLabel.frame = CGRect(x: screenWidth-labelWidth-labelOffsetX, y: labelOffsetY, width: labelWidth, height: labelHeight)
+        rightLabel.textColor = UIColor.white
+        rightLabel.backgroundColor = UIColor.black
+        rightLabel.textAlignment = .center
+        rightLabel.layer.masksToBounds = true
+        rightLabel.layer.cornerRadius = 5
+        contentView.addSubview(rightLabel)
         
         for index in 1...numbersOfSeatsInARow! {
             let seatButton = UIButton()
@@ -79,7 +79,7 @@ class SeatsPlanCell: UITableViewCell {
     
     @objc func pressedButton(_ sender: UIButton){
         
-        let currentlySelectedSeat: String = label1.text! + (sender.titleLabel?.text)!
+        let currentlySelectedSeat: String = leftLabel.text! + (sender.titleLabel?.text)!
 
         if sender.backgroundColor == UIColor.green {
             sender.backgroundColor = UIColor.blue

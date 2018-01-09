@@ -1,0 +1,6 @@
+framework module Pods_Cinematic {
+  umbrella header "Pods-Cinematic-umbrella.h"
+
+  export *
+  module * { export * }
+}

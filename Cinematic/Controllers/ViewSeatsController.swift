@@ -37,7 +37,16 @@ class ViewSeatsController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     @IBAction func confirmButton(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        //self.dismiss(animated: true, completion: nil)
+    
+        let alertController = UIAlertController(title: "Confirm", message: "Number of Seats Selected: \(selectedSeats.count)\nSelected seat no. \(selectedSeats)", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        let confirmAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+
+        alertController.addAction(cancelAction)
+        alertController.addAction(confirmAction)
+
+        self.present(alertController, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -49,8 +58,8 @@ class ViewSeatsController: UIViewController, UITableViewDelegate, UITableViewDat
         numbersOfSeatsInARow = numbersOfSeatsInARowArray[indexPath.row]
         
         let cell = SeatsPlanCell(style: .default, reuseIdentifier: "SeatsPlanCell")
-        cell.label1.text = rowsInAlphabeticalOrder[indexPath.row]
-        cell.label2.text = rowsInAlphabeticalOrder[indexPath.row]
+        cell.leftLabel.text = rowsInAlphabeticalOrder[indexPath.row]
+        cell.rightLabel.text = rowsInAlphabeticalOrder[indexPath.row]
         return cell
     }
 }
