@@ -24,13 +24,15 @@
 		145A7C491FDFC16B005599AA /* CinematicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145A7C481FDFC16B005599AA /* CinematicTests.swift */; };
 		145A7C541FDFC16B005599AA /* CinematicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145A7C531FDFC16B005599AA /* CinematicUITests.swift */; };
 		145A7C621FDFCEAF005599AA /* MovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145A7C611FDFCEAF005599AA /* MovieViewController.swift */; };
+		145C537B200961390020C33D /* MovieBCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145C537A200961390020C33D /* MovieBCell.swift */; };
 		146E5F481FFE960C0078957E /* CartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146E5F471FFE960B0078957E /* CartController.swift */; };
 		146E5F4A1FFE96500078957E /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146E5F491FFE96500078957E /* CartCell.swift */; };
 		14890CEE1FE68232007B59D5 /* MovieInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14890CED1FE68232007B59D5 /* MovieInfoViewController.swift */; };
 		14890CF91FE87998007B59D5 /* MovieInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14890CF81FE87998007B59D5 /* MovieInfoCell.swift */; };
-		14890CFB1FE87A5A007B59D5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14890CFA1FE87A5A007B59D5 /* Default-568h@2x.png */; };
 		14DE45111FEC4F0D0034D2C1 /* PurchaseTicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE45101FEC4F0D0034D2C1 /* PurchaseTicketViewController.swift */; };
 		14DE45131FEC50490034D2C1 /* TrailerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE45121FEC50490034D2C1 /* TrailerCell.swift */; };
+		14F8552120090902008452B4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F8552020090902008452B4 /* ProfileViewController.swift */; };
+		14F855232009091B008452B4 /* UpcomingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F855222009091B008452B4 /* UpcomingViewController.swift */; };
 		174886B2CE0141844D24C66C /* Pods_CinematicTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75072BFE322C0F38D000B1E /* Pods_CinematicTests.framework */; };
 		D7527C3FED0B8D13F8F51E9C /* Pods_Cinematic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E47DDDF4BABD3AA81339E2F1 /* Pods_Cinematic.framework */; };
 /* End PBXBuildFile section */
@@ -75,14 +77,16 @@
 		145A7C531FDFC16B005599AA /* CinematicUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CinematicUITests.swift; sourceTree = "<group>"; };
 		145A7C551FDFC16B005599AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		145A7C611FDFCEAF005599AA /* MovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewController.swift; sourceTree = "<group>"; };
+		145C537A200961390020C33D /* MovieBCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieBCell.swift; sourceTree = "<group>"; };
 		14662DCD2004090B00ACF6E3 /* Cinematic-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cinematic-Bridging-Header.h"; sourceTree = "<group>"; };
 		146E5F471FFE960B0078957E /* CartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartController.swift; sourceTree = "<group>"; };
 		146E5F491FFE96500078957E /* CartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
 		14890CED1FE68232007B59D5 /* MovieInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInfoViewController.swift; sourceTree = "<group>"; };
 		14890CF81FE87998007B59D5 /* MovieInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInfoCell.swift; sourceTree = "<group>"; };
-		14890CFA1FE87A5A007B59D5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		14DE45101FEC4F0D0034D2C1 /* PurchaseTicketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseTicketViewController.swift; sourceTree = "<group>"; };
 		14DE45121FEC50490034D2C1 /* TrailerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerCell.swift; sourceTree = "<group>"; };
+		14F8552020090902008452B4 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		14F855222009091B008452B4 /* UpcomingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingViewController.swift; sourceTree = "<group>"; };
 		449C0B67065377307D1901EC /* Pods-Cinematic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cinematic.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cinematic/Pods-Cinematic.debug.xcconfig"; sourceTree = "<group>"; };
 		557100EF59D3F91B31C5AD6B /* Pods_CinematicUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CinematicUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		844EA47FEF62AA12651DC587 /* Pods-CinematicTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CinematicTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CinematicTests/Pods-CinematicTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -176,13 +180,14 @@
 		14890CF51FE878DE007B59D5 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				146E5F491FFE96500078957E /* CartCell.swift */,
-				142031ED1FF9132A007A3CF3 /* SeatsPlanCell.swift */,
-				1421C1431FEC71A90028DA9D /* SeatCell.swift */,
 				142B0B491FDFD46D00B94FE1 /* MovieCell.swift */,
+				145C537A200961390020C33D /* MovieBCell.swift */,
 				14890CF81FE87998007B59D5 /* MovieInfoCell.swift */,
 				14DE45121FEC50490034D2C1 /* TrailerCell.swift */,
 				1421C13B1FEC51570028DA9D /* ReviewCell.swift */,
+				142031ED1FF9132A007A3CF3 /* SeatsPlanCell.swift */,
+				1421C1431FEC71A90028DA9D /* SeatCell.swift */,
+				146E5F491FFE96500078957E /* CartCell.swift */,
 				1421C13D1FEC5B630028DA9D /* LabelTitleCell.swift */,
 				1421C1411FEC5E3D0028DA9D /* TicketCell.swift */,
 				1421C13F1FEC5D460028DA9D /* CollectionHorizontalCell.swift */,
@@ -198,6 +203,8 @@
 				14DE45101FEC4F0D0034D2C1 /* PurchaseTicketViewController.swift */,
 				142031EB1FF83154007A3CF3 /* ViewSeatsController.swift */,
 				146E5F471FFE960B0078957E /* CartController.swift */,
+				14F8552020090902008452B4 /* ProfileViewController.swift */,
+				14F855222009091B008452B4 /* UpcomingViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -209,7 +216,6 @@
 				14662DCD2004090B00ACF6E3 /* Cinematic-Bridging-Header.h */,
 				14185AFD1FE881D300D7EA08 /* Info.plist */,
 				145A7C301FDFC16B005599AA /* AppDelegate.swift */,
-				14890CFA1FE87A5A007B59D5 /* Default-568h@2x.png */,
 				145A7C3C1FDFC16B005599AA /* LaunchScreen.storyboard */,
 				145A7C371FDFC16B005599AA /* Cinematic.xcdatamodeld */,
 			);
@@ -356,7 +362,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				145A7C3E1FDFC16B005599AA /* LaunchScreen.storyboard in Resources */,
-				14890CFB1FE87A5A007B59D5 /* Default-568h@2x.png in Resources */,
 				145A7C3B1FDFC16B005599AA /* Assets.xcassets in Resources */,
 				145A7C361FDFC16B005599AA /* Main.storyboard in Resources */,
 			);
@@ -522,16 +527,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				142031EE1FF9132A007A3CF3 /* SeatsPlanCell.swift in Sources */,
+				145C537B200961390020C33D /* MovieBCell.swift in Sources */,
 				14DE45131FEC50490034D2C1 /* TrailerCell.swift in Sources */,
 				145A7C311FDFC16B005599AA /* AppDelegate.swift in Sources */,
 				1421C1441FEC71A90028DA9D /* SeatCell.swift in Sources */,
 				142031EC1FF83154007A3CF3 /* ViewSeatsController.swift in Sources */,
 				1421C13E1FEC5B630028DA9D /* LabelTitleCell.swift in Sources */,
+				14F8552120090902008452B4 /* ProfileViewController.swift in Sources */,
 				1421C1421FEC5E3D0028DA9D /* TicketCell.swift in Sources */,
 				14890CEE1FE68232007B59D5 /* MovieInfoViewController.swift in Sources */,
 				14890CF91FE87998007B59D5 /* MovieInfoCell.swift in Sources */,
 				145A7C391FDFC16B005599AA /* Cinematic.xcdatamodeld in Sources */,
 				1421C1401FEC5D460028DA9D /* CollectionHorizontalCell.swift in Sources */,
+				14F855232009091B008452B4 /* UpcomingViewController.swift in Sources */,
 				146E5F4A1FFE96500078957E /* CartCell.swift in Sources */,
 				142B0B4A1FDFD46D00B94FE1 /* MovieCell.swift in Sources */,
 				145A7C621FDFCEAF005599AA /* MovieViewController.swift in Sources */,

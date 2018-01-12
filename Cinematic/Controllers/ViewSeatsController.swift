@@ -13,7 +13,7 @@ class ViewSeatsController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var tableView: UITableView!
     
     let rowsInAlphabeticalOrder = ["A", "B", "C", "D", "E", "F"]
-    let numbersOfSeatsInARowArray = [7,8,9,10,11,12]
+    let numbersOfSeatsInARowArray = [12,12,12,12,12,12]
     
     override func viewDidLoad() {
         super.viewDidLoad()

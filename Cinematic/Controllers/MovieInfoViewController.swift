@@ -12,7 +12,6 @@ class MovieInfoViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,14 +28,15 @@ class MovieInfoViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
-        if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MovieCell
-            cell.infoMovieTitle.text = "Coco"
-            cell.infoMovieImage.image = UIImage(named: "coco.jpg")
-            cell.infoMovieImage.layer.cornerRadius = 5
-            cell.infoMovieImage.clipsToBounds = true
+        if indexPath.row == 0 {            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "MovieBCell", for: indexPath) as! MovieBCell
+            
+            cell.infoTitle.text = "Coco"
+            cell.infoImage.image = UIImage(named: "coco.jpg")
+            cell.infoImage.layer.cornerRadius = 5
+            cell.infoImage.clipsToBounds = true
             return cell
-        } else if indexPath.row == 1{
+        } else if indexPath.row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MovieInfoCell", for: indexPath) as! MovieInfoCell
             cell.movieInfoTitle.text = " Movie Info"
             cell.movieInfoDescription.text = "Despite his family's baffling generations-old ban on music, Miguel (voice of newcomer Anthony Gonzalez) dreams of becoming an accomplished musician like his idol, Ernesto de la Cruz (voice of Benjamin Bratt). Desperate to prove his talent, Miguel finds himself in the stunning and colorful Land of the Dead following a mysterious chain of events. Along the way, he meets charming trickster Hector (voice of Gael García Bernal), and together, they set off on an extraordinary journey to unlock the real story behind Miguel's family history."

@@ -12,21 +12,21 @@ class MovieViewController: UITableViewController {
     
     var movieImages = [String]()
     var movieTitles = [String]()
-    var movieYears = [String]()
     var movieDurations = [String]()
     var movieGenres = [String]()
-    var movieRatings = [String]()
+    var movieRatings = [Int]()
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         movieImages = ["coco.jpg", "justiceleague.jpg", "wonder.jpg", "thedisasterartist.jpg", "thorragnarok.jpg"]
-        movieTitles = ["Coco", "Justice League", "Wonder", "The Disaster Artist", "Thor: Ragnark"]
-        movieYears = ["2017","2016","2015","2014","2013"]
+        movieTitles = ["Coco", "Justice League", "The Pirates Of Carribean", "The Disaster Artist", "Thor: Ragnark"]
         movieDurations = ["109","108","107","106","99"]
         movieGenres = ["Animation", "Action, Adventure, Fantasy", "Drama, Family", "Biography, Comedy, Drama", "Action, Adventure, Comedy"]
-        movieRatings = ["4.6 out of 5", "3.6 out of 5", "4.6 out of 5", "4.1 out of 5", "4.1 out of 5"]
+//        movieRatings = ["4.6 out of 5", "3.6 out of 5", "4.6 out of 5", "4.1 out of 5", "4.1 out of 5"]
+        
+       movieRatings = [1,2,3,4,5]
         
         self.navigationController?.navigationBar.prefersLargeTitles = true
     }
@@ -43,19 +43,24 @@ class MovieViewController: UITableViewController {
         return movieTitles.count
     }
 
-
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MovieCell
+        
+        movieRating = movieRatings[indexPath.row]
+        
+        let cell = MovieCell(style: .default, reuseIdentifier: "MovieCell")
         
         cell.movieImage.image = UIImage(named: movieImages[indexPath.row])
-        cell.movieImage.layer.cornerRadius = 5
-        cell.movieImage.clipsToBounds = true
+        cell.movieGenre.text = movieGenres[indexPath.row]
         cell.movieTitle.text = movieTitles[indexPath.row]
-        cell.movieYear.text = ""
-        cell.movieDuration.text = movieDurations[indexPath.row] + " mins"
-        cell.movieGenre.text = ""
-        cell.movieRating.text = movieRatings[indexPath.row]
-
+        cell.movieDuration.text = "(\(movieDurations[indexPath.row]) mins)"
+        
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: "mySegue", sender: cell)
+    }
+
 }

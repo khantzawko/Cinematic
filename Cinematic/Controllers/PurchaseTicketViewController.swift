@@ -27,7 +27,7 @@ class PurchaseTicketViewController: UITableViewController, UIPopoverPresentation
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "MovieBCell", for: indexPath) as! MovieBCell
             cell.selectedMovie.text = " Selected Movie"
             cell.purchaseSelectedMovieTitle.text = "Coco"
             return cell
