@@ -11,4 +11,6 @@ import UIKit
 class CollectionHorizontalCell: UICollectionViewCell {
     
     @IBOutlet weak var ticketContentLabel: UILabel!
+    @IBOutlet weak var cinemaName: UILabel!
+    
 }

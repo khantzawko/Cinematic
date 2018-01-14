@@ -8,7 +8,7 @@
 
 import UIKit
 
-var movieRating: Int!
+var movieRating: Double!
 
 class MovieCell: UITableViewCell {
     
@@ -20,6 +20,8 @@ class MovieCell: UITableViewCell {
     var movieTitle: UILabel!
     var movieDuration: UILabel!
     var movieGenre: UILabel!
+    var movieRatingText: UILabel!
+    var halfStar: Bool!
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -71,22 +73,63 @@ class MovieCell: UITableViewCell {
         movieDuration.font = UIFont.italicSystemFont(ofSize: 12)
         movieDuration.textColor = .gray
         contentView.addSubview(movieDuration)
-                
-        for index in 0..<movieRating {
-            let ratingImageWidth: CGFloat = 15
-            let ratingImageHeight: CGFloat = 15
-            let ratingImageSpacingInBetween: CGFloat = 2
+        
+        halfStar = checkHalfStar(num: movieRating)
+        
+        if halfStar {
+            movieRating = movieRating + 1
+        } else {
+            
+        }
+        
+        let ratingImageWidth: CGFloat = 15
+        let ratingImageHeight: CGFloat = 15
+        let ratingImageSpacingInBetween: CGFloat = 2
+        
+        for index in 0..<Int(movieRating) {
+
             let num: CGFloat = (ratingImageWidth + ratingImageSpacingInBetween) * CGFloat(index)
             let ratingImageOffsetX: CGFloat = movieImageOffsetX + movieImageWidth + 10 + num
             let ratingImageOffsetY: CGFloat = movieImageOffsetY + movieImageHeight - ratingImageHeight - 2
             
             let ratingImageView = UIImageView()
             ratingImageView.frame = CGRect(x: ratingImageOffsetX, y: ratingImageOffsetY, width: ratingImageWidth, height: ratingImageHeight)
-            ratingImageView.image = UIImage(named: "star.png")?.withRenderingMode(.alwaysTemplate)
+            
+            if halfStar && index == Int(movieRating-1){
+                ratingImageView.image = UIImage(named: "halfstar.png")?.withRenderingMode(.alwaysTemplate)
+            } else {
+                ratingImageView.image = UIImage(named: "star.png")?.withRenderingMode(.alwaysTemplate)
+            }
+
             ratingImageView.tintColor = .orange
             contentView.addSubview(ratingImageView)
         }
         
+        let movieRatingTextWidth: CGFloat = 60
+        let movieRatingTextHeight: CGFloat = 15
+        var num: CGFloat = (ratingImageWidth + ratingImageSpacingInBetween) * CGFloat(Int(movieRating))
+        
+        if halfStar {
+            num -= 7
+        }
+        
+        let movieRatingTextOffsetX: CGFloat = movieImageOffsetX + movieImageWidth + 10 + num
+        let movieRatingTextOffsetY: CGFloat = movieImageOffsetY + movieImageHeight - movieRatingTextHeight - 2
+        
+        movieRatingText = UILabel()
+        movieRatingText.frame = CGRect(x: movieRatingTextOffsetX, y: movieRatingTextOffsetY, width: movieRatingTextWidth, height: movieRatingTextHeight)
+        movieRatingText.font = UIFont.italicSystemFont(ofSize: 12)
+        movieRatingText.textColor = .gray
+        contentView.addSubview(movieRatingText)
+
+    }
+    
+    func checkHalfStar(num: Double) -> Bool {
+        if num.truncatingRemainder(dividingBy: 1) < 0.5 {
+            return false
+        } else {
+            return true
+        }
     }
     
 

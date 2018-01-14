@@ -21,7 +21,7 @@ class PurchaseTicketViewController: UITableViewController, UIPopoverPresentation
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 5
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -37,17 +37,13 @@ class PurchaseTicketViewController: UITableViewController, UIPopoverPresentation
             return cell
         } else if indexPath.row == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TicketCell", for: indexPath) as! TicketCell
-            cell.ticketContentTitle.text = "Choose Cinema"
+            cell.ticketContentTitle.text = "Choose Date"
             return cell
         } else if indexPath.row == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TicketCell", for: indexPath) as! TicketCell
-            cell.ticketContentTitle.text = "Choose Date"
-            return cell
-        } else if indexPath.row == 4 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TicketCell", for: indexPath) as! TicketCell
             cell.ticketContentTitle.text = "Choose Time"
             return cell
-        } else if indexPath.row == 5 {
+        } else if indexPath.row == 4 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SeatCell", for: indexPath) as! SeatCell
             cell.chooseSeatButton.layer.cornerRadius = 10
             cell.chooseSeatButton.titleLabel?.text = "View Seats"
@@ -63,25 +59,20 @@ extension TicketCell: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if self.ticketContentTitle.text == "Choose Cinema" {
+        if self.ticketContentTitle.text == "Choose Date" {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionHorizontalCell", for: indexPath) as! CollectionHorizontalCell
+            cell.layer.cornerRadius = 20
             cell.layer.borderWidth = 2
-            cell.layer.borderColor = UIColor.black.cgColor
-            cell.layer.cornerRadius = 10
-            cell.ticketContentLabel.text = "CityMall"
-            return cell
-        } else if self.ticketContentTitle.text == "Choose Date" {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionHorizontalCell", for: indexPath) as! CollectionHorizontalCell
-            cell.layer.cornerRadius = 10
-            cell.layer.borderWidth = 2
-            cell.layer.borderColor = UIColor.black.cgColor
+            cell.layer.borderColor = UIColor(red:0.01, green:0.54, blue:0.91, alpha:1.0).cgColor
+            cell.ticketContentLabel.textColor = UIColor(red:0.01, green:0.54, blue:0.91, alpha:1.0)
             cell.ticketContentLabel.text = "12 Dec"
             return cell
         } else if self.ticketContentTitle.text == "Choose Time" {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionHorizontalCell", for: indexPath) as! CollectionHorizontalCell
             cell.layer.borderWidth = 2
-            cell.layer.borderColor = UIColor.black.cgColor
-            cell.layer.cornerRadius = 10
+            cell.layer.borderColor = UIColor(red:0.01, green:0.54, blue:0.91, alpha:1.0).cgColor
+            cell.layer.cornerRadius = 20
+            cell.ticketContentLabel.textColor = UIColor(red:0.01, green:0.54, blue:0.91, alpha:1.0)
             cell.ticketContentLabel.text = "10:40 am"
             return cell
         } else {
@@ -90,20 +81,20 @@ extension TicketCell: UICollectionViewDataSource, UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath)
-        cell?.layer.backgroundColor = UIColor.green.cgColor
+        let cell = collectionView.cellForItem(at: indexPath) as! CollectionHorizontalCell
+        cell.layer.backgroundColor = UIColor(red:0.01, green:0.54, blue:0.91, alpha:1.0).cgColor
+        cell.ticketContentLabel.textColor = .white
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath)
-        cell?.layer.backgroundColor = UIColor.white.cgColor
+        let cell = collectionView.cellForItem(at: indexPath) as! CollectionHorizontalCell
+        cell.layer.backgroundColor = UIColor.white.cgColor
+        cell.ticketContentLabel.textColor = UIColor(red:0.01, green:0.54, blue:0.91, alpha:1.0)
     }
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if self.ticketContentTitle.text == "Choose Cinema" {
-            return 3
-        } else if self.ticketContentTitle.text == "Choose Date" {
+        if self.ticketContentTitle.text == "Choose Date" {
             return 4
         } else if self.ticketContentTitle.text == "Choose Time" {
             return 5

@@ -14,19 +14,19 @@ class MovieViewController: UITableViewController {
     var movieTitles = [String]()
     var movieDurations = [String]()
     var movieGenres = [String]()
-    var movieRatings = [Int]()
+    var movieRatings = [Double]()
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         movieImages = ["coco.jpg", "justiceleague.jpg", "wonder.jpg", "thedisasterartist.jpg", "thorragnarok.jpg"]
-        movieTitles = ["Coco", "Justice League", "The Pirates Of Carribean", "The Disaster Artist", "Thor: Ragnark"]
+        movieTitles = ["Coco", "Justice League", "Wonder", "The Disaster Artist", "Thor: Ragnark"]
         movieDurations = ["109","108","107","106","99"]
         movieGenres = ["Animation", "Action, Adventure, Fantasy", "Drama, Family", "Biography, Comedy, Drama", "Action, Adventure, Comedy"]
 //        movieRatings = ["4.6 out of 5", "3.6 out of 5", "4.6 out of 5", "4.1 out of 5", "4.1 out of 5"]
         
-       movieRatings = [1,2,3,4,5]
+       movieRatings = [5,4.2,4.5,3.7,4.8]
         
         self.navigationController?.navigationBar.prefersLargeTitles = true
     }
@@ -53,7 +53,7 @@ class MovieViewController: UITableViewController {
         cell.movieGenre.text = movieGenres[indexPath.row]
         cell.movieTitle.text = movieTitles[indexPath.row]
         cell.movieDuration.text = "(\(movieDurations[indexPath.row]) mins)"
-        
+        cell.movieRatingText.text = "(\(movieRatings[indexPath.row]) stars)"
         return cell
     }
     
