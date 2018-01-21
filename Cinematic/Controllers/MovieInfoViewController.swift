@@ -8,6 +8,8 @@
 
 import UIKit
 
+private var selectedIndexPath: IndexPath?
+
 class MovieInfoViewController: UITableViewController {
     
     override func viewDidLoad() {
@@ -67,18 +69,42 @@ extension ReviewCell: UICollectionViewDelegate, UICollectionViewDataSource {
         cell.layer.borderWidth = 2
         cell.layer.borderColor = UIColor(red:1.00, green:0.14, blue:0.40, alpha:1.0).cgColor
         cell.layer.cornerRadius = 20
-        cell.cinemaName.textColor = UIColor(red:1.00, green:0.14, blue:0.40, alpha:1.0)
-        cell.cinemaName.text = "CityMall"
+        cell.cinemaName.text = "City Mall"
+
+        if indexPath == selectedIndexPath && selectedIndexPath != nil {
+            cell.layer.backgroundColor = UIColor(red:1.00, green:0.14, blue:0.40, alpha:1.0).cgColor
+            cell.cinemaName.textColor = .white
+        } else {
+            cell.layer.backgroundColor = UIColor.white.cgColor
+            cell.cinemaName.textColor = UIColor(red:1.00, green:0.14, blue:0.40, alpha:1.0)
+        }
+
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        selectedIndexPath = indexPath
+        
+        guard collectionView.cellForItem(at: indexPath) != nil else {
+            return
+        }
+
         let cell = collectionView.cellForItem(at: indexPath) as! CollectionHorizontalCell
         cell.layer.backgroundColor = UIColor(red:1.00, green:0.14, blue:0.40, alpha:1.0).cgColor
         cell.cinemaName.textColor = .white
+        
+        collectionView.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        
+        selectedIndexPath = nil
+
+        guard collectionView.cellForItem(at: indexPath) != nil else {
+            return
+        }
+
         let cell = collectionView.cellForItem(at: indexPath) as! CollectionHorizontalCell
         cell.layer.backgroundColor = UIColor.white.cgColor
         cell.cinemaName.textColor = UIColor(red:1.00, green:0.14, blue:0.40, alpha:1.0)

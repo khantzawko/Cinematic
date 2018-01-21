@@ -16,7 +16,6 @@ class MovieViewController: UITableViewController {
     var movieGenres = [String]()
     var movieRatings = [Double]()
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         

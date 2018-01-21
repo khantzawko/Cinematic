@@ -10,12 +10,15 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
+    @IBOutlet weak var QRImage: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationController?.navigationBar.prefersLargeTitles = true
 
-        // Do any additional setup after loading the view.
+        let image = generateQRCode(from: "Hacking with Swift is the best iOS coding tutorial I've ever read!")
+        QRImage.image = image
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,14 +27,26 @@ class ProfileViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func generateQRCode(from string: String) -> UIImage? {
+        let data = string.data(using: String.Encoding.ascii)
+        
+        if let filter = CIFilter(name: "CIQRCodeGenerator") {
+            filter.setValue(data, forKey: "inputMessage")
+            
+            guard let qrCodeImage = filter.outputImage else {return nil}
+            
+            let scaleX = QRImage.frame.size.width / qrCodeImage.extent.size.width
+            let scaleY = QRImage.frame.size.height / qrCodeImage.extent.size.height
+            
+            
+            let transform = CGAffineTransform(scaleX: scaleX, y: scaleY)
+            
+            if let output = filter.outputImage?.transformed(by: transform) {
+                return UIImage(ciImage: output)
+            }
+        }
+        return nil
     }
-    */
+    
 
 }

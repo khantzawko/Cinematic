@@ -14,11 +14,15 @@ class ViewSeatsController: UIViewController, UITableViewDelegate, UITableViewDat
     
     let rowsInAlphabeticalOrder = ["A", "B", "C", "D", "E", "F"]
     let numbersOfSeatsInARowArray = [12,12,12,12,12,12]
+    @IBOutlet weak var screenLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        
+        screenLabel.layer.cornerRadius = 10
+        screenLabel.clipsToBounds = true
         
         let value = UIInterfaceOrientation.landscapeRight.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
@@ -37,7 +41,6 @@ class ViewSeatsController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     @IBAction func confirmButton(_ sender: Any) {
-        //self.dismiss(animated: true, completion: nil)
     
         let alertController = UIAlertController(title: "Confirm", message: "Number of Seats Selected: \(selectedSeats.count)\nSelected seat no. \(selectedSeats)", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)

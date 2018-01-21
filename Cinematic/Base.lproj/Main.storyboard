@@ -75,14 +75,30 @@
                     <view key="view" contentMode="scaleToFill" id="q1L-Pm-FGu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hBh-Sc-XPC">
+                                <rect key="frame" x="112" y="266" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="Cfz-X0-TR3"/>
+                                    <constraint firstAttribute="height" constant="150" id="hlr-Nr-3kl"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hBh-Sc-XPC" firstAttribute="centerY" secondItem="EW5-Pz-gbB" secondAttribute="centerY" id="AnH-iV-OIC"/>
+                            <constraint firstItem="hBh-Sc-XPC" firstAttribute="centerX" secondItem="EW5-Pz-gbB" secondAttribute="centerX" id="FKn-Bd-afH"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="EW5-Pz-gbB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="OkX-AY-f4R"/>
+                    <connections>
+                        <outlet property="QRImage" destination="hBh-Sc-XPC" id="jNx-Vz-G0B"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EeK-7C-grA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-297" y="1601"/>
+            <point key="canvasLocation" x="-295" y="1712"/>
         </scene>
         <!--In Theatre-->
         <scene sceneID="nB3-Yz-QmS">
@@ -250,7 +266,7 @@
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uei-rF-rMK">
-                                                                <rect key="frame" x="0.0" y="17" width="150" height="17"/>
+                                                                <rect key="frame" x="56.5" y="17" width="37" height="17"/>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -258,8 +274,6 @@
                                                         </subviews>
                                                     </view>
                                                     <constraints>
-                                                        <constraint firstItem="uei-rF-rMK" firstAttribute="leading" secondItem="Rnm-SO-zEY" secondAttribute="leading" id="1c8-2K-c8l"/>
-                                                        <constraint firstAttribute="trailing" secondItem="uei-rF-rMK" secondAttribute="trailing" id="2Nu-Mc-7dB"/>
                                                         <constraint firstItem="uei-rF-rMK" firstAttribute="centerY" secondItem="Rnm-SO-zEY" secondAttribute="centerY" id="Nsv-Jc-Fgh"/>
                                                         <constraint firstItem="uei-rF-rMK" firstAttribute="centerX" secondItem="Rnm-SO-zEY" secondAttribute="centerX" id="QX4-Oe-wtA"/>
                                                     </constraints>
@@ -554,9 +568,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Purchase Ticket" largeTitleDisplayMode="always" id="NCA-Ah-ks6">
-                        <barButtonItem key="rightBarButtonItem" title="Cart" id="mfb-uo-QYL">
+                        <barButtonItem key="rightBarButtonItem" title="Cart" image="cart2" id="mfb-uo-QYL">
                             <connections>
-                                <segue destination="piX-bs-Wms" kind="show" id="oSk-Ef-yAL"/>
+                                <segue destination="7U8-U5-vmg" kind="show" id="P2e-bm-VcJ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -566,55 +580,76 @@
             <point key="canvasLocation" x="2826.4000000000001" y="-182.15892053973016"/>
         </scene>
         <!--Cart-->
-        <scene sceneID="vDX-sn-T4P">
+        <scene sceneID="JCa-uo-Cuc">
             <objects>
-                <tableViewController id="piX-bs-Wms" customClass="CartController" customModule="Cinematic" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ayy-xZ-sTV">
+                <viewController id="7U8-U5-vmg" customClass="CartViewController" customModule="Cinematic" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qGC-8g-d3D">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c9z-Hw-VUB">
+                                <rect key="frame" x="4" y="559" width="367" height="55"/>
+                                <color key="backgroundColor" red="1" green="0.18115243070000001" blue="0.40905468989999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="P2j-RE-Pd0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                                <state key="normal" title="Total">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EJW-MR-WcG">
+                                <rect key="frame" x="0.0" y="64" width="375" height="491"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TicketInfoCell" rowHeight="77" id="Nt0-66-o7E">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="77"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Nt0-66-o7E" id="o3f-D9-GJD">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="77"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TicketPriceCell" id="pdM-AR-oOz">
+                                        <rect key="frame" x="0.0" y="105" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pdM-AR-oOz" id="DCt-ni-xNo">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TicketInfoCell" rowHeight="77" id="uQR-iD-cPT">
-                                <rect key="frame" x="0.0" y="28" width="375" height="77"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uQR-iD-cPT" id="mt7-Sc-ml8">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="77"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TicketPriceCell" id="0lN-cZ-I8l">
-                                <rect key="frame" x="0.0" y="105" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0lN-cZ-I8l" id="Pmj-UA-9Yo">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CheckoutButtonCell" id="K3M-aj-dgM">
-                                <rect key="frame" x="0.0" y="149" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="K3M-aj-dgM" id="ozG-RA-pF5">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="piX-bs-Wms" id="S4u-Yq-kEZ"/>
-                            <outlet property="delegate" destination="piX-bs-Wms" id="kFL-00-UvL"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Cart" id="7QC-Sc-aNg">
-                        <barButtonItem key="rightBarButtonItem" title="Clear" id="IjA-Di-QDg">
+                        <constraints>
+                            <constraint firstItem="UB1-ap-qia" firstAttribute="trailing" secondItem="c9z-Hw-VUB" secondAttribute="trailing" constant="4" id="AsS-eF-Hgb"/>
+                            <constraint firstItem="c9z-Hw-VUB" firstAttribute="top" secondItem="EJW-MR-WcG" secondAttribute="bottom" constant="4" id="BGv-d0-EdB"/>
+                            <constraint firstItem="UB1-ap-qia" firstAttribute="trailing" secondItem="EJW-MR-WcG" secondAttribute="trailing" id="N4j-Ec-ylR"/>
+                            <constraint firstItem="EJW-MR-WcG" firstAttribute="leading" secondItem="UB1-ap-qia" secondAttribute="leading" id="hW3-CM-woe"/>
+                            <constraint firstItem="c9z-Hw-VUB" firstAttribute="leading" secondItem="UB1-ap-qia" secondAttribute="leading" constant="4" id="ll1-A9-5qF"/>
+                            <constraint firstItem="UB1-ap-qia" firstAttribute="bottom" secondItem="c9z-Hw-VUB" secondAttribute="bottom" constant="4" id="uP0-OG-1wK"/>
+                            <constraint firstItem="EJW-MR-WcG" firstAttribute="top" secondItem="UB1-ap-qia" secondAttribute="top" id="w0i-3o-9Bt"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="UB1-ap-qia"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Cart" id="SBC-eE-f0G">
+                        <barButtonItem key="rightBarButtonItem" title="Clear" id="iE9-LE-0TD">
                             <connections>
-                                <action selector="clearButton:" destination="piX-bs-Wms" id="Ge2-ml-Ggp"/>
+                                <action selector="pressedClear:" destination="7U8-U5-vmg" id="iXR-Bo-OjN"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="w9N-iv-hoZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                    <connections>
+                        <outlet property="tableView" destination="EJW-MR-WcG" id="OzC-ty-ChY"/>
+                        <outlet property="totalButton" destination="c9z-Hw-VUB" id="kM5-KQ-M1D"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X7g-H5-kdr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3616.8000000000002" y="-183.05847076461771"/>
+            <point key="canvasLocation" x="3774" y="-183"/>
         </scene>
         <!--View Seats Controller-->
         <scene sceneID="Z8d-mV-fNM">
@@ -647,18 +682,18 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Screen" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vSQ-a6-psB">
-                                <rect key="frame" x="112" y="24" width="150" height="24"/>
+                                <rect key="frame" x="112" y="24" width="150" height="20"/>
                                 <color key="backgroundColor" red="1" green="0.1790820212" blue="0.40167637979999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="m4U-ZX-Bma"/>
+                                    <constraint firstAttribute="height" constant="20" id="58q-ok-fOL"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="ovS-qH-NBY"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AEB-gH-PvK">
-                                <rect key="frame" x="0.0" y="58" width="375" height="609"/>
+                                <rect key="frame" x="0.0" y="54" width="375" height="613"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SeatsPlanCell" id="mF8-vC-sa7" customClass="SeatsPlanCell" customModule="Cinematic" customModuleProvider="target">
@@ -691,12 +726,28 @@
                         <viewLayoutGuide key="safeArea" id="9sU-9a-4fv"/>
                     </view>
                     <connections>
+                        <outlet property="screenLabel" destination="vSQ-a6-psB" id="HA2-p3-i2k"/>
                         <outlet property="tableView" destination="AEB-gH-PvK" id="tJq-yi-V5q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mgM-Yf-ANA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3503.1999999999998" y="542.87856071964018"/>
+            <point key="canvasLocation" x="2097" y="547"/>
+        </scene>
+        <!--Scanner View Controller-->
+        <scene sceneID="Ci9-a2-13a">
+            <objects>
+                <viewController id="IBc-cw-rOT" customClass="ScannerViewController" customModule="Cinematic" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dYr-nU-BgQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="33e-NT-M9O"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TFf-gu-HJV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3023" y="546"/>
         </scene>
         <!--In Theatre-->
         <scene sceneID="p7c-h1-MaR">
@@ -757,6 +808,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="cart2" width="23" height="22"/>
         <image name="coco" width="160" height="240"/>
         <image name="movie" width="21" height="21"/>
         <image name="movie-ticket" width="25" height="25"/>

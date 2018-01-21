@@ -25,10 +25,11 @@
 		145A7C541FDFC16B005599AA /* CinematicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145A7C531FDFC16B005599AA /* CinematicUITests.swift */; };
 		145A7C621FDFCEAF005599AA /* MovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145A7C611FDFCEAF005599AA /* MovieViewController.swift */; };
 		145C537B200961390020C33D /* MovieBCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145C537A200961390020C33D /* MovieBCell.swift */; };
-		146E5F481FFE960C0078957E /* CartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146E5F471FFE960B0078957E /* CartController.swift */; };
 		146E5F4A1FFE96500078957E /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146E5F491FFE96500078957E /* CartCell.swift */; };
 		14890CEE1FE68232007B59D5 /* MovieInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14890CED1FE68232007B59D5 /* MovieInfoViewController.swift */; };
 		14890CF91FE87998007B59D5 /* MovieInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14890CF81FE87998007B59D5 /* MovieInfoCell.swift */; };
+		149CAAFA200C9638003553CA /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149CAAF9200C9638003553CA /* CartViewController.swift */; };
+		149CAAFC200D26D8003553CA /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149CAAFB200D26D8003553CA /* ScannerViewController.swift */; };
 		14DE45111FEC4F0D0034D2C1 /* PurchaseTicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE45101FEC4F0D0034D2C1 /* PurchaseTicketViewController.swift */; };
 		14DE45131FEC50490034D2C1 /* TrailerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE45121FEC50490034D2C1 /* TrailerCell.swift */; };
 		14F8552120090902008452B4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F8552020090902008452B4 /* ProfileViewController.swift */; };
@@ -79,10 +80,11 @@
 		145A7C611FDFCEAF005599AA /* MovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewController.swift; sourceTree = "<group>"; };
 		145C537A200961390020C33D /* MovieBCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieBCell.swift; sourceTree = "<group>"; };
 		14662DCD2004090B00ACF6E3 /* Cinematic-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cinematic-Bridging-Header.h"; sourceTree = "<group>"; };
-		146E5F471FFE960B0078957E /* CartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartController.swift; sourceTree = "<group>"; };
 		146E5F491FFE96500078957E /* CartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
 		14890CED1FE68232007B59D5 /* MovieInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInfoViewController.swift; sourceTree = "<group>"; };
 		14890CF81FE87998007B59D5 /* MovieInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInfoCell.swift; sourceTree = "<group>"; };
+		149CAAF9200C9638003553CA /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
+		149CAAFB200D26D8003553CA /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		14DE45101FEC4F0D0034D2C1 /* PurchaseTicketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseTicketViewController.swift; sourceTree = "<group>"; };
 		14DE45121FEC50490034D2C1 /* TrailerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerCell.swift; sourceTree = "<group>"; };
 		14F8552020090902008452B4 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -202,9 +204,10 @@
 				14890CED1FE68232007B59D5 /* MovieInfoViewController.swift */,
 				14DE45101FEC4F0D0034D2C1 /* PurchaseTicketViewController.swift */,
 				142031EB1FF83154007A3CF3 /* ViewSeatsController.swift */,
-				146E5F471FFE960B0078957E /* CartController.swift */,
+				149CAAF9200C9638003553CA /* CartViewController.swift */,
 				14F8552020090902008452B4 /* ProfileViewController.swift */,
 				14F855222009091B008452B4 /* UpcomingViewController.swift */,
+				149CAAFB200D26D8003553CA /* ScannerViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -533,6 +536,7 @@
 				1421C1441FEC71A90028DA9D /* SeatCell.swift in Sources */,
 				142031EC1FF83154007A3CF3 /* ViewSeatsController.swift in Sources */,
 				1421C13E1FEC5B630028DA9D /* LabelTitleCell.swift in Sources */,
+				149CAAFC200D26D8003553CA /* ScannerViewController.swift in Sources */,
 				14F8552120090902008452B4 /* ProfileViewController.swift in Sources */,
 				1421C1421FEC5E3D0028DA9D /* TicketCell.swift in Sources */,
 				14890CEE1FE68232007B59D5 /* MovieInfoViewController.swift in Sources */,
@@ -542,8 +546,8 @@
 				14F855232009091B008452B4 /* UpcomingViewController.swift in Sources */,
 				146E5F4A1FFE96500078957E /* CartCell.swift in Sources */,
 				142B0B4A1FDFD46D00B94FE1 /* MovieCell.swift in Sources */,
+				149CAAFA200C9638003553CA /* CartViewController.swift in Sources */,
 				145A7C621FDFCEAF005599AA /* MovieViewController.swift in Sources */,
-				146E5F481FFE960C0078957E /* CartController.swift in Sources */,
 				14DE45111FEC4F0D0034D2C1 /* PurchaseTicketViewController.swift in Sources */,
 				1421C13C1FEC51570028DA9D /* ReviewCell.swift in Sources */,
 			);

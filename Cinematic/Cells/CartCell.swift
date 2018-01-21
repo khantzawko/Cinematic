@@ -22,6 +22,8 @@ class CartCell: UITableViewCell {
     var screenSize = UIScreen.main.bounds
     var screenWidth = UIScreen.main.bounds.width
     var screenHeight = UIScreen.main.bounds.height
+    let totalButton = UIButton()
+
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -85,7 +87,7 @@ class CartCell: UITableViewCell {
             headingTicketInfoLabel = UILabel()
             headingTicketInfoLabel.frame = CGRect(x: headingOffsetX, y: headingOffsetY, width: headingWidth, height: headingHeight)
             headingTicketInfoLabel.textColor = UIColor.black
-            headingTicketInfoLabel.font = UIFont.boldSystemFont(ofSize: 18)
+            headingTicketInfoLabel.font = UIFont.boldSystemFont(ofSize: 16)
             contentView.addSubview(headingTicketInfoLabel)
             
             let seatInfoOffsetX: CGFloat = 20
@@ -133,24 +135,7 @@ class CartCell: UITableViewCell {
             }
             
         } else {
-            let totalButtonOffsetX: CGFloat = 4
-            let totalButtonOffsetY: CGFloat = 4
-            let totalButtonWidth: CGFloat = screenWidth - (2 * totalButtonOffsetX)
-            let totalButtonHeight: CGFloat = 50
             
-            let totalButton = UIButton()
-            totalButton.frame = CGRect(x: totalButtonOffsetX, y: totalButtonOffsetY, width: totalButtonWidth, height: totalButtonHeight)
-            totalButton.layer.cornerRadius = 5
-            totalButton.setTitle("Total: 16,500 Kyats", for: .normal)
-            totalButton.titleLabel?.textAlignment = .center
-            totalButton.backgroundColor = .green
-            totalButton.addTarget(self, action: #selector(self.pressedTotalButton(_:)), for: .touchUpInside)
-
-            contentView.addSubview(totalButton)
         }
-    }
-    
-    @objc func pressedTotalButton(_ sender: UIButton){
-        print("check out!")
     }
 }
