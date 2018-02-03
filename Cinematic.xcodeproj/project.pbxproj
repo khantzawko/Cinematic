@@ -33,6 +33,7 @@
 		1475EA8B201530A6003A7D5A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1475EA8A201530A6003A7D5A /* GoogleService-Info.plist */; };
 		14890CEE1FE68232007B59D5 /* MovieInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14890CED1FE68232007B59D5 /* MovieInfoController.swift */; };
 		14890CF91FE87998007B59D5 /* MovieInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14890CF81FE87998007B59D5 /* MovieInfoCell.swift */; };
+		148ADA1F202674A30053BF27 /* UpcomingMovieInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148ADA1E202674A30053BF27 /* UpcomingMovieInfoController.swift */; };
 		149CAAFA200C9638003553CA /* CartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149CAAF9200C9638003553CA /* CartController.swift */; };
 		14DE45111FEC4F0D0034D2C1 /* PurchaseTicketController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE45101FEC4F0D0034D2C1 /* PurchaseTicketController.swift */; };
 		14DE45131FEC50490034D2C1 /* TrailerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE45121FEC50490034D2C1 /* TrailerCell.swift */; };
@@ -92,6 +93,7 @@
 		1475EA8A201530A6003A7D5A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		14890CED1FE68232007B59D5 /* MovieInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInfoController.swift; sourceTree = "<group>"; };
 		14890CF81FE87998007B59D5 /* MovieInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInfoCell.swift; sourceTree = "<group>"; };
+		148ADA1E202674A30053BF27 /* UpcomingMovieInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingMovieInfoController.swift; sourceTree = "<group>"; };
 		149CAAF9200C9638003553CA /* CartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartController.swift; sourceTree = "<group>"; };
 		14DE45101FEC4F0D0034D2C1 /* PurchaseTicketController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseTicketController.swift; sourceTree = "<group>"; };
 		14DE45121FEC50490034D2C1 /* TrailerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerCell.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				149CAAF9200C9638003553CA /* CartController.swift */,
 				14F8552020090902008452B4 /* ProfileController.swift */,
 				14F855222009091B008452B4 /* UpcomingMovieController.swift */,
+				148ADA1E202674A30053BF27 /* UpcomingMovieInfoController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -548,6 +551,7 @@
 				145C537B200961390020C33D /* MovieBCell.swift in Sources */,
 				14DE45131FEC50490034D2C1 /* TrailerCell.swift in Sources */,
 				145A7C311FDFC16B005599AA /* AppDelegate.swift in Sources */,
+				148ADA1F202674A30053BF27 /* UpcomingMovieInfoController.swift in Sources */,
 				1421C1441FEC71A90028DA9D /* SeatCell.swift in Sources */,
 				142031EC1FF83154007A3CF3 /* ViewSeatsController.swift in Sources */,
 				1421C13E1FEC5B630028DA9D /* LabelTitleCell.swift in Sources */,

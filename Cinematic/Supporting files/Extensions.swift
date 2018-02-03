@@ -70,7 +70,7 @@ extension Date {
         }
     }
     
-    func todayInBetweenOrNot(startDate: String, endDate: String) -> Bool {
+    func isTodayInBetweenStartDateAndEndDate(startDate: String, endDate: String) -> Bool {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd-MMM-yyyy"
         
@@ -84,13 +84,25 @@ extension Date {
             return false
         }
     }
-}
+    
+    func isStartDateIsGreaterThanNextFriday(startDate: String) -> Bool {
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MMM-yyyy"
+        
+        let sDate = formatter.date(from: startDate)!
 
-extension Array
-{
-    func filterDuplicate<T>(_ keyValue:(Element)->T) -> [Element]
-    {
-        var uniqueKeys = Set<String>()
-        return filter{uniqueKeys.insert("\(keyValue($0))").inserted}
+        var components = DateComponents()
+        components.weekday = 6
+        
+        let friday =  Calendar.current.nextDate(after: Date(),
+                                                matching: components,
+                                                matchingPolicy:.nextTime)!
+        
+        if sDate == friday || sDate > friday {
+            return true
+        } else {
+            return false
+        }
     }
 }

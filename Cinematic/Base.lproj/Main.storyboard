@@ -41,19 +41,22 @@
         <!--Upcoming Movies-->
         <scene sceneID="Lud-0P-htC">
             <objects>
-                <tableViewController id="X7p-80-yIP" customClass="UpcomingController" customModule="Cinematic" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="31k-Vc-RrR">
+                <tableViewController id="X7p-80-yIP" customClass="UpcomingMovieController" customModule="Cinematic" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="136" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="31k-Vc-RrR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UpcomingMovies" id="eMP-Q7-m3b">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MovieCell" rowHeight="156" id="fbt-sn-nWg" customClass="MovieCell" customModule="Cinematic" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="156"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eMP-Q7-m3b" id="kSC-KW-X12">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fbt-sn-nWg" id="Vzm-8W-Nvv">
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="155.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="qgf-dx-m2B" kind="show" identifier="MovieInfo" id="gVE-SL-wLE"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -65,7 +68,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gHz-V9-Mib" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1350" y="548"/>
+            <point key="canvasLocation" x="1349.5999999999999" y="547.37631184407803"/>
         </scene>
         <!--Profile-->
         <scene sceneID="yho-7o-O3M">
@@ -802,6 +805,160 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kBa-hp-4uu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="577.60000000000002" y="548.7256371814093"/>
+        </scene>
+        <!--The Movie - -->
+        <scene sceneID="pnM-bY-ejh">
+            <objects>
+                <tableViewController id="qgf-dx-m2B" customClass="UpcomingMovieInfoController" customModule="Cinematic" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="cyC-9f-JoI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieBCell" rowHeight="129" id="3Kz-bf-1qq" customClass="MovieBCell" customModule="Cinematic" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="129"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3Kz-bf-1qq" id="guV-Aw-OQQ">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="129"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loading" translatesAutoresizingMaskIntoConstraints="NO" id="Cgo-Yf-Cco">
+                                            <rect key="frame" x="4" y="4" width="80" height="120"/>
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="80" id="Far-5q-tdr"/>
+                                                <constraint firstAttribute="height" constant="120" id="UjC-EW-0Rb"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="a10-ky-jUE"/>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="120" id="apZ-Nu-s8v"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Quy-Iq-fMI">
+                                            <rect key="frame" x="93" y="53" width="273" height="24"/>
+                                            <attributedString key="attributedText">
+                                                <fragment content="Coco">
+                                                    <attributes>
+                                                        <font key="NSFont" size="20" name="HelveticaNeue-Bold"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Cgo-Yf-Cco" firstAttribute="top" secondItem="guV-Aw-OQQ" secondAttribute="top" constant="4" id="47X-Oc-Rf3"/>
+                                        <constraint firstItem="Cgo-Yf-Cco" firstAttribute="leading" secondItem="guV-Aw-OQQ" secondAttribute="leading" constant="4" id="62h-f2-dVe"/>
+                                        <constraint firstAttribute="bottom" secondItem="Quy-Iq-fMI" secondAttribute="bottom" constant="52" id="Q4g-yd-LGb"/>
+                                        <constraint firstItem="Quy-Iq-fMI" firstAttribute="centerY" secondItem="guV-Aw-OQQ" secondAttribute="centerY" id="abb-xX-FWF"/>
+                                        <constraint firstItem="Quy-Iq-fMI" firstAttribute="leading" secondItem="Cgo-Yf-Cco" secondAttribute="trailing" constant="9" id="fAq-8o-LzJ"/>
+                                        <constraint firstAttribute="trailing" secondItem="Quy-Iq-fMI" secondAttribute="trailing" constant="9" id="gIw-ih-C4P"/>
+                                        <constraint firstAttribute="bottom" secondItem="Cgo-Yf-Cco" secondAttribute="bottom" constant="4" id="u7c-eD-H7C"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="infoImage" destination="Cgo-Yf-Cco" id="gf8-UR-W5b"/>
+                                    <outlet property="infoTitle" destination="Quy-Iq-fMI" id="Mhl-k7-TAy"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieInfoCell" id="51u-UE-Xjd" customClass="MovieInfoCell" customModule="Cinematic" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="157" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="51u-UE-Xjd" id="2L5-sw-FfD">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text=" Movie Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kH9-yO-lx2">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                                            <color key="backgroundColor" red="0.58445529009999997" green="0.47717297520000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="9LB-Yu-wwY"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B0H-9F-Xeg">
+                                            <rect key="frame" x="6" y="34" width="363" height="10"/>
+                                            <string key="text">Despite his family's baffling generations-old ban on music, Miguel (voice of newcomer Anthony Gonzalez) dreams of becoming an accomplished musician like his idol, Ernesto de la Cruz (voice of Benjamin Bratt). Desperate to prove his talent, Miguel finds himself in the stunning and colorful Land of the Dead following a mysterious chain of events. Along the way, he meets charming trickster Hector (voice of Gael García Bernal), and together, they set off on an extraordinary journey to unlock the real story behind Miguel's family history.</string>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="B0H-9F-Xeg" firstAttribute="leading" secondItem="2L5-sw-FfD" secondAttribute="leading" constant="6" id="0TM-1G-pap"/>
+                                        <constraint firstAttribute="trailing" secondItem="kH9-yO-lx2" secondAttribute="trailing" id="Fin-2J-cJf"/>
+                                        <constraint firstItem="B0H-9F-Xeg" firstAttribute="top" secondItem="kH9-yO-lx2" secondAttribute="bottom" constant="4" id="WMx-MW-CWy"/>
+                                        <constraint firstAttribute="trailing" secondItem="B0H-9F-Xeg" secondAttribute="trailing" constant="6" id="cEk-vI-4uM"/>
+                                        <constraint firstAttribute="bottom" secondItem="B0H-9F-Xeg" secondAttribute="bottom" id="h1l-dr-q20"/>
+                                        <constraint firstItem="kH9-yO-lx2" firstAttribute="leading" secondItem="2L5-sw-FfD" secondAttribute="leading" id="kTE-XT-kGS"/>
+                                        <constraint firstItem="kH9-yO-lx2" firstAttribute="top" secondItem="2L5-sw-FfD" secondAttribute="top" id="lFt-2l-s62"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="movieInfoDescription" destination="B0H-9F-Xeg" id="rGK-PN-zki"/>
+                                    <outlet property="movieInfoTitle" destination="kH9-yO-lx2" id="UYi-i0-WPx"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TrailerCell" rowHeight="290" id="3xh-yl-wZI" customClass="TrailerCell" customModule="Cinematic" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="201" width="375" height="290"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3xh-yl-wZI" id="pDF-8D-hbp">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="290"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Trailers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ULL-AU-Xnq">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                                            <color key="backgroundColor" red="1" green="0.37957004900000002" blue="0.17153890499999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="m0a-Uw-Fcq"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s2l-d3-vir">
+                                            <rect key="frame" x="0.0" y="32" width="375" height="250"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="375" id="8Wh-oK-g3x"/>
+                                                <constraint firstAttribute="width" secondItem="s2l-d3-vir" secondAttribute="height" multiplier="3:2" id="Dzb-ZO-1is"/>
+                                                <constraint firstAttribute="height" constant="250" id="mNT-vQ-fF4"/>
+                                            </constraints>
+                                            <wkWebViewConfiguration key="configuration">
+                                                <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                                <wkPreferences key="preferences"/>
+                                            </wkWebViewConfiguration>
+                                        </wkWebView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="ULL-AU-Xnq" firstAttribute="top" secondItem="pDF-8D-hbp" secondAttribute="top" id="Gqb-S9-PgL"/>
+                                        <constraint firstAttribute="bottom" secondItem="s2l-d3-vir" secondAttribute="bottom" id="LcA-W3-LQX"/>
+                                        <constraint firstItem="s2l-d3-vir" firstAttribute="leading" secondItem="pDF-8D-hbp" secondAttribute="leading" id="XiN-OO-V5V"/>
+                                        <constraint firstAttribute="trailing" secondItem="ULL-AU-Xnq" secondAttribute="trailing" id="Xl1-zv-4jQ"/>
+                                        <constraint firstAttribute="trailing" secondItem="s2l-d3-vir" secondAttribute="trailing" id="c0R-Dr-f86"/>
+                                        <constraint firstItem="ULL-AU-Xnq" firstAttribute="leading" secondItem="pDF-8D-hbp" secondAttribute="leading" id="k6w-Yw-Fqk"/>
+                                        <constraint firstItem="s2l-d3-vir" firstAttribute="top" secondItem="ULL-AU-Xnq" secondAttribute="bottom" constant="2" id="tbc-cx-TtK"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="trailerTitle" destination="ULL-AU-Xnq" id="BTz-6S-9CG"/>
+                                    <outlet property="webView" destination="s2l-d3-vir" id="nBz-uD-uOl"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="qgf-dx-m2B" id="UtX-6F-h1g"/>
+                            <outlet property="delegate" destination="qgf-dx-m2B" id="4UK-5f-vkc"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="The Movie -" id="vj6-ij-nwc">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="L6Y-5H-HeG"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ybd-Fr-h87" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2097" y="547"/>
         </scene>
     </scenes>
     <resources>

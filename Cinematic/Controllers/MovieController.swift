@@ -53,7 +53,7 @@ class MovieController: UITableViewController {
             if !self.movies.isEmpty {
                 for movie in self.movies {
                     if movie.startDate != "nil" && movie.endDate != "nil" {
-                        if Date().todayInBetweenOrNot(startDate: movie.startDate, endDate: movie.endDate) {
+                        if Date().isTodayInBetweenStartDateAndEndDate(startDate: movie.startDate, endDate: movie.endDate) {
                             if !self.filteredMovies.contains(where: {$0.key == movie.key}) {
                                 self.filteredMovies.append(movie)
                             }
