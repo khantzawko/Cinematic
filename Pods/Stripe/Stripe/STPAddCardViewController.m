@@ -118,15 +118,12 @@ typedef NS_ENUM(NSUInteger, STPPaymentCardSection) {
     if (self.prefilledInformation.billingAddress != nil) {
         self.addressViewModel.address = self.prefilledInformation.billingAddress;
     }
-    self.addressViewModel.previousField = paymentCell;
     
     self.activityIndicator = [[STPPaymentActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20.0f, 20.0f)];
     
     self.inputAccessoryToolbar = [UIToolbar stp_inputAccessoryToolbarWithTarget:self action:@selector(paymentFieldNextTapped)];
     [self.inputAccessoryToolbar stp_setEnabled:NO];
-    if (self.configuration.requiredBillingAddressFields != STPBillingAddressFieldsNone) {
-        paymentCell.inputAccessoryView = self.inputAccessoryToolbar;
-    }
+    [self updateInputAccessoryVisiblity];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
 
@@ -316,6 +313,14 @@ typedef NS_ENUM(NSUInteger, STPPaymentCardSection) {
                                                                );
 }
 
+- (void)updateInputAccessoryVisiblity {
+    // The inputAccessoryToolbar switches from the paymentCell to the first address field.
+    // It should only be shown when there *is* an address field. This compensates for the lack
+    // of a 'Return' key on the number pad used for paymentCell entry
+    BOOL hasAddressCells = self.addressViewModel.addressCells.count > 0;
+    self.paymentCell.inputAccessoryView = hasAddressCells ? self.inputAccessoryToolbar : nil;
+}
+
 - (void)setCustomFooterView:(UIView *)footerView {
     _customFooterView = footerView;
     [self.stp_willAppearPromise voidOnSuccess:^{
@@ -360,11 +365,13 @@ typedef NS_ENUM(NSUInteger, STPPaymentCardSection) {
 - (void)addressViewModel:(__unused STPAddressViewModel *)addressViewModel addedCellAtIndex:(NSUInteger)index {
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:STPPaymentCardBillingAddressSection];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self updateInputAccessoryVisiblity];
 }
 
 - (void)addressViewModel:(__unused STPAddressViewModel *)addressViewModel removedCellAtIndex:(NSUInteger)index {
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:STPPaymentCardBillingAddressSection];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self updateInputAccessoryVisiblity];
 }
 
 - (void)addressViewModelDidChange:(__unused STPAddressViewModel *)addressViewModel {
@@ -400,8 +407,8 @@ typedef NS_ENUM(NSUInteger, STPPaymentCardSection) {
         default:
             return [UITableViewCell new]; // won't be called; exists to make the static analyzer happy
     }
-    cell.backgroundColor = [UIColor clearColor];
-    cell.contentView.backgroundColor = self.theme.secondaryBackgroundColor;
+    cell.backgroundColor = self.theme.secondaryBackgroundColor;
+    cell.contentView.backgroundColor = [UIColor clearColor];
     return cell;
 }
 

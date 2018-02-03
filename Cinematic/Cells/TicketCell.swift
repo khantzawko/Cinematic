@@ -11,6 +11,7 @@ import UIKit
 class TicketCell: UITableViewCell {
 
     @IBOutlet weak var ticketContentTitle: UILabel!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

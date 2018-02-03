@@ -7,6 +7,7 @@ target 'Cinematic' do
 
   pod 'Stripe'
   pod 'Firebase/Database'
+  pod 'Firebase/Storage'
 
   target 'CinematicTests' do
     inherit! :search_paths

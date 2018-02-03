@@ -15,6 +15,7 @@
         <array key="HelveticaNeue.ttc">
             <string>HelveticaNeue</string>
             <string>HelveticaNeue-Bold</string>
+            <string>HelveticaNeue-Italic</string>
         </array>
     </customFonts>
     <scenes>
@@ -26,8 +27,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <color key="tintColor" red="1" green="0.37957004900000002" blue="0.17153890499999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="selectedImageTintColor" red="1" green="0.37957004900000002" blue="0.17153890499999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="xQ5-az-75I" kind="relationship" relationship="viewControllers" id="I9a-GE-vjT"/>
@@ -42,13 +41,13 @@
         <!--Upcoming Movies-->
         <scene sceneID="Lud-0P-htC">
             <objects>
-                <tableViewController id="X7p-80-yIP" customClass="UpcomingViewController" customModule="Cinematic" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="X7p-80-yIP" customClass="UpcomingController" customModule="Cinematic" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="31k-Vc-RrR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="eMP-Q7-m3b">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UpcomingMovies" id="eMP-Q7-m3b">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eMP-Q7-m3b" id="kSC-KW-X12">
@@ -71,7 +70,7 @@
         <!--Profile-->
         <scene sceneID="yho-7o-O3M">
             <objects>
-                <viewController id="Nmf-2D-DGG" customClass="ProfileViewController" customModule="Cinematic" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Nmf-2D-DGG" customClass="ProfileController" customModule="Cinematic" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="q1L-Pm-FGu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -103,7 +102,7 @@
         <!--In Theatre-->
         <scene sceneID="nB3-Yz-QmS">
             <objects>
-                <tableViewController id="aL5-Sy-A4G" customClass="MovieViewController" customModule="Cinematic" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="aL5-Sy-A4G" customClass="MovieController" customModule="Cinematic" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="136" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="0Ia-ZE-sDx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -117,7 +116,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="g2o-O6-Rnw" kind="show" identifier="mySegue" id="dgN-8K-pBO"/>
+                                    <segue destination="g2o-O6-Rnw" kind="show" identifier="MovieInfo" id="mqV-3K-i7z"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -138,7 +137,7 @@
         <!--The Movie - -->
         <scene sceneID="SFy-wK-ssp">
             <objects>
-                <tableViewController id="g2o-O6-Rnw" customClass="MovieInfoViewController" customModule="Cinematic" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="g2o-O6-Rnw" customClass="MovieInfoController" customModule="Cinematic" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="PSh-2s-oVx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -151,8 +150,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="129"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coco" translatesAutoresizingMaskIntoConstraints="NO" id="ZZ9-DZ-seb">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loading" translatesAutoresizingMaskIntoConstraints="NO" id="ZZ9-DZ-seb">
                                             <rect key="frame" x="4" y="4" width="80" height="120"/>
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="Dcv-qW-Ybt"/>
                                                 <constraint firstAttribute="width" constant="80" id="Gpd-uZ-aXs"/>
@@ -228,7 +228,7 @@
                                     <outlet property="movieInfoTitle" destination="2RM-9e-i8a" id="C41-Bm-RBr"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReviewCell" rowHeight="95" id="34n-r8-oVd" customClass="ReviewCell" customModule="Cinematic" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CinemaCell" rowHeight="95" id="34n-r8-oVd" customClass="CinemaCell" customModule="Cinematic" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="201" width="375" height="95"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="34n-r8-oVd" id="n4r-ma-dON">
@@ -299,7 +299,8 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="reviewTitle" destination="DcR-Bj-NNK" id="hog-v3-fme"/>
+                                    <outlet property="cinemaTitle" destination="DcR-Bj-NNK" id="BjI-0H-n9s"/>
+                                    <outlet property="collectionView" destination="LY4-05-oFa" id="Ao7-bD-NHT"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TrailerCell" rowHeight="290" id="YTF-VM-pxh" customClass="TrailerCell" customModule="Cinematic" customModuleProvider="target">
@@ -357,7 +358,7 @@
                     <navigationItem key="navigationItem" title="The Movie -" id="Ckv-nC-GsQ">
                         <barButtonItem key="rightBarButtonItem" title="Purchase " image="movie-ticket" id="Cff-va-tlx" userLabel="Purchase">
                             <connections>
-                                <segue destination="d1s-hO-7PG" kind="show" id="BKy-pQ-JPc"/>
+                                <segue destination="d1s-hO-7PG" kind="show" identifier="ToPurchaseTicket" id="BKy-pQ-JPc"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -369,17 +370,17 @@
         <!--Purchase Ticket-->
         <scene sceneID="Rb4-Z2-QDS">
             <objects>
-                <tableViewController id="d1s-hO-7PG" customClass="PurchaseTicketViewController" customModule="Cinematic" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="d1s-hO-7PG" customClass="PurchaseTicketController" customModule="Cinematic" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="i3s-z0-lZW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieBCell" rowHeight="80" id="ohF-9s-NUh" customClass="MovieBCell" customModule="Cinematic" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieBCell" rowHeight="100" id="ohF-9s-NUh" customClass="MovieBCell" customModule="Cinematic" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ohF-9s-NUh" id="4dy-ml-qIi">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Selected Movie" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G5i-Dq-xIK">
@@ -392,10 +393,10 @@
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GFf-vK-8kU">
-                                            <rect key="frame" x="16" y="36" width="337" height="37.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GFf-vK-8kU">
+                                            <rect key="frame" x="16" y="36" width="337" height="38"/>
                                             <attributedString key="attributedText">
-                                                <fragment content="Coco">
+                                                <fragment content="Selected Movie">
                                                     <attributes>
                                                         <font key="NSFont" size="32" name="HelveticaNeue-Bold"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
@@ -404,24 +405,34 @@
                                             </attributedString>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tm8-r1-WMS">
+                                            <rect key="frame" x="16" y="80" width="337" height="14"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Italic" family="Helvetica Neue" pointSize="16"/>
+                                            <color key="textColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="G5i-Dq-xIK" firstAttribute="top" secondItem="4dy-ml-qIi" secondAttribute="top" id="6Gj-IJ-MaI"/>
+                                        <constraint firstAttribute="bottom" secondItem="tm8-r1-WMS" secondAttribute="bottom" constant="6" id="8Mb-lH-tF9"/>
                                         <constraint firstItem="G5i-Dq-xIK" firstAttribute="leading" secondItem="4dy-ml-qIi" secondAttribute="leading" id="9gN-y5-6aC"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="GFf-vK-8kU" secondAttribute="trailing" constant="6" id="KOY-Hi-VuC"/>
+                                        <constraint firstItem="tm8-r1-WMS" firstAttribute="leading" secondItem="4dy-ml-qIi" secondAttribute="leadingMargin" id="LNi-Yq-JY7"/>
                                         <constraint firstItem="GFf-vK-8kU" firstAttribute="top" secondItem="G5i-Dq-xIK" secondAttribute="bottom" constant="6" id="Sf5-bY-yxf"/>
                                         <constraint firstItem="GFf-vK-8kU" firstAttribute="leading" secondItem="4dy-ml-qIi" secondAttribute="leadingMargin" id="XaW-6u-c7f"/>
-                                        <constraint firstAttribute="bottom" secondItem="GFf-vK-8kU" secondAttribute="bottom" constant="6" id="pNq-u6-mq9"/>
+                                        <constraint firstItem="tm8-r1-WMS" firstAttribute="top" secondItem="GFf-vK-8kU" secondAttribute="bottom" constant="6" id="Xp5-mq-5Ya"/>
                                         <constraint firstAttribute="trailing" secondItem="G5i-Dq-xIK" secondAttribute="trailing" id="tvB-mt-xzw"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="tm8-r1-WMS" secondAttribute="trailing" constant="6" id="zqk-P2-Lru"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="purchaseSelectedMovieTitle" destination="GFf-vK-8kU" id="8bT-Yq-AkW"/>
                                     <outlet property="selectedMovie" destination="G5i-Dq-xIK" id="SM2-Js-Q5X"/>
+                                    <outlet property="selectedMovieTheatre" destination="tm8-r1-WMS" id="lCU-eh-3KU"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LabelTitleCell" rowHeight="39" id="FYp-tA-fbo" customClass="LabelTitleCell" customModule="Cinematic" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="108" width="375" height="39"/>
+                                <rect key="frame" x="0.0" y="128" width="375" height="39"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FYp-tA-fbo" id="3aP-xo-xk6">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="39"/>
@@ -449,7 +460,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TicketCell" rowHeight="91" id="kAE-3s-4I9" customClass="TicketCell" customModule="Cinematic" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="147" width="375" height="91"/>
+                                <rect key="frame" x="0.0" y="167" width="375" height="91"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kAE-3s-4I9" id="R5J-6b-wOR">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="91"/>
@@ -515,11 +526,12 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="collectionView" destination="yTg-pM-Zut" id="Ayk-9d-Eer"/>
                                     <outlet property="ticketContentTitle" destination="mGl-f0-waS" id="rmJ-gU-KYX"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SeatCell" rowHeight="80" id="xgv-HS-zjn" userLabel="SeatCell" customClass="SeatCell" customModule="Cinematic" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="238" width="375" height="80"/>
+                                <rect key="frame" x="0.0" y="258" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xgv-HS-zjn" id="JNc-9O-YrQ">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
@@ -568,7 +580,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Purchase Ticket" largeTitleDisplayMode="always" id="NCA-Ah-ks6">
-                        <barButtonItem key="rightBarButtonItem" title="Cart" image="cart2" id="mfb-uo-QYL">
+                        <barButtonItem key="rightBarButtonItem" title="Cart" image="cart" id="mfb-uo-QYL">
                             <connections>
                                 <segue destination="7U8-U5-vmg" kind="show" id="P2e-bm-VcJ"/>
                             </connections>
@@ -582,7 +594,7 @@
         <!--Cart-->
         <scene sceneID="JCa-uo-Cuc">
             <objects>
-                <viewController id="7U8-U5-vmg" customClass="CartViewController" customModule="Cinematic" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="7U8-U5-vmg" customClass="CartController" customModule="Cinematic" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qGC-8g-d3D">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -732,22 +744,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mgM-Yf-ANA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2097" y="547"/>
-        </scene>
-        <!--Scanner View Controller-->
-        <scene sceneID="Ci9-a2-13a">
-            <objects>
-                <viewController id="IBc-cw-rOT" customClass="ScannerViewController" customModule="Cinematic" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="dYr-nU-BgQ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <viewLayoutGuide key="safeArea" id="33e-NT-M9O"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TFf-gu-HJV" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3023" y="546"/>
+            <point key="canvasLocation" x="577" y="1266"/>
         </scene>
         <!--In Theatre-->
         <scene sceneID="p7c-h1-MaR">
@@ -808,8 +805,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cart2" width="23" height="22"/>
-        <image name="coco" width="160" height="240"/>
+        <image name="cart" width="23" height="22"/>
+        <image name="loading" width="160" height="240"/>
         <image name="movie" width="21" height="21"/>
         <image name="movie-ticket" width="25" height="25"/>
         <image name="profile" width="21" height="22"/>

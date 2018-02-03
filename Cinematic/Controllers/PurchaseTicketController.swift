@@ -10,15 +10,32 @@ import UIKit
 
 private var selectedIndexPathDate: IndexPath?
 private var selectedIndexPathTime: IndexPath?
-let movieTimeArray = ["9:40 am","12:40 pm","3:30 pm","6:30 pm","9:30 pm"]
+private var dates = [String]()
+private var showtimes = [String]()
 
-
-class PurchaseTicketViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
+class PurchaseTicketController: UITableViewController, UIPopoverPresentationControllerDelegate {
     
-
+    var selectedMovie = Movie()
+    var selectedCinema = Cinema()
+    var selectedTheatre = Theatre()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        showtimes = selectedTheatre.showtimes!
+        
+        dates = Date().daysFromStartDate(startDate: selectedTheatre.startDate!, numberOfWeeks: selectedTheatre.weeksInTheatre!)
+        self.reloadCollectionView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        selectedIndexPathDate = IndexPath(row: 0, section: 0)
+        selectedIndexPathTime = IndexPath(row: 0, section: 0)
+    }
+    
+    func reloadCollectionView() {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TicketCell") as! TicketCell
+        cell.collectionView.reloadData()
     }
     
     @IBAction func pressedViewSeats(_ sender: Any) {
@@ -35,7 +52,8 @@ class PurchaseTicketViewController: UITableViewController, UIPopoverPresentation
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MovieBCell", for: indexPath) as! MovieBCell
             cell.selectedMovie.text = " Selected Movie"
-            cell.purchaseSelectedMovieTitle.text = "Coco"
+            cell.purchaseSelectedMovieTitle.text = selectedMovie.name
+            cell.selectedMovieTheatre.text = selectedCinema.name! + " - " + selectedTheatre.name!
             return cell
         } else if indexPath.row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "LabelTitleCell", for: indexPath) as! LabelTitleCell
@@ -43,15 +61,16 @@ class PurchaseTicketViewController: UITableViewController, UIPopoverPresentation
             return cell
         } else if indexPath.row == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TicketCell", for: indexPath) as! TicketCell
-            cell.ticketContentTitle.text = "Choose Date"
+            cell.ticketContentTitle.text = "Select Date"
             return cell
         } else if indexPath.row == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TicketCell", for: indexPath) as! TicketCell
-            cell.ticketContentTitle.text = "Choose Time"
+            cell.ticketContentTitle.text = "Select Time"
             return cell
         } else if indexPath.row == 4 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SeatCell", for: indexPath) as! SeatCell
             cell.chooseSeatButton.layer.cornerRadius = 20
+            cell.seatTitle.text = "Select Seats"
             cell.chooseSeatButton.titleLabel?.text = "View Seats"
             cell.chooseSeatButton.backgroundColor = UIColor(red:1.00, green:0.14, blue:0.40, alpha:1.0)
             return cell
@@ -65,10 +84,10 @@ class PurchaseTicketViewController: UITableViewController, UIPopoverPresentation
 extension TicketCell: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if self.ticketContentTitle.text == "Choose Date" {
-            return 4
-        } else if self.ticketContentTitle.text == "Choose Time" {
-            return movieTimeArray.count
+        if self.ticketContentTitle.text == "Select Date" {
+            return dates.count
+        } else if self.ticketContentTitle.text == "Select Time" {
+            return showtimes.count
         } else {
             return 0
         }
@@ -76,12 +95,12 @@ extension TicketCell: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if self.ticketContentTitle.text == "Choose Date" {
+        if self.ticketContentTitle.text == "Select Date" {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionHorizontalCell", for: indexPath) as! CollectionHorizontalCell
             cell.layer.cornerRadius = 20
             cell.layer.borderWidth = 2
             cell.layer.borderColor = UIColor(red:0.01, green:0.54, blue:0.91, alpha:1.0).cgColor
-            cell.ticketContentLabel.text = "12 Dec"
+            cell.ticketContentLabel.text = dates[indexPath.row]
             
             if indexPath == selectedIndexPathDate && selectedIndexPathDate != nil {
                 cell.layer.backgroundColor = UIColor(red:0.01, green:0.54, blue:0.91, alpha:1.0).cgColor
@@ -92,12 +111,12 @@ extension TicketCell: UICollectionViewDataSource, UICollectionViewDelegate {
             }
             
             return cell
-        } else if self.ticketContentTitle.text == "Choose Time" {
+        } else if self.ticketContentTitle.text == "Select Time" {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionHorizontalCell", for: indexPath) as! CollectionHorizontalCell
             cell.layer.cornerRadius = 20
             cell.layer.borderWidth = 2
             cell.layer.borderColor = UIColor(red:0.01, green:0.54, blue:0.91, alpha:1.0).cgColor
-            cell.ticketContentLabel.text = movieTimeArray[indexPath.row]
+            cell.ticketContentLabel.text = showtimes[indexPath.row]
             
             if indexPath == selectedIndexPathTime && selectedIndexPathTime != nil {
                 cell.layer.backgroundColor = UIColor(red:0.01, green:0.54, blue:0.91, alpha:1.0).cgColor
@@ -115,9 +134,9 @@ extension TicketCell: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if self.ticketContentTitle.text == "Choose Date" {
+        if self.ticketContentTitle.text == "Select Date" {
             selectedIndexPathDate = indexPath
-        } else if self.ticketContentTitle.text == "Choose Time" {
+        } else if self.ticketContentTitle.text == "Select Time" {
             selectedIndexPathTime = indexPath
         } else {
             return
@@ -136,9 +155,9 @@ extension TicketCell: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         
-        if self.ticketContentTitle.text == "Choose Date" {
+        if self.ticketContentTitle.text == "Select Date" {
             selectedIndexPathDate = nil
-        } else if self.ticketContentTitle.text == "Choose Time" {
+        } else if self.ticketContentTitle.text == "Select Time" {
             selectedIndexPathTime = nil
         } else {
             return

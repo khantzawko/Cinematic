@@ -16,8 +16,6 @@
 
 #import <SafariServices/SafariServices.h>
 
-#define FAUXPAS_IGNORED_IN_METHOD(...)
-
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^STPBoolCompletionBlock)(BOOL success);
@@ -38,7 +36,8 @@ typedef void (^STPBoolCompletionBlock)(BOOL success);
                              completion:(STPRedirectContextCompletionBlock)completion {
 
     if (source.flow != STPSourceFlowRedirect
-        || source.status != STPSourceStatusPending
+        || !(source.status == STPSourceStatusPending ||
+             source.status == STPSourceStatusChargeable)
         || source.redirect.returnURL == nil
         || (source.redirect.url == nil
             && [self nativeRedirectURLForSource:source] == nil)) {
@@ -60,7 +59,6 @@ typedef void (^STPBoolCompletionBlock)(BOOL success);
 }
 
 - (void)performAppRedirectIfPossibleWithCompletion:(STPBoolCompletionBlock)onCompletion {
-    FAUXPAS_IGNORED_IN_METHOD(APIAvailability)
 
     if (self.state == STPRedirectContextStateNotStarted) {
         NSURL *nativeUrl = [self nativeRedirectURLForSource:self.source];
@@ -75,7 +73,7 @@ typedef void (^STPBoolCompletionBlock)(BOOL success);
         [self subscribeToUrlAndForegroundNotifications];
 
         UIApplication *application = [UIApplication sharedApplication];
-        if ([application respondsToSelector:@selector(openURL:options:completionHandler:)]) {
+        if (@available(iOS 10, *)) {
 
             WEAK(self);
             [application openURL:nativeUrl options:@{} completionHandler:^(BOOL success) {
@@ -103,10 +101,11 @@ typedef void (^STPBoolCompletionBlock)(BOOL success);
 }
 
 - (void)startRedirectFlowFromViewController:(UIViewController *)presentingViewController {
-    FAUXPAS_IGNORED_IN_METHOD(APIAvailability)
 
+    WEAK(self)
     [self performAppRedirectIfPossibleWithCompletion:^(BOOL success) {
         if (!success) {
+            STRONG(self)
             if ([SFSafariViewController class] != nil) {
                 [self startSafariViewControllerRedirectFlowFromViewController:presentingViewController];
             }
@@ -118,7 +117,7 @@ typedef void (^STPBoolCompletionBlock)(BOOL success);
 }
 
 - (void)startSafariViewControllerRedirectFlowFromViewController:(UIViewController *)presentingViewController {
-    FAUXPAS_IGNORED_IN_METHOD(APIAvailability)
+
     if (self.state == STPRedirectContextStateNotStarted) {
         _state = STPRedirectContextStateInProgress;
         [self subscribeToUrlNotifications];
@@ -147,14 +146,14 @@ typedef void (^STPBoolCompletionBlock)(BOOL success);
 
 #pragma mark - SFSafariViewControllerDelegate -
 
-- (void)safariViewControllerDidFinish:(__unused SFSafariViewController *)controller { FAUXPAS_IGNORED_ON_LINE(APIAvailability)
+- (void)safariViewControllerDidFinish:(__unused SFSafariViewController *)controller {
     stpDispatchToMainThreadIfNecessary(^{
         [self handleRedirectCompletionWithError:nil
                     shouldDismissViewController:NO];
     });
 }
 
-- (void)safariViewController:(__unused SFSafariViewController *)controller didCompleteInitialLoad:(BOOL)didLoadSuccessfully { FAUXPAS_IGNORED_ON_LINE(APIAvailability)
+- (void)safariViewController:(__unused SFSafariViewController *)controller didCompleteInitialLoad:(BOOL)didLoadSuccessfully {
     if (didLoadSuccessfully == NO) {
         stpDispatchToMainThreadIfNecessary(^{
             [self handleRedirectCompletionWithError:[NSError stp_genericConnectionError]

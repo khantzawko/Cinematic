@@ -17,7 +17,7 @@ class MovieCell: UITableViewCell {
     let screenHeight = UIScreen.main.bounds.height
     
     var movieImage: UIImageView!
-    var movieTitle: UILabel!
+    var movieName: UILabel!
     var movieDuration: UILabel!
     var movieGenre: UILabel!
     var movieRatingText: UILabel!
@@ -42,20 +42,21 @@ class MovieCell: UITableViewCell {
         let movieGenreOffsetX: CGFloat = movieImageOffsetX + movieImageWidth + 10
         let movieGenreOffsetY: CGFloat = movieImageOffsetY
 
-        let movieTitleWidth: CGFloat = screenWidth - ((2 * movieImageOffsetX) + movieImageWidth + 10)
-        let movieTitleHeight: CGFloat = 25
-        let movieTitleOffsetX: CGFloat = movieGenreOffsetX
-        let movieTitleOffsetY: CGFloat = ((2 * movieImageOffsetY) + movieImageHeight - movieTitleHeight)/2
+        let movieNameWidth: CGFloat = screenWidth - ((2 * movieImageOffsetX) + movieImageWidth + 10)
+        let movieNameHeight: CGFloat = 25
+        let movieNameOffsetX: CGFloat = movieGenreOffsetX
+        let movieNameOffsetY: CGFloat = ((2 * movieImageOffsetY) + movieImageHeight - movieNameHeight)/2
         
         let movieDurationWidth: CGFloat = 100
         let movieDurationHeight: CGFloat = 12
         let movieDurationOffsetX: CGFloat = movieGenreOffsetX
-        let movieDurationOffsetY: CGFloat = (((2 * movieImageOffsetY) + movieImageHeight - movieTitleHeight)/2) + movieTitleHeight
+        let movieDurationOffsetY: CGFloat = (((2 * movieImageOffsetY) + movieImageHeight - movieNameHeight)/2) + movieNameHeight
         
         movieImage = UIImageView()
         movieImage.frame = CGRect(x: movieImageOffsetX, y: movieImageOffsetY, width: movieImageWidth, height: movieImageHeight)
         movieImage.layer.cornerRadius = 5
         movieImage.clipsToBounds = true
+        movieImage.image = UIImage(named: "loading")
         contentView.addSubview(movieImage)
         
         movieGenre = UILabel()
@@ -63,10 +64,10 @@ class MovieCell: UITableViewCell {
         movieGenre.font = UIFont.boldSystemFont(ofSize: 13)
         contentView.addSubview(movieGenre)
         
-        movieTitle = UILabel()
-        movieTitle.frame = CGRect(x: movieTitleOffsetX, y: movieTitleOffsetY, width: movieTitleWidth, height: movieTitleHeight)
-        movieTitle.font = UIFont.boldSystemFont(ofSize: 20)
-        contentView.addSubview(movieTitle)
+        movieName = UILabel()
+        movieName.frame = CGRect(x: movieNameOffsetX, y: movieNameOffsetY, width: movieNameWidth, height: movieNameHeight)
+        movieName.font = UIFont.boldSystemFont(ofSize: 20)
+        contentView.addSubview(movieName)
         
         movieDuration = UILabel()
         movieDuration.frame = CGRect(x: movieDurationOffsetX, y: movieDurationOffsetY, width: movieDurationWidth, height: movieDurationHeight)

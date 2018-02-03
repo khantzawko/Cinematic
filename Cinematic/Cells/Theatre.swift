@@ -6,4 +6,13 @@
 //  Copyright © 2018 Khant Zaw Ko. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+struct Theatre {
+    var key: String?
+    var name: String?
+    var showtimes: [String]?
+    var theatreType: String?
+    var startDate: String?
+    var weeksInTheatre: Int?
+}

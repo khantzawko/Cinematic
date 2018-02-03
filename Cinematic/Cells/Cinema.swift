@@ -6,4 +6,11 @@
 //  Copyright © 2018 Khant Zaw Ko. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+struct Cinema {
+    var key: String?
+    var name: String?
+    var location: String?
+    var phone: String?
+}

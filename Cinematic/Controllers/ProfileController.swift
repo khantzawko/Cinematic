@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileController: UIViewController {
 
     @IBOutlet weak var QRImage: UIImageView!
     
