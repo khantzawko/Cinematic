@@ -21,12 +21,11 @@ class MovieInfoController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        selectedIndexPath = IndexPath(row: 0, section: 0)
         getMovieData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        selectedIndexPath = IndexPath(row: 0, section: 0)
-        
         if self.theatres.isEmpty {
             self.navigationItem.rightBarButtonItem?.isEnabled = false
         } else {
@@ -73,6 +72,7 @@ class MovieInfoController: UITableViewController {
             ptv.selectedMovie = selectedMovie
             ptv.selectedCinema = cinemas[(selectedIndexPath?.row)!]
             ptv.selectedTheatre = theatres[(selectedIndexPath?.row)!]
+            
         }
     }
     
@@ -85,6 +85,7 @@ class MovieInfoController: UITableViewController {
             var movieDict = mSnap.value as! [String:AnyObject]
             if  let cinemaKey = movieDict["cinemaID"],
                 let theatreKey = movieDict["theatreID"] {
+                
                 cinemaRef.child(cinemaKey as! String).observe(DataEventType.value, with: {(cSnap) in
                     var cinemaDict = cSnap.value as! [String:AnyObject]
                     if  let cinemaName = cinemaDict["name"],
@@ -101,23 +102,22 @@ class MovieInfoController: UITableViewController {
                     self.reloadCollectionView()
                 })
                 
-                
                 theatreRef.child(theatreKey as! String).observe(DataEventType.value, with: {(tSnap) in
                     var theatreDict = tSnap.value as! [String:AnyObject]
-                    if let theatreName = theatreDict["name"], let theatreShowtimes = theatreDict["showtimes"], let theatreType = theatreDict["theatreTypeID"] {
-
+                    if let theatreName = theatreDict["name"],
+                        let theatreShowtimes = theatreDict["showtimes"],
+                        let theatreType = theatreDict["theatreTypeID"] {
                         var movieDict = tSnap.childSnapshot(forPath: "movies/\(self.selectedMovie.key!)").value as! [String:AnyObject]
                         if  let startDate = movieDict["startDate"],
                             let weeksInTheatre = movieDict["weeksInTheatre"] {
-                            let theatre = Theatre(key: theatreKey as? String,
-                                                  name: theatreName as? String,
-                                                  showtimes: theatreShowtimes as? [String],
-                                                  theatreType: theatreType as? String,
-                                                  startDate: startDate as? String,
-                                                  weeksInTheatre: weeksInTheatre as? Int)
-                            self.theatres.append(theatre)
+                            
+                            self.theatres.append(Theatre(key: theatreKey as? String,
+                                                         name: theatreName as? String,
+                                                         showtimes: theatreShowtimes as? [String],
+                                                         theatreType: theatreType as? String,
+                                                         startDate: startDate as? String,
+                                                         weeksInTheatre: weeksInTheatre as? Int))
                         }
-
                     }
                 })
             }

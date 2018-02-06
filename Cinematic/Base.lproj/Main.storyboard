@@ -374,7 +374,7 @@
         <scene sceneID="Rb4-Z2-QDS">
             <objects>
                 <tableViewController id="d1s-hO-7PG" customClass="PurchaseTicketController" customModule="Cinematic" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="i3s-z0-lZW">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="i3s-z0-lZW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -533,49 +533,6 @@
                                     <outlet property="ticketContentTitle" destination="mGl-f0-waS" id="rmJ-gU-KYX"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SeatCell" rowHeight="80" id="xgv-HS-zjn" userLabel="SeatCell" customClass="SeatCell" customModule="Cinematic" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="258" width="375" height="80"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xgv-HS-zjn" id="JNc-9O-YrQ">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Seats" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TCY-3U-eOf">
-                                            <rect key="frame" x="4" y="0.0" width="371" height="18"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xUC-fU-e6l">
-                                            <rect key="frame" x="4" y="22" width="367" height="54"/>
-                                            <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="54" id="iqg-9z-WMr"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
-                                            <state key="normal" title="View Seats">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="pressedViewSeats:" destination="d1s-hO-7PG" eventType="touchUpInside" id="t4J-cx-Gk4"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="xUC-fU-e6l" secondAttribute="trailing" constant="4" id="6qL-H9-Xow"/>
-                                        <constraint firstItem="xUC-fU-e6l" firstAttribute="top" secondItem="TCY-3U-eOf" secondAttribute="bottom" constant="4" id="h9D-2X-RJb"/>
-                                        <constraint firstItem="xUC-fU-e6l" firstAttribute="leading" secondItem="JNc-9O-YrQ" secondAttribute="leading" constant="4" id="hFx-0N-2ZC"/>
-                                        <constraint firstAttribute="bottom" secondItem="xUC-fU-e6l" secondAttribute="bottom" constant="4" id="mZa-b1-Eww"/>
-                                        <constraint firstItem="TCY-3U-eOf" firstAttribute="top" secondItem="JNc-9O-YrQ" secondAttribute="top" id="qmv-I8-VO1"/>
-                                        <constraint firstAttribute="trailing" secondItem="TCY-3U-eOf" secondAttribute="trailing" id="rv6-bl-0ee"/>
-                                        <constraint firstItem="TCY-3U-eOf" firstAttribute="leading" secondItem="JNc-9O-YrQ" secondAttribute="leading" constant="4" id="xAP-Ej-fN2"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="chooseSeatButton" destination="xUC-fU-e6l" id="Bdr-X5-0TH"/>
-                                    <outlet property="seatTitle" destination="TCY-3U-eOf" id="o3v-Sd-QbX"/>
-                                </connections>
-                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="d1s-hO-7PG" id="EjO-CD-8AB"/>
@@ -585,7 +542,7 @@
                     <navigationItem key="navigationItem" title="Purchase Ticket" largeTitleDisplayMode="always" id="NCA-Ah-ks6">
                         <barButtonItem key="rightBarButtonItem" title="Cart" image="cart" id="mfb-uo-QYL">
                             <connections>
-                                <segue destination="7U8-U5-vmg" kind="show" id="P2e-bm-VcJ"/>
+                                <segue destination="7U8-U5-vmg" kind="show" identifier="ToCart" id="En4-b3-tVa"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -613,7 +570,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EJW-MR-WcG">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EJW-MR-WcG">
                                 <rect key="frame" x="0.0" y="64" width="375" height="491"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -621,7 +578,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="77"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Nt0-66-o7E" id="o3f-D9-GJD">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="77"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="76.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -630,7 +587,7 @@
                                         <rect key="frame" x="0.0" y="105" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pdM-AR-oOz" id="DCt-ni-xNo">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -664,7 +621,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X7g-H5-kdr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3774" y="-183"/>
+            <point key="canvasLocation" x="3633" y="-183"/>
         </scene>
         <!--View Seats Controller-->
         <scene sceneID="Z8d-mV-fNM">

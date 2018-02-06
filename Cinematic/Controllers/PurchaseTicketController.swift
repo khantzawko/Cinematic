@@ -21,7 +21,9 @@ class PurchaseTicketController: UITableViewController, UIPopoverPresentationCont
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
+        selectedIndexPathDate = IndexPath(row: 0, section: 0)
+        selectedIndexPathTime = IndexPath(row: 0, section: 0)
         showtimes = selectedTheatre.showtimes!
         
         dates = Date().daysFromStartDate(startDate: selectedTheatre.startDate!, numberOfWeeks: selectedTheatre.weeksInTheatre!)
@@ -29,8 +31,7 @@ class PurchaseTicketController: UITableViewController, UIPopoverPresentationCont
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        selectedIndexPathDate = IndexPath(row: 0, section: 0)
-        selectedIndexPathTime = IndexPath(row: 0, section: 0)
+
     }
     
     func reloadCollectionView() {
@@ -38,13 +39,8 @@ class PurchaseTicketController: UITableViewController, UIPopoverPresentationCont
         cell.collectionView.reloadData()
     }
     
-    @IBAction func pressedViewSeats(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "PopoverController") as! ViewSeatsController
-        present(vc, animated: true, completion: nil)
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 4
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -67,15 +63,19 @@ class PurchaseTicketController: UITableViewController, UIPopoverPresentationCont
             let cell = tableView.dequeueReusableCell(withIdentifier: "TicketCell", for: indexPath) as! TicketCell
             cell.ticketContentTitle.text = "Select Time"
             return cell
-        } else if indexPath.row == 4 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SeatCell", for: indexPath) as! SeatCell
-            cell.chooseSeatButton.layer.cornerRadius = 20
-            cell.seatTitle.text = "Select Seats"
-            cell.chooseSeatButton.titleLabel?.text = "View Seats"
-            cell.chooseSeatButton.backgroundColor = UIColor(red:1.00, green:0.14, blue:0.40, alpha:1.0)
-            return cell
         } else {
             return UITableViewCell()
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ToCart" {
+            let coc: CartController = segue.destination as! CartController
+            coc.selectedMovie = selectedMovie
+            coc.selectedCinema = selectedCinema
+            coc.selectedTheatre = selectedTheatre
+            coc.selectedDate = dates[(selectedIndexPathDate?.row)!]
+            coc.selectedTime = showtimes[(selectedIndexPathTime?.row)!]
         }
     }
 
@@ -100,7 +100,7 @@ extension TicketCell: UICollectionViewDataSource, UICollectionViewDelegate {
             cell.layer.cornerRadius = 20
             cell.layer.borderWidth = 2
             cell.layer.borderColor = UIColor(red:0.01, green:0.54, blue:0.91, alpha:1.0).cgColor
-            cell.ticketContentLabel.text = dates[indexPath.row]
+            cell.ticketContentLabel.text = Date().dayAndMonthFormat(date: dates[indexPath.row])
             
             if indexPath == selectedIndexPathDate && selectedIndexPathDate != nil {
                 cell.layer.backgroundColor = UIColor(red:0.01, green:0.54, blue:0.91, alpha:1.0).cgColor

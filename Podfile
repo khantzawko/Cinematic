@@ -6,6 +6,7 @@ target 'Cinematic' do
   use_frameworks!
 
   pod 'Stripe'
+  pod 'Alamofire'
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
 

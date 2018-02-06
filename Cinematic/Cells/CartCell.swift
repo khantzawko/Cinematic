@@ -17,7 +17,7 @@ var selectedAccumulatedSeatPriceArray = [String]()
 
 class CartCell: UITableViewCell {
     
-    var headingTicketInfoLabel: UILabel!
+    var viewSeatButton: UIButton!
     
     var screenSize = UIScreen.main.bounds
     var screenWidth = UIScreen.main.bounds.width
@@ -32,21 +32,9 @@ class CartCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        if reuseIdentifier == "TicketInfoCell" {
-
-            let headingOffsetX: CGFloat = 15
-            let headingOffsetY: CGFloat = 4
-            let headingWidth: CGFloat = screenWidth - (2 * headingOffsetX)
-            let headingHeight: CGFloat = 20
-            let headingVerticalTotalSpacing: CGFloat = headingHeight + (2 * headingOffsetY)
+        if reuseIdentifier == "MovieInfoCell" {
             
-            headingTicketInfoLabel = UILabel()
-            headingTicketInfoLabel.frame = CGRect(x: headingOffsetX, y: headingOffsetY, width: headingWidth, height: headingHeight)
-            headingTicketInfoLabel.textColor = UIColor.black
-            headingTicketInfoLabel.font = UIFont.boldSystemFont(ofSize: 16)
-            contentView.addSubview(headingTicketInfoLabel)
-            
-            let ticketLabelOffsetX: CGFloat = headingOffsetX + 4
+            let ticketLabelOffsetX: CGFloat = 20
             let ticketLabelOffsetY: CGFloat = 4
             let ticketLabelWidth: CGFloat = (screenWidth * 0.4) - ticketLabelOffsetX
             let ticketLabelHeight: CGFloat = 20
@@ -60,7 +48,7 @@ class CartCell: UITableViewCell {
             
             for index in 1...selectedTicketLabelArray.count {
                 let ticketLabel = UILabel()
-                ticketLabel.frame = CGRect(x: ticketLabelOffsetX, y: headingVerticalTotalSpacing + (CGFloat(index-1) * ticketLabelVerticalTotalSpacing), width: ticketLabelWidth, height: ticketLabelHeight)
+                ticketLabel.frame = CGRect(x: ticketLabelOffsetX, y: 10 + (CGFloat(index-1) * ticketLabelVerticalTotalSpacing), width: ticketLabelWidth, height: ticketLabelHeight)
                 ticketLabel.text = selectedTicketLabelArray[index-1]
                 ticketLabel.textColor = .gray
                 ticketLabel.font = UIFont.boldSystemFont(ofSize: 14)
@@ -70,25 +58,25 @@ class CartCell: UITableViewCell {
             
             for index in 1...selectedTicketInfoArray.count {
                 let ticketInfo = UILabel()
-                ticketInfo.frame = CGRect(x: ticketInfoOffsetX, y: headingVerticalTotalSpacing + (CGFloat(index-1) * ticketInfoVerticalTotalSpacing), width: ticketInfoWidth, height: ticketInfoHeight)
+                ticketInfo.frame = CGRect(x: ticketInfoOffsetX, y: 10 + (CGFloat(index-1) * ticketInfoVerticalTotalSpacing), width: ticketInfoWidth, height: ticketInfoHeight)
                 ticketInfo.text = selectedTicketInfoArray[index-1]
                 ticketInfo.font = UIFont.boldSystemFont(ofSize: 14)
                 contentView.addSubview(ticketInfo)
             }
             
-        } else if reuseIdentifier == "TicketPriceCell" {
+        } else if reuseIdentifier == "TicketInfoCell" {
 
-            let headingOffsetX: CGFloat = 15
-            let headingOffsetY: CGFloat = 4
-            let headingWidth: CGFloat = screenWidth - (2 * headingOffsetX)
-            let headingHeight: CGFloat = 20
-            let headingVerticalTotalSpacing: CGFloat = headingHeight + (2 * headingOffsetY)
-            
-            headingTicketInfoLabel = UILabel()
-            headingTicketInfoLabel.frame = CGRect(x: headingOffsetX, y: headingOffsetY, width: headingWidth, height: headingHeight)
-            headingTicketInfoLabel.textColor = UIColor.black
-            headingTicketInfoLabel.font = UIFont.boldSystemFont(ofSize: 16)
-            contentView.addSubview(headingTicketInfoLabel)
+//            let viewSeatOffsetX: CGFloat = screenWidth - 15
+//            let viewSeatOffsetY: CGFloat = 4
+//            let viewSeatWidth: CGFloat = 90
+//            let viewSeatHeight: CGFloat = 25
+//
+//            viewSeatButton = UIButton()
+//            viewSeatButton.frame = CGRect(x: viewSeatOffsetX - viewSeatWidth, y: viewSeatOffsetY, width: viewSeatWidth, height: viewSeatHeight)
+//            viewSeatButton.backgroundColor = UIColor(red:1.00, green:0.14, blue:0.40, alpha:1.0)
+//            viewSeatButton.layer.cornerRadius = 5
+//            viewSeatButton.titleEdgeInsets.bottom = 2
+//            contentView.addSubview(viewSeatButton)
             
             let seatInfoOffsetX: CGFloat = 20
             let seatInfoOffsetY: CGFloat = 4
@@ -110,7 +98,7 @@ class CartCell: UITableViewCell {
             
             for index in 1...selectedSeatInfoArray.count {
                 let seatInfoLabel = UILabel()
-                seatInfoLabel.frame = CGRect(x: seatInfoOffsetX, y: headingVerticalTotalSpacing + (CGFloat(index-1) * seatInfoVerticalTotalSpacing), width: seatInfoWidth, height: seatInfoHeight)
+                seatInfoLabel.frame = CGRect(x: seatInfoOffsetX, y: 10 + (CGFloat(index-1) * seatInfoVerticalTotalSpacing), width: seatInfoWidth, height: seatInfoHeight)
                 seatInfoLabel.textColor = UIColor.black
                 seatInfoLabel.font = UIFont.boldSystemFont(ofSize: 14)
                 seatInfoLabel.text =  "Seat: " + selectedSeatInfoArray[index-1]
@@ -119,14 +107,14 @@ class CartCell: UITableViewCell {
             
             for index in 1...selectedSeatPriceArray.count {
                 let seatPriceLabel = UILabel()
-                seatPriceLabel.frame = CGRect(x: seatPriceOffsetX, y: headingVerticalTotalSpacing + seatPriceVerticalTotalSpacing - 4, width: seatPriceWidth, height: seatPriceHeight)
+                seatPriceLabel.frame = CGRect(x: seatPriceOffsetX, y: 10 + seatPriceVerticalTotalSpacing - 4, width: seatPriceWidth, height: seatPriceHeight)
                 seatPriceLabel.textColor = .gray
                 seatPriceLabel.font = UIFont.boldSystemFont(ofSize: 12)
                 seatPriceLabel.text = selectedSeatPriceArray[index-1]
                 contentView.addSubview(seatPriceLabel)
                 
                 let seatAccumulatePrice = UILabel()
-                seatAccumulatePrice.frame = CGRect(x: seatAccumulatePriceOffsetX, y: headingVerticalTotalSpacing + seatAccumulatePriceVerticalTotalSpacing - 4, width: seatAccumulatePriceWidth, height: seatAccumulatePriceHeight)
+                seatAccumulatePrice.frame = CGRect(x: seatAccumulatePriceOffsetX, y: 10 + seatAccumulatePriceVerticalTotalSpacing - 4, width: seatAccumulatePriceWidth, height: seatAccumulatePriceHeight)
                 seatAccumulatePrice.textColor = .gray
                 seatAccumulatePrice.font = UIFont.boldSystemFont(ofSize: 12)
                 seatAccumulatePrice.text = "16,500 Kyats"

@@ -37,6 +37,12 @@
 		149CAAFA200C9638003553CA /* CartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149CAAF9200C9638003553CA /* CartController.swift */; };
 		14DE45111FEC4F0D0034D2C1 /* PurchaseTicketController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE45101FEC4F0D0034D2C1 /* PurchaseTicketController.swift */; };
 		14DE45131FEC50490034D2C1 /* TrailerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE45121FEC50490034D2C1 /* TrailerCell.swift */; };
+		14E340552028E5B00040C21F /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E3404E2028E5AB0040C21F /* CheckoutViewController.swift */; };
+		14E340562028E5B00040C21F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E3404F2028E5AB0040C21F /* SettingsViewController.swift */; };
+		14E340572028E5B00040C21F /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E340502028E5AD0040C21F /* Buttons.swift */; };
+		14E340582028E5B00040C21F /* PaymentContextFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E340512028E5AD0040C21F /* PaymentContextFooterView.swift */; };
+		14E340592028E5B00040C21F /* CheckoutRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E340522028E5AE0040C21F /* CheckoutRowView.swift */; };
+		14E3405A2028E5B00040C21F /* MyAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E340532028E5AF0040C21F /* MyAPIClient.swift */; };
 		14F8552120090902008452B4 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F8552020090902008452B4 /* ProfileController.swift */; };
 		14F855232009091B008452B4 /* UpcomingMovieController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F855222009091B008452B4 /* UpcomingMovieController.swift */; };
 		174886B2CE0141844D24C66C /* Pods_CinematicTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75072BFE322C0F38D000B1E /* Pods_CinematicTests.framework */; };
@@ -97,6 +103,12 @@
 		149CAAF9200C9638003553CA /* CartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartController.swift; sourceTree = "<group>"; };
 		14DE45101FEC4F0D0034D2C1 /* PurchaseTicketController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseTicketController.swift; sourceTree = "<group>"; };
 		14DE45121FEC50490034D2C1 /* TrailerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerCell.swift; sourceTree = "<group>"; };
+		14E3404E2028E5AB0040C21F /* CheckoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
+		14E3404F2028E5AB0040C21F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		14E340502028E5AD0040C21F /* Buttons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
+		14E340512028E5AD0040C21F /* PaymentContextFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentContextFooterView.swift; sourceTree = "<group>"; };
+		14E340522028E5AE0040C21F /* CheckoutRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckoutRowView.swift; sourceTree = "<group>"; };
+		14E340532028E5AF0040C21F /* MyAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAPIClient.swift; sourceTree = "<group>"; };
 		14F8552020090902008452B4 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		14F855222009091B008452B4 /* UpcomingMovieController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingMovieController.swift; sourceTree = "<group>"; };
 		449C0B67065377307D1901EC /* Pods-Cinematic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cinematic.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cinematic/Pods-Cinematic.debug.xcconfig"; sourceTree = "<group>"; };
@@ -165,6 +177,7 @@
 			children = (
 				14890CF61FE878F4007B59D5 /* Controllers */,
 				14890CF51FE878DE007B59D5 /* Cells */,
+				14E3404D2028E5980040C21F /* Stripe */,
 				14890CF71FE8790C007B59D5 /* Supporting files */,
 				145A7C341FDFC16B005599AA /* Main.storyboard */,
 			);
@@ -216,8 +229,8 @@
 				145A7C611FDFCEAF005599AA /* MovieController.swift */,
 				14890CED1FE68232007B59D5 /* MovieInfoController.swift */,
 				14DE45101FEC4F0D0034D2C1 /* PurchaseTicketController.swift */,
-				142031EB1FF83154007A3CF3 /* ViewSeatsController.swift */,
 				149CAAF9200C9638003553CA /* CartController.swift */,
+				142031EB1FF83154007A3CF3 /* ViewSeatsController.swift */,
 				14F8552020090902008452B4 /* ProfileController.swift */,
 				14F855222009091B008452B4 /* UpcomingMovieController.swift */,
 				148ADA1E202674A30053BF27 /* UpcomingMovieInfoController.swift */,
@@ -238,6 +251,19 @@
 				145A7C371FDFC16B005599AA /* Cinematic.xcdatamodeld */,
 			);
 			path = "Supporting files";
+			sourceTree = "<group>";
+		};
+		14E3404D2028E5980040C21F /* Stripe */ = {
+			isa = PBXGroup;
+			children = (
+				14E340502028E5AD0040C21F /* Buttons.swift */,
+				14E340522028E5AE0040C21F /* CheckoutRowView.swift */,
+				14E3404E2028E5AB0040C21F /* CheckoutViewController.swift */,
+				14E340532028E5AF0040C21F /* MyAPIClient.swift */,
+				14E340512028E5AD0040C21F /* PaymentContextFooterView.swift */,
+				14E3404F2028E5AB0040C21F /* SettingsViewController.swift */,
+			);
+			path = Stripe;
 			sourceTree = "<group>";
 		};
 		3937E931F61571172402E449 /* Pods */ = {
@@ -552,13 +578,18 @@
 				14DE45131FEC50490034D2C1 /* TrailerCell.swift in Sources */,
 				145A7C311FDFC16B005599AA /* AppDelegate.swift in Sources */,
 				148ADA1F202674A30053BF27 /* UpcomingMovieInfoController.swift in Sources */,
+				14E340572028E5B00040C21F /* Buttons.swift in Sources */,
 				1421C1441FEC71A90028DA9D /* SeatCell.swift in Sources */,
 				142031EC1FF83154007A3CF3 /* ViewSeatsController.swift in Sources */,
+				14E3405A2028E5B00040C21F /* MyAPIClient.swift in Sources */,
 				1421C13E1FEC5B630028DA9D /* LabelTitleCell.swift in Sources */,
 				14F8552120090902008452B4 /* ProfileController.swift in Sources */,
 				1421C1421FEC5E3D0028DA9D /* TicketCell.swift in Sources */,
+				14E340592028E5B00040C21F /* CheckoutRowView.swift in Sources */,
+				14E340582028E5B00040C21F /* PaymentContextFooterView.swift in Sources */,
 				14890CEE1FE68232007B59D5 /* MovieInfoController.swift in Sources */,
 				14890CF91FE87998007B59D5 /* MovieInfoCell.swift in Sources */,
+				14E340552028E5B00040C21F /* CheckoutViewController.swift in Sources */,
 				145A7C391FDFC16B005599AA /* Cinematic.xcdatamodeld in Sources */,
 				1421C1401FEC5D460028DA9D /* CollectionHorizontalCell.swift in Sources */,
 				14F855232009091B008452B4 /* UpcomingMovieController.swift in Sources */,
@@ -570,6 +601,7 @@
 				140CFDDB201D3C6F003194CF /* Theatre.swift in Sources */,
 				141698F72015BCF2006F69DC /* Movie.swift in Sources */,
 				1421C13C1FEC51570028DA9D /* CinemaCell.swift in Sources */,
+				14E340562028E5B00040C21F /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

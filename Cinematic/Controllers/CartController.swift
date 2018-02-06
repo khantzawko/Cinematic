@@ -13,20 +13,36 @@ class CartController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var totalButton: UIButton!
     
-    var testArray = ["Movie Name:", "Movie Date:", "Movie Time:", "Cinema:"]
+    let settingsVC = SettingsViewController()
+    
+    var selectedMovie = Movie()
+    var selectedCinema = Cinema()
+    var selectedTheatre = Theatre()
+    var selectedDate = String()
+    var selectedTime = String()
+    
+    var movieLabels = ["Movie Name:", "Movie Date:", "Movie Time:", "Cinema:"]
     var testArray2 = ["Justice League", "12 Dec 2017", "10:40 am", "Mingalar Sanpya"]
     var testArray3 = ["a1, a2, a3"]
     var testArray4 = ["3 * 5500"]
-    var testArray5 = [128,200]
+    var testArray5 = [110,60]
+    
+    var sections = ["Movie Info", "Ticket Info"]
+//    var s1Data =
+    
+    var sectionData: [Int:[String]] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        tableView.estimatedSectionHeaderHeight = 30
 
-        selectedTicketLabelArray = testArray
-        selectedTicketInfoArray = testArray2
+        selectedTicketLabelArray = movieLabels
+        selectedTicketInfoArray = [selectedMovie.name, selectedDate, selectedTime, selectedCinema.name!]
         selectedSeatInfoArray = testArray3
         selectedSeatPriceArray = testArray4
         
@@ -35,11 +51,11 @@ class CartController: UIViewController, UITableViewDelegate, UITableViewDataSour
         totalButton.titleLabel?.textAlignment = .center
         totalButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         totalButton.backgroundColor = UIColor(red:1.00, green:0.14, blue:0.40, alpha:1.0)
-        totalButton.addTarget(self, action: #selector(self.checkoutCart), for: .touchUpInside)
+        totalButton.addTarget(self, action: #selector(self.checkoutWithStripe), for: .touchUpInside)
     }
 
     func clearCart() {
-        self.testArray.removeAll()
+        self.movieLabels.removeAll()
         self.testArray2.removeAll()
         self.testArray3.removeAll()
         self.testArray4.removeAll()
@@ -62,29 +78,51 @@ class CartController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.present(alertController, animated: true, completion: nil)
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return sections.count
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = .orange
+        
+        let label: UILabel = UILabel(frame: CGRect(x: 10, y: 5, width: 100, height: 20))
+        label.text = sections[section]
+        label.font = UIFont.boldSystemFont(ofSize: 15)
+        view.addSubview(label)
+        return view
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(testArray5[indexPath.row])
+        return CGFloat(testArray5[indexPath.section])
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return testArray5.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
-            let cell = CartCell(style: .default, reuseIdentifier: "TicketInfoCell")
-            cell.headingTicketInfoLabel.text = "Ticket Info: "
+        
+        if indexPath.section == 0 {
+            let cell = CartCell(style: .default, reuseIdentifier: "MovieInfoCell")
             return cell
-        } else if indexPath.row == 1 {
-            let cell = CartCell(style: .default, reuseIdentifier: "TicketPriceCell")
-            cell.headingTicketInfoLabel.text = "Ticket Price: "
+        } else if indexPath.section == 1 {
+            let cell = CartCell(style: .default, reuseIdentifier: "TicketInfoCell")
             return cell
         } else {
             return UITableViewCell()
         }
     }
     
-    @objc func checkoutCart() {
-        print("checkout!")
+    @objc func pressedViewSeats(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "PopoverController") as! ViewSeatsController
+        present(vc, animated: true, completion: nil)
+    }
+    
+    @objc func checkoutWithStripe() {        
+        let checkoutViewController = CheckoutViewController(product: "\(selectedMovie.name!) ticket",
+                                                            price: 1000,
+                                                            settings: self.settingsVC.settings)
+        self.navigationController?.pushViewController(checkoutViewController, animated: true)
     }
 }

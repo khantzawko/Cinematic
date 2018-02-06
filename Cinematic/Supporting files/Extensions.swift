@@ -34,8 +34,8 @@ extension Date {
         let today = Date()
         let fullFormatter = DateFormatter()
         fullFormatter.dateFormat = "dd-MMM-yyyy"
-        let dayMonthFormatter = DateFormatter()
-        dayMonthFormatter.dateFormat = "dd MMM"
+//        let dayMonthFormatter = DateFormatter()
+//        dayMonthFormatter.dateFormat = "dd MMM"
         let startDate: Date = fullFormatter.date(from: startDate)!
         var dates = [String]()
         var daysLeft = Int()
@@ -53,7 +53,7 @@ extension Date {
                 
                 for day in 0...daysLeft {
                     let date: Date = Calendar.current.date(byAdding: .day, value: day, to: today)!
-                    dates.append(dayMonthFormatter.string(from: date))
+                    dates.append(fullFormatter.string(from: date))
                 }
             }
             
@@ -64,10 +64,23 @@ extension Date {
             
             for day in 0...daysLeft {
                 let date: Date = Calendar.current.date(byAdding: .day, value: day, to: startDate)!
-                dates.append(dayMonthFormatter.string(from: date))
+                dates.append(fullFormatter.string(from: date))
             }
             return dates
         }
+    }
+    
+    func dayAndMonthFormat(date: String) -> String {
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MMM-yyyy"
+        
+        let dayMonth = formatter.date(from: date)
+        
+        let dayMonthFormatter = DateFormatter()
+        dayMonthFormatter.dateFormat = "dd MMM"
+        
+        return dayMonthFormatter.string(from: dayMonth!)
     }
     
     func isTodayInBetweenStartDateAndEndDate(startDate: String, endDate: String) -> Bool {
@@ -100,6 +113,21 @@ extension Date {
                                                 matchingPolicy:.nextTime)!
         
         if sDate == friday || sDate > friday {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func isEndDateMoreThanToday(startDate: String, numOfWeek: Int) -> Bool {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MMM-yyyy"
+        
+        let sDate = dateFormatter.date(from: startDate)!
+        let eDate = Calendar.current.date(byAdding: .day, value: (7*numOfWeek)-1, to: sDate)!
+        let today = Date()
+        
+        if today < eDate {
             return true
         } else {
             return false
