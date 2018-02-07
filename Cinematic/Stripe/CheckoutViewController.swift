@@ -8,6 +8,7 @@
 
 import UIKit
 import Stripe
+import Firebase
 
 class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
 
@@ -37,7 +38,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     let totalRow: CheckoutRowView
     let buyButton: BuyButton
     let rowHeight: CGFloat = 44
-    let productImage = UILabel()
+    let ticketInfo = UILabel()
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     let numberFormatter: NumberFormatter
     let shippingString: String
@@ -58,8 +59,14 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
                 }, completion: nil)
         }
     }
+    
+    var ref: DatabaseReference!
+    var selectedMovie = Movie()
+    var selectedCinema = Cinema()
+    var selectedDate = String()
+    var selectedTime = String()
 
-    init(product: String, price: Int, settings: Settings) {
+    init(product: String, price: Int, settings: Settings, movie: Movie, cinema: Cinema, date: String, time: String) {
 
         let stripePublishableKey = self.stripePublishableKey
         let backendBaseURL = self.backendBaseURL
@@ -68,8 +75,12 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         assert(backendBaseURL != nil, "You must set your backend base url at the top of CheckoutViewController.swift to run this app.")
 
         self.product = product
-        self.productImage.text = product
+        self.ticketInfo.text = product
         self.theme = settings.theme
+        self.selectedMovie = movie
+        self.selectedCinema = cinema
+        self.selectedDate = date
+        self.selectedTime = time
         MyAPIClient.sharedClient.baseURLString = self.backendBaseURL
 
         // This code is included here for the sake of readability, but in your application you should set up your configuration and theme earlier, preferably in your App Delegate.
@@ -145,11 +156,11 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         self.activityIndicator.activityIndicatorViewStyle = red < 0.5 ? .white : .gray
         self.navigationItem.title = "Cinematic Payment"
 
-        self.productImage.font = UIFont.systemFont(ofSize: 24)
+        self.ticketInfo.font = UIFont.systemFont(ofSize: 24)
         self.view.addSubview(self.totalRow)
         self.view.addSubview(self.paymentRow)
         self.view.addSubview(self.shippingRow)
-        self.view.addSubview(self.productImage)
+        self.view.addSubview(self.ticketInfo)
         self.view.addSubview(self.buyButton)
         self.view.addSubview(self.activityIndicator)
         self.activityIndicator.alpha = 0
@@ -170,10 +181,10 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
             insets = view.safeAreaInsets
         }
         let width = self.view.bounds.width - (insets.left + insets.right)
-        self.productImage.sizeToFit()
-        self.productImage.center = CGPoint(x: width/2.0,
-                                           y: self.productImage.bounds.height/2.0 + rowHeight + 80)
-        self.paymentRow.frame = CGRect(x: insets.left, y: self.productImage.frame.maxY + rowHeight,
+        self.ticketInfo.sizeToFit()
+        self.ticketInfo.center = CGPoint(x: width/2.0,
+                                           y: self.ticketInfo.bounds.height/2.0 + rowHeight + 80)
+        self.paymentRow.frame = CGRect(x: insets.left, y: self.ticketInfo.frame.maxY + rowHeight,
                                        width: width, height: rowHeight)
         self.shippingRow.frame = CGRect(x: insets.left, y: self.paymentRow.frame.maxY,
                                         width: width, height: rowHeight)
@@ -209,7 +220,14 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
             message = error?.localizedDescription ?? ""
         case .success:
             title = "Success"
-            message = "You bought a \(self.product)!"
+            message = "You bought tickets!"
+            putReceiptData(email: (paymentContext.shippingAddress?.email)!,
+                           amount: paymentContext.paymentAmount,
+                           ticketInfo: ticketInfo.text!,
+                           movieTime: "\(selectedDate) (\(selectedTime))",
+                           movieKey: selectedMovie.key,
+                           cinemaKey: selectedCinema.key!)
+            
         case .userCancellation:
             return
         }
@@ -253,5 +271,41 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         alertController.addAction(cancel)
         alertController.addAction(retry)
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func putReceiptData(email: String, amount: Int, ticketInfo: String, movieTime: String, movieKey: String, cinemaKey: String) {
+        ref = Database.database().reference()
+        let key = ref.childByAutoId().key
+        let receiptCode = randomString(length: 6)
+        let purchasedDate = Date().todayDateInString()
+        
+        let path = "receipts/\(key)"
+        let post = ["email": email,
+                    "amount": amount,
+                    "purchasedDate": purchasedDate,
+                    "receiptCode": receiptCode,
+                    "ticketInfo": ticketInfo,
+                    "movieTime": movieTime,
+                    "movieID": movieKey,
+                    "cinemaID": cinemaKey] as [String : Any]
+        
+        let updateData = [path:post]
+        self.ref.updateChildValues(updateData)
+    }
+    
+    func randomString(length: Int) -> String {
+        
+        let letters :  NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        let len = UInt32(letters.length)
+        
+        var randomString = ""
+        
+        for _ in 0 ..< length {
+            let rand = arc4random_uniform(len)
+            var nextChar = letters.character(at: Int(rand))
+            randomString += NSString(characters: &nextChar, length: 1) as String
+        }
+        
+        return randomString
     }
 }

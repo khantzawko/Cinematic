@@ -72,7 +72,6 @@ class MovieInfoController: UITableViewController {
             ptv.selectedMovie = selectedMovie
             ptv.selectedCinema = cinemas[(selectedIndexPath?.row)!]
             ptv.selectedTheatre = theatres[(selectedIndexPath?.row)!]
-            
         }
     }
     

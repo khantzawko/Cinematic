@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		0DE103935051731A470B36B7 /* Pods_CinematicUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 557100EF59D3F91B31C5AD6B /* Pods_CinematicUITests.framework */; };
 		1406ECDC201CF7060085DCA3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1406ECDB201CF7060085DCA3 /* Extensions.swift */; };
-		140CFDD9201D380F003194CF /* Cinema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140CFDD8201D380F003194CF /* Cinema.swift */; };
-		140CFDDB201D3C6F003194CF /* Theatre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140CFDDA201D3C6F003194CF /* Theatre.swift */; };
-		141698F72015BCF2006F69DC /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141698F62015BCF2006F69DC /* Movie.swift */; };
+		140CFDDB201D3C6F003194CF /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140CFDDA201D3C6F003194CF /* Models.swift */; };
+		141CE4D7202A1717002F8041 /* QRCodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141CE4D6202A1717002F8041 /* QRCodeController.swift */; };
+		141CE4D9202A4375002F8041 /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141CE4D8202A4375002F8041 /* OrderCell.swift */; };
 		142031EC1FF83154007A3CF3 /* ViewSeatsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142031EB1FF83154007A3CF3 /* ViewSeatsController.swift */; };
 		142031EE1FF9132A007A3CF3 /* SeatsPlanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142031ED1FF9132A007A3CF3 /* SeatsPlanCell.swift */; };
 		1421C13C1FEC51570028DA9D /* CinemaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1421C13B1FEC51570028DA9D /* CinemaCell.swift */; };
@@ -68,10 +68,10 @@
 
 /* Begin PBXFileReference section */
 		1406ECDB201CF7060085DCA3 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		140CFDD8201D380F003194CF /* Cinema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cinema.swift; sourceTree = "<group>"; };
-		140CFDDA201D3C6F003194CF /* Theatre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theatre.swift; sourceTree = "<group>"; };
-		141698F62015BCF2006F69DC /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		140CFDDA201D3C6F003194CF /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		14185AFD1FE881D300D7EA08 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		141CE4D6202A1717002F8041 /* QRCodeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeController.swift; sourceTree = "<group>"; };
+		141CE4D8202A4375002F8041 /* OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
 		142031EB1FF83154007A3CF3 /* ViewSeatsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSeatsController.swift; sourceTree = "<group>"; };
 		142031ED1FF9132A007A3CF3 /* SeatsPlanCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatsPlanCell.swift; sourceTree = "<group>"; };
 		1421C13B1FEC51570028DA9D /* CinemaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CinemaCell.swift; sourceTree = "<group>"; };
@@ -205,12 +205,11 @@
 		14890CF51FE878DE007B59D5 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				140CFDDA201D3C6F003194CF /* Theatre.swift */,
-				140CFDD8201D380F003194CF /* Cinema.swift */,
-				141698F62015BCF2006F69DC /* Movie.swift */,
+				140CFDDA201D3C6F003194CF /* Models.swift */,
 				142B0B491FDFD46D00B94FE1 /* MovieCell.swift */,
 				145C537A200961390020C33D /* MovieBCell.swift */,
 				14890CF81FE87998007B59D5 /* MovieInfoCell.swift */,
+				141CE4D8202A4375002F8041 /* OrderCell.swift */,
 				14DE45121FEC50490034D2C1 /* TrailerCell.swift */,
 				1421C13B1FEC51570028DA9D /* CinemaCell.swift */,
 				142031ED1FF9132A007A3CF3 /* SeatsPlanCell.swift */,
@@ -232,6 +231,7 @@
 				149CAAF9200C9638003553CA /* CartController.swift */,
 				142031EB1FF83154007A3CF3 /* ViewSeatsController.swift */,
 				14F8552020090902008452B4 /* ProfileController.swift */,
+				141CE4D6202A1717002F8041 /* QRCodeController.swift */,
 				14F855222009091B008452B4 /* UpcomingMovieController.swift */,
 				148ADA1E202674A30053BF27 /* UpcomingMovieInfoController.swift */,
 			);
@@ -571,7 +571,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				140CFDD9201D380F003194CF /* Cinema.swift in Sources */,
 				1406ECDC201CF7060085DCA3 /* Extensions.swift in Sources */,
 				142031EE1FF9132A007A3CF3 /* SeatsPlanCell.swift in Sources */,
 				145C537B200961390020C33D /* MovieBCell.swift in Sources */,
@@ -590,6 +589,7 @@
 				14890CEE1FE68232007B59D5 /* MovieInfoController.swift in Sources */,
 				14890CF91FE87998007B59D5 /* MovieInfoCell.swift in Sources */,
 				14E340552028E5B00040C21F /* CheckoutViewController.swift in Sources */,
+				141CE4D7202A1717002F8041 /* QRCodeController.swift in Sources */,
 				145A7C391FDFC16B005599AA /* Cinematic.xcdatamodeld in Sources */,
 				1421C1401FEC5D460028DA9D /* CollectionHorizontalCell.swift in Sources */,
 				14F855232009091B008452B4 /* UpcomingMovieController.swift in Sources */,
@@ -598,8 +598,8 @@
 				149CAAFA200C9638003553CA /* CartController.swift in Sources */,
 				145A7C621FDFCEAF005599AA /* MovieController.swift in Sources */,
 				14DE45111FEC4F0D0034D2C1 /* PurchaseTicketController.swift in Sources */,
-				140CFDDB201D3C6F003194CF /* Theatre.swift in Sources */,
-				141698F72015BCF2006F69DC /* Movie.swift in Sources */,
+				141CE4D9202A4375002F8041 /* OrderCell.swift in Sources */,
+				140CFDDB201D3C6F003194CF /* Models.swift in Sources */,
 				1421C13C1FEC51570028DA9D /* CinemaCell.swift in Sources */,
 				14E340562028E5B00040C21F /* SettingsViewController.swift in Sources */,
 			);

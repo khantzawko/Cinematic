@@ -122,7 +122,12 @@ class CartController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @objc func checkoutWithStripe() {        
         let checkoutViewController = CheckoutViewController(product: "\(selectedMovie.name!) ticket",
                                                             price: 1000,
-                                                            settings: self.settingsVC.settings)
+                                                            settings: self.settingsVC.settings,
+                                                            movie: selectedMovie,
+                                                            cinema: selectedCinema,
+                                                            date: selectedDate,
+                                                            time: selectedTime)
+
         self.navigationController?.pushViewController(checkoutViewController, animated: true)
     }
 }
