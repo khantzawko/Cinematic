@@ -34,8 +34,6 @@ extension Date {
         let today = Date()
         let fullFormatter = DateFormatter()
         fullFormatter.dateFormat = "dd-MMM-yyyy"
-//        let dayMonthFormatter = DateFormatter()
-//        dayMonthFormatter.dateFormat = "dd MMM"
         let startDate: Date = fullFormatter.date(from: startDate)!
         var dates = [String]()
         var daysLeft = Int()

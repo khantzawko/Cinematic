@@ -31,7 +31,11 @@ class PurchaseTicketController: UITableViewController, UIPopoverPresentationCont
     }
     
     override func viewWillAppear(_ animated: Bool) {
-
+        if dates.isEmpty {
+            self.navigationItem.rightBarButtonItem?.isEnabled = false
+        } else {
+            self.navigationItem.rightBarButtonItem?.isEnabled = true
+        }
     }
     
     func reloadCollectionView() {

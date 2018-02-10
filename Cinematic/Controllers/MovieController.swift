@@ -22,9 +22,7 @@ class MovieController: UITableViewController {
     }
     
     func getMovieData() {
-        
         ref = Database.database().reference().child("movies")
-        
         ref.observe(DataEventType.childAdded, with: {(snapshot) in
             var postDict = snapshot.value as! [String : AnyObject]
 

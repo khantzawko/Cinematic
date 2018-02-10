@@ -15,6 +15,7 @@ struct Theatre {
     var theatreType: String?
     var startDate: String?
     var weeksInTheatre: Int?
+    var cinemaKey: String?
 }
 
 struct Cinema {
