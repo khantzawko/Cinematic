@@ -86,6 +86,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="341" height="135.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Nmf-2D-DGG" kind="show" identifier="QRCode" id="kqb-j9-B7O"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -108,7 +111,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hBh-Sc-XPC">
-                                <rect key="frame" x="112" y="268.5" width="150" height="150"/>
+                                <rect key="frame" x="112" y="266" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="Cfz-X0-TR3"/>
                                     <constraint firstAttribute="height" constant="150" id="hlr-Nr-3kl"/>
@@ -129,7 +132,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EeK-7C-grA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1537" y="1324"/>
+            <point key="canvasLocation" x="578" y="1694"/>
         </scene>
         <!--In Theatre-->
         <scene sceneID="nB3-Yz-QmS">
@@ -733,7 +736,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mgM-Yf-ANA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="577" y="1266"/>
+            <point key="canvasLocation" x="1350" y="1251"/>
         </scene>
         <!--In Theatre-->
         <scene sceneID="p7c-h1-MaR">

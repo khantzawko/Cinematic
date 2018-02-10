@@ -83,7 +83,7 @@ class ProfileController: UITableViewController {
             if name.text != "" || email.text != "" {
                 UserDefaults.standard.set(name.text, forKey: "name") //setObject
                 UserDefaults.standard.set(email.text, forKey: "email") //setObject
-                self.title = name.text
+                self.navigationItem.title = name.text
                 self.getReceiptData(email: email.text!)
             } else {
 
@@ -127,7 +127,7 @@ class ProfileController: UITableViewController {
             } else {
                 UserDefaults.standard.removeObject(forKey: "name")
                 UserDefaults.standard.removeObject(forKey: "email")
-                self.title = "Profile"
+                self.navigationItem.title = "Profile"
                 self.cinemas.removeAll()
                 self.tableView.reloadData()
             }
@@ -144,10 +144,10 @@ class ProfileController: UITableViewController {
         
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        title = "Profile"
+        navigationItem.title = "Profile"
         
         if let user = UserDefaults.standard.string(forKey: "name") {
-            title = user
+            navigationItem.title = user
             getReceiptData(email: UserDefaults.standard.string(forKey: "email")!)
         } else {
             getUserNameAndEmail()
@@ -250,7 +250,7 @@ class ProfileController: UITableViewController {
                     }
                 })
                 
-                print(self.receipts)
+//                print(self.receipts)
             }
         })
     }
@@ -267,6 +267,20 @@ class ProfileController: UITableViewController {
         cell.purchasedDate.text = receipts[indexPath.row].movieTime!
         cell.receiptCode.text = "Order #: \(receipts[indexPath.row].receiptCode!)"
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: "QRCode", sender: indexPath.row)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "QRCode" {
+            let row = sender as! Int
+            let qrc: QRCodeController = segue.destination as! QRCodeController
+            qrc.QRString = receipts[row].receiptCode
+            qrc.movieName = ("\(movies[row].name!) Ticket")
+        }
     }
 
     override func didReceiveMemoryWarning() {

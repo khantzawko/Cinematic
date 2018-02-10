@@ -12,11 +12,15 @@ class QRCodeController: UIViewController {
 
     @IBOutlet weak var QRImage: UIImageView!
     
+    var QRString = String()
+    var movieName = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let image = generateQRCode(from: "Hacking with Swift is the best iOS coding tutorial I've ever read!")
+        let image = generateQRCode(from: QRString)
         QRImage.image = image
+        title = movieName
     }
     
     func generateQRCode(from string: String) -> UIImage? {

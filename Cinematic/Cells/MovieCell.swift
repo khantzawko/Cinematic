@@ -132,7 +132,4 @@ class MovieCell: UITableViewCell {
             return true
         }
     }
-    
-
-    
 }
