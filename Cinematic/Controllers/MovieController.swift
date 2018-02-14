@@ -17,6 +17,7 @@ class MovieController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.register(MovieCell.self, forCellReuseIdentifier: "MovieCell")
         self.navigationController?.navigationBar.prefersLargeTitles = true
         getMovieData()
     }
@@ -68,31 +69,24 @@ class MovieController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredMovies.count
     }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 136
+    }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        movieRating = filteredMovies[indexPath.row].rating
-
-        let cell = MovieCell(style: .default, reuseIdentifier: "MovieCell")
-        cell.movieImage.downloadedFrom(link: filteredMovies[indexPath.row].image!)
-        cell.movieGenre.text = filteredMovies[indexPath.row].genre!
-        cell.movieName.text = filteredMovies[indexPath.row].name!
-        cell.movieDuration.text = "(\(String(describing: filteredMovies[indexPath.row].duration!)) mins)"
-        cell.movieRatingText.text = "(\(String(describing: filteredMovies[indexPath.row].rating!)) stars)"
+        ratings = filteredMovies[indexPath.row].rating
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
+        let movie = filteredMovies[indexPath.row]
+        cell.movie = movie
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "MovieInfo", sender: indexPath.row)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "MovieInfo" {
-            let row = sender as! Int
-            let mic: MovieInfoController = segue.destination as! MovieInfoController
-            mic.selectedMovie = filteredMovies[row]
-        }
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let mic = storyboard.instantiateViewController(withIdentifier: "MovieInfo") as! MovieInfoController
+        mic.selectedMovie = filteredMovies[indexPath.row]
+        navigationController?.pushViewController(mic, animated: true)
     }
 }
 

@@ -2,134 +2,146 @@
 //  MovieCell.swift
 //  Cinematic
 //
-//  Created by Khant Zaw Ko on 12/12/17.
-//  Copyright © 2017 Khant Zaw Ko. All rights reserved.
+//  Created by Khant Zaw Ko on 14/2/18.
+//  Copyright © 2018 Khant Zaw Ko. All rights reserved.
 //
 
 import UIKit
 
-var movieRating: Double!
+var ratings = Double()
 
 class MovieCell: UITableViewCell {
     
-    let screenSize = UIScreen.main.bounds
-    let screenWidth = UIScreen.main.bounds.width
-    let screenHeight = UIScreen.main.bounds.height
-    
-    var movieImage: UIImageView!
-    var movieName: UILabel!
-    var movieDuration: UILabel!
-    var movieGenre: UILabel!
-    var movieRatingText: UILabel!
-    var halfStar: Bool!
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    var movie: Movie? {
+        didSet {
+            guard let unwrappedMovie = movie else { return }
+            movieImageView.downloadedFrom(link: unwrappedMovie.image)
+            
+            let attributedText = NSMutableAttributedString(string: unwrappedMovie.name, attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18)])
+            attributedText.append(NSAttributedString(string: "\n\(unwrappedMovie.duration!) mins", attributes: [NSAttributedStringKey.font: UIFont.italicSystemFont(ofSize: 13), NSAttributedStringKey.foregroundColor: UIColor.gray]))
+            
+            movieName.attributedText = attributedText
+            movieGenre.text = unwrappedMovie.genre
+        }
     }
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    private let movieImageView: UIImageView = {
+        let imageView = UIImageView(image:#imageLiteral(resourceName: "loading"))
+        imageView.contentMode = .scaleAspectFit
+        imageView.layer.cornerRadius = 5
+        imageView.clipsToBounds = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    private let movieName: UITextView = {
+        let textView = UITextView()
+        let attributedText = NSMutableAttributedString(string: "Movie Name", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18)])
+        attributedText.append(NSAttributedString(string: "0 min", attributes: [NSAttributedStringKey.font: UIFont.italicSystemFont(ofSize: 13), NSAttributedStringKey.foregroundColor: UIColor.gray]))
+        textView.attributedText = attributedText
+        textView.isEditable = false
+        textView.isScrollEnabled = false
+        textView.isSelectable = false
+        textView.isUserInteractionEnabled = false
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        return textView
+    }()
+    
+    private let movieGenre: UILabel = {
+        let label = UILabel()
+        label.text = "Movie Genre"
+        label.font = UIFont.boldSystemFont(ofSize: 13)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    
+    private func setupLayout() {
+        movieImageView.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        movieImageView.heightAnchor.constraint(equalToConstant: 120).isActive = true
+        movieImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        movieImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
         
-        self.accessoryType = .disclosureIndicator
-
-        let movieImageWidth: CGFloat = 80
-        let movieImageHeight: CGFloat = 120
-        let movieImageOffsetX: CGFloat = 15
-        let movieImageOffsetY: CGFloat = 8
-
-        let movieGenreWidth: CGFloat = screenWidth - ((2 * movieImageOffsetX) + movieImageWidth + 10)
-        let movieGenreHeight: CGFloat = 20
-        let movieGenreOffsetX: CGFloat = movieImageOffsetX + movieImageWidth + 10
-        let movieGenreOffsetY: CGFloat = movieImageOffsetY
-
-        let movieNameWidth: CGFloat = screenWidth - ((2 * movieImageOffsetX) + movieImageWidth + 10)
-        let movieNameHeight: CGFloat = 25
-        let movieNameOffsetX: CGFloat = movieGenreOffsetX
-        let movieNameOffsetY: CGFloat = ((2 * movieImageOffsetY) + movieImageHeight - movieNameHeight)/2
+        movieName.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: 10).isActive = true
+        movieName.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30).isActive = true
+        movieName.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
-        let movieDurationWidth: CGFloat = 100
-        let movieDurationHeight: CGFloat = 12
-        let movieDurationOffsetX: CGFloat = movieGenreOffsetX
-        let movieDurationOffsetY: CGFloat = (((2 * movieImageOffsetY) + movieImageHeight - movieNameHeight)/2) + movieNameHeight
+        movieGenre.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: 10).isActive = true
+        movieGenre.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
+        movieGenre.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
+    }
+    
+    private func setupMovieRatingLayout() {
         
-        movieImage = UIImageView()
-        movieImage.frame = CGRect(x: movieImageOffsetX, y: movieImageOffsetY, width: movieImageWidth, height: movieImageHeight)
-        movieImage.layer.cornerRadius = 5
-        movieImage.clipsToBounds = true
-        movieImage.image = UIImage(named: "loading")
-        contentView.addSubview(movieImage)
-        
-        movieGenre = UILabel()
-        movieGenre.frame = CGRect(x: movieGenreOffsetX, y: movieGenreOffsetY, width: movieGenreWidth, height: movieGenreHeight)
-        movieGenre.font = UIFont.boldSystemFont(ofSize: 13)
-        contentView.addSubview(movieGenre)
-        
-        movieName = UILabel()
-        movieName.frame = CGRect(x: movieNameOffsetX, y: movieNameOffsetY, width: movieNameWidth, height: movieNameHeight)
-        movieName.font = UIFont.boldSystemFont(ofSize: 20)
-        contentView.addSubview(movieName)
-        
-        movieDuration = UILabel()
-        movieDuration.frame = CGRect(x: movieDurationOffsetX, y: movieDurationOffsetY, width: movieDurationWidth, height: movieDurationHeight)
-        movieDuration.font = UIFont.italicSystemFont(ofSize: 12)
-        movieDuration.textColor = .gray
-        contentView.addSubview(movieDuration)
-        
-        halfStar = checkHalfStar(num: movieRating)
-        
-        if halfStar {
-            movieRating = movieRating + 1
-        } else {
-            
+        if isHalfStar(num: ratings) {
+            ratings += 1
         }
         
-        let ratingImageWidth: CGFloat = 15
-        let ratingImageHeight: CGFloat = 15
-        let ratingImageSpacingInBetween: CGFloat = 2
-        
-        for index in 0..<Int(movieRating) {
-
-            let num: CGFloat = (ratingImageWidth + ratingImageSpacingInBetween) * CGFloat(index)
-            let ratingImageOffsetX: CGFloat = movieImageOffsetX + movieImageWidth + 10 + num
-            let ratingImageOffsetY: CGFloat = movieImageOffsetY + movieImageHeight - ratingImageHeight - 2
+        for rating in 0..<Int(ratings) {
+            let movieRatingStar = UIImageView()
+            movieRatingStar.translatesAutoresizingMaskIntoConstraints = false
+            movieRatingStar.tintColor = .orange
             
-            let ratingImageView = UIImageView()
-            ratingImageView.frame = CGRect(x: ratingImageOffsetX, y: ratingImageOffsetY, width: ratingImageWidth, height: ratingImageHeight)
+            addSubview(movieRatingStar)
             
-            if halfStar && index == Int(movieRating-1){
-                ratingImageView.image = UIImage(named: "halfstar.png")?.withRenderingMode(.alwaysTemplate)
-            } else {
-                ratingImageView.image = UIImage(named: "star.png")?.withRenderingMode(.alwaysTemplate)
+            movieRatingStar.widthAnchor.constraint(equalToConstant: 15).isActive = true
+            movieRatingStar.heightAnchor.constraint(equalToConstant: 15).isActive = true
+            movieRatingStar.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: CGFloat(10 + ((15 + 2) * rating))).isActive = true
+            movieRatingStar.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8).isActive = true
+            movieRatingStar.image = UIImage(named: "star.png")?.withRenderingMode(.alwaysTemplate)
+            
+            if rating == Int(ratings-1) && isHalfStar(num: ratings) {
+                
+                movieRatingStar.image = UIImage(named: "halfstar.png")?.withRenderingMode(.alwaysTemplate)
+                
+                let label = UILabel()
+                label.text = "(\(ratings-1) stars)"
+                label.font = UIFont.italicSystemFont(ofSize: 13)
+                label.textColor = .gray
+                label.translatesAutoresizingMaskIntoConstraints = false
+                addSubview(label)
+                
+                label.heightAnchor.constraint(equalToConstant: 15).isActive = true
+                label.leadingAnchor.constraint(equalTo: movieRatingStar.trailingAnchor, constant: -5).isActive = true
+                label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
+                label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8).isActive = true
+            } else if rating == Int(ratings-1) {
+                let label = UILabel()
+                label.text = "(\(ratings) stars)"
+                label.font = UIFont.italicSystemFont(ofSize: 13)
+                label.textColor = .gray
+                label.translatesAutoresizingMaskIntoConstraints = false
+                addSubview(label)
+                
+                label.heightAnchor.constraint(equalToConstant: 15).isActive = true
+                label.leadingAnchor.constraint(equalTo: movieRatingStar.trailingAnchor, constant: 2).isActive = true
+                label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
+                label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8).isActive = true
             }
-
-            ratingImageView.tintColor = .orange
-            contentView.addSubview(ratingImageView)
         }
-        
-        let movieRatingTextWidth: CGFloat = 60
-        let movieRatingTextHeight: CGFloat = 15
-        var num: CGFloat = (ratingImageWidth + ratingImageSpacingInBetween) * CGFloat(Int(movieRating))
-        
-        if halfStar {
-            num -= 7
-        }
-        
-        let movieRatingTextOffsetX: CGFloat = movieImageOffsetX + movieImageWidth + 10 + num
-        let movieRatingTextOffsetY: CGFloat = movieImageOffsetY + movieImageHeight - movieRatingTextHeight - 2
-        
-        movieRatingText = UILabel()
-        movieRatingText.frame = CGRect(x: movieRatingTextOffsetX, y: movieRatingTextOffsetY, width: movieRatingTextWidth, height: movieRatingTextHeight)
-        movieRatingText.font = UIFont.italicSystemFont(ofSize: 12)
-        movieRatingText.textColor = .gray
-        contentView.addSubview(movieRatingText)
-
     }
     
-    func checkHalfStar(num: Double) -> Bool {
+    private func isHalfStar(num: Double) -> Bool {
         if num.truncatingRemainder(dividingBy: 1) < 0.5 {
             return false
         } else {
             return true
         }
     }
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        accessoryType = .disclosureIndicator
+        addSubview(movieImageView)
+        addSubview(movieName)
+        addSubview(movieGenre)
+        
+        setupLayout()
+        setupMovieRatingLayout()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
+

@@ -17,6 +17,7 @@ class UpcomingMovieController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.register(MovieCell.self, forCellReuseIdentifier: "MovieCell")
         self.navigationController?.navigationBar.prefersLargeTitles = true
         getMovieData()
     }
@@ -75,14 +76,11 @@ class UpcomingMovieController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        movieRating = filteredMovies[indexPath.row].rating
+        ratings = filteredMovies[indexPath.row].rating
         
-        let cell = MovieCell(style: .default, reuseIdentifier: "MovieCell")
-        cell.movieImage.downloadedFrom(link: filteredMovies[indexPath.row].image!)
-        cell.movieGenre.text = filteredMovies[indexPath.row].genre!
-        cell.movieName.text = filteredMovies[indexPath.row].name!
-        cell.movieDuration.text = "(\(String(describing: filteredMovies[indexPath.row].duration!)) mins)"
-        cell.movieRatingText.text = "(\(String(describing: filteredMovies[indexPath.row].rating!)) stars)"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
+        let movie = filteredMovies[indexPath.row]
+        cell.movie = movie
         return cell
     }
     
