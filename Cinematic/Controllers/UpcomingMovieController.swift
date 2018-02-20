@@ -18,7 +18,7 @@ class UpcomingMovieController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(MovieCell.self, forCellReuseIdentifier: "MovieCell")
-        self.navigationController?.navigationBar.prefersLargeTitles = true
+//        self.navigationController?.navigationBar.prefersLargeTitles = true
         getMovieData()
     }
     
@@ -85,16 +85,9 @@ class UpcomingMovieController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "MovieInfo", sender: indexPath.row)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "MovieInfo" {
-            let row = sender as! Int
-            let umic: UpcomingMovieInfoController = segue.destination as! UpcomingMovieInfoController
-            umic.selectedMovie = filteredMovies[row]
-        }
+        let umdc = UpcomingMovieDetailController()
+        umdc.selectedMovie = filteredMovies[indexPath.row]
+        navigationController?.pushViewController(umdc, animated: true)
     }
 }
 

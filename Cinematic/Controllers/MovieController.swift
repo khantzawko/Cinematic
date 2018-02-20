@@ -18,9 +18,12 @@ class MovieController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(MovieCell.self, forCellReuseIdentifier: "MovieCell")
-        self.navigationController?.navigationBar.prefersLargeTitles = true
         getMovieData()
     }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        self.navigationController?.navigationBar.prefersLargeTitles = true
+//    }
     
     func getMovieData() {
         ref = Database.database().reference().child("movies")
@@ -83,10 +86,16 @@ class MovieController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let mic = storyboard.instantiateViewController(withIdentifier: "MovieInfo") as! MovieInfoController
-        mic.selectedMovie = filteredMovies[indexPath.row]
-        navigationController?.pushViewController(mic, animated: true)
+        
+        let mdc = MovieDetailController()
+        mdc.selectedMovie = filteredMovies[indexPath.row]
+        navigationController?.pushViewController(mdc, animated: true)
+        
+        
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let mic = storyboard.instantiateViewController(withIdentifier: "MovieInfo") as! MovieInfoController
+//        mic.selectedMovie = filteredMovies[indexPath.row]
+//        navigationController?.pushViewController(mic, animated: true)
     }
 }
 

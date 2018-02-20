@@ -1,9 +1,9 @@
 //
-//  MovieInfoViewController.swift
+//  MovieDetailController.swift
 //  Cinematic
 //
-//  Created by Khant Zaw Ko on 17/12/17.
-//  Copyright © 2017 Khant Zaw Ko. All rights reserved.
+//  Created by Khant Zaw Ko on 20/2/18.
+//  Copyright © 2018 Khant Zaw Ko. All rights reserved.
 //
 
 import UIKit
@@ -12,18 +12,25 @@ import Firebase
 private var selectedIndexPath: IndexPath?
 private var filteredCinemas = [Cinema]()
 
-class MovieInfoController: UITableViewController {
-        
+class MovieDetailController: UITableViewController {
+    
     var selectedMovie = Movie()
     var cinemas = [Cinema]()
     var theatres = [Theatre]()
     var filteredTheatres = [Theatre]()
     var ref: DatabaseReference!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        selectedIndexPath = IndexPath(row: 0, section: 0)
+        
+        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.title = "The Movie - "
+        let rightBarButton = UIBarButtonItem(image: #imageLiteral(resourceName: "movie-ticket"), style: .plain, target: self, action: #selector(pressedRightBarButton))
+        navigationItem.rightBarButtonItem = rightBarButton
+        tableView.register(MovieDetailCell.self, forCellReuseIdentifier: "MovieDetail")
+        
         getMovieData()
+        selectedIndexPath = IndexPath(row: 0, section: 0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,6 +40,24 @@ class MovieInfoController: UITableViewController {
             self.navigationItem.rightBarButtonItem?.isEnabled = true
         }
     }
+    
+    @objc private func pressedRightBarButton() {
+        let ptc = PurchaseTicketController()
+        ptc.selectedMovie = selectedMovie
+        ptc.selectedCinema = cinemas[(selectedIndexPath?.row)!]
+        ptc.selectedTheatre = theatres[(selectedIndexPath?.row)!]
+        navigationController?.pushViewController(ptc, animated: true)
+    }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//
+//        if segue.identifier == "ToPurchaseTicket" {
+//            let ptv: PurchaseTicketController = segue.destination as! PurchaseTicketController
+//            ptv.selectedMovie = selectedMovie
+//            ptv.selectedCinema = cinemas[(selectedIndexPath?.row)!]
+//            ptv.selectedTheatre = theatres[(selectedIndexPath?.row)!]
+//        }
+//    }
     
     func getMovieData() {
         filteredCinemas.removeAll()
@@ -95,7 +120,7 @@ class MovieInfoController: UITableViewController {
                                     }
                                 }
                             } else {
-                            
+                                
                             }
                         }
                     }
@@ -106,41 +131,42 @@ class MovieInfoController: UITableViewController {
             }
         })
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 3
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {            
-            let cell = tableView.dequeueReusableCell(withIdentifier: "MovieBCell", for: indexPath) as! MovieBCell
-            cell.infoTitle.text = selectedMovie.name!
-            cell.infoImage.downloadedFrom(link: selectedMovie.image!)
-            cell.infoImage.layer.cornerRadius = 5
-            cell.infoImage.clipsToBounds = true
+        
+        if indexPath.row == 0 {
+            let cell = MovieDetailCell.init(style: .default, reuseIdentifier: "Header")
+            let movie = selectedMovie
+            cell.movie = movie
             return cell
         } else if indexPath.row == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "MovieInfoCell", for: indexPath) as! MovieInfoCell
-            cell.movieInfoTitle.text = " Movie Info"
-            cell.movieInfoDescription.text = selectedMovie.info
+            let cell = MovieDetailCell.init(style: .default, reuseIdentifier: "Plot")
+            let movie = selectedMovie
+            cell.movie = movie
             return cell
         } else if indexPath.row == 2 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "CinemaCell", for: indexPath) as! CinemaCell
-            cell.cinemaTitle.text = " Cinemas"
-            return cell
-        } else if indexPath.row == 3 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TrailerCell", for: indexPath) as! TrailerCell
-            cell.trailerTitle.text = " Trailers"
-            cell.webView.loadHTMLString("<iframe width=\"100%\" height=\"100%\" src=\"\(selectedMovie.trailer!)\" frameborder=\"0\" gesture=\"media\" allow=\"encrypted-media\" allowfullscreen></iframe>", baseURL: nil)
+            let cell = MovieDetailCell.init(style: .default, reuseIdentifier: "Cinema")
             return cell
         } else {
             return UITableViewCell()
         }
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 0 {
+            return 136
+        } else {
+            return UITableViewAutomaticDimension
+        }
+    }
+    
     func reloadCollectionView() {
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "CinemaCell") as! CinemaCell
-        cell.collectionView.reloadData()
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "MovieDetail") as! MovieDetailCell
+        cell.cinemaCollectionView.reloadData()
         
         if filteredCinemas.isEmpty {
             self.navigationItem.rightBarButtonItem?.isEnabled = false
@@ -148,33 +174,17 @@ class MovieInfoController: UITableViewController {
             self.navigationItem.rightBarButtonItem?.isEnabled = true
         }
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ToPurchaseTicket" {
-            let ptv: PurchaseTicketController = segue.destination as! PurchaseTicketController
-            ptv.selectedMovie = selectedMovie
-            ptv.selectedCinema = filteredCinemas[(selectedIndexPath?.row)!]
-            ptv.selectedTheatre = filteredTheatres[(selectedIndexPath?.row)!]
-            
-            print("cinema count -> ", cinemas.count, filteredCinemas.count)
-            print("theatres count -> ", theatres.count, filteredTheatres.count)
-        }
-    }
 }
 
-extension CinemaCell: UICollectionViewDelegate, UICollectionViewDataSource {
-    
+extension MovieDetailCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return filteredCinemas.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionHorizontalCell", for: indexPath) as! CollectionHorizontalCell
-        cell.layer.borderWidth = 2
-        cell.layer.borderColor = UIColor(red:1.00, green:0.14, blue:0.40, alpha:1.0).cgColor
-        cell.layer.cornerRadius = 20
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CinemaCollectionViewCell", for: indexPath) as! CinemaCollectionCell
         cell.cinemaName.text = filteredCinemas[indexPath.row].name
-
+        
         if indexPath == selectedIndexPath && selectedIndexPath != nil {
             cell.layer.backgroundColor = UIColor(red:1.00, green:0.14, blue:0.40, alpha:1.0).cgColor
             cell.cinemaName.textColor = .white
@@ -182,7 +192,7 @@ extension CinemaCell: UICollectionViewDelegate, UICollectionViewDataSource {
             cell.layer.backgroundColor = UIColor.white.cgColor
             cell.cinemaName.textColor = UIColor(red:1.00, green:0.14, blue:0.40, alpha:1.0)
         }
-
+        
         return cell
     }
     
@@ -193,8 +203,8 @@ extension CinemaCell: UICollectionViewDelegate, UICollectionViewDataSource {
         guard collectionView.cellForItem(at: indexPath) != nil else {
             return
         }
-
-        let cell = collectionView.cellForItem(at: indexPath) as! CollectionHorizontalCell
+        
+        let cell = collectionView.cellForItem(at: indexPath) as! CinemaCollectionCell
         cell.layer.backgroundColor = UIColor(red:1.00, green:0.14, blue:0.40, alpha:1.0).cgColor
         cell.cinemaName.textColor = .white
         collectionView.reloadData()
@@ -203,12 +213,12 @@ extension CinemaCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         
         selectedIndexPath = nil
-
+        
         guard collectionView.cellForItem(at: indexPath) != nil else {
             return
         }
-
-        let cell = collectionView.cellForItem(at: indexPath) as! CollectionHorizontalCell
+        
+        let cell = collectionView.cellForItem(at: indexPath) as! CinemaCollectionCell
         cell.layer.backgroundColor = UIColor.white.cgColor
         cell.cinemaName.textColor = UIColor(red:1.00, green:0.14, blue:0.40, alpha:1.0)
     }

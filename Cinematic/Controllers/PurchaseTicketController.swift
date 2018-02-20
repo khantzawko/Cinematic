@@ -39,37 +39,33 @@ class PurchaseTicketController: UITableViewController, UIPopoverPresentationCont
     }
     
     func reloadCollectionView() {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TicketCell") as! TicketCell
-        cell.collectionView.reloadData()
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "TicketCell") as! TicketCell
+//        cell.collectionView.reloadData()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 3
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "MovieBCell", for: indexPath) as! MovieBCell
-            cell.selectedMovie.text = " Selected Movie"
-            cell.purchaseSelectedMovieTitle.text = selectedMovie.name
-            cell.selectedMovieTheatre.text = selectedCinema.name! + " - " + selectedTheatre.name!
-            return cell
-        } else if indexPath.row == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "LabelTitleCell", for: indexPath) as! LabelTitleCell
-            cell.ticketShowTimesTitle.text = " Tickets & Showtimes"
-            return cell
-        } else if indexPath.row == 2 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TicketCell", for: indexPath) as! TicketCell
-            cell.ticketContentTitle.text = "Select Date"
-            return cell
-        } else if indexPath.row == 3 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TicketCell", for: indexPath) as! TicketCell
-            cell.ticketContentTitle.text = "Select Time"
-            return cell
-        } else {
-            return UITableViewCell()
-        }
+        return UITableViewCell()
+        
+//        if indexPath.row == 0 {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "LabelTitleCell", for: indexPath) as! LabelTitleCell
+//            cell.ticketShowTimesTitle.text = " Tickets & Showtimes"
+//            return cell
+//        } else if indexPath.row == 1 {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "TicketCell", for: indexPath) as! TicketCell
+//            cell.ticketContentTitle.text = "Select Date"
+//            return cell
+//        } else if indexPath.row == 2 {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "TicketCell", for: indexPath) as! TicketCell
+//            cell.ticketContentTitle.text = "Select Time"
+//            return cell
+//        } else {
+//            return UITableViewCell()
+//        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -177,3 +173,4 @@ extension TicketCell: UICollectionViewDataSource, UICollectionViewDelegate {
     }
 
 }
+

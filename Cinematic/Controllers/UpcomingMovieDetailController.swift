@@ -9,42 +9,41 @@
 import UIKit
 import Firebase
 
-class UpcomingMovieInfoController: UITableViewController {
+class UpcomingMovieDetailController: UITableViewController {
     
     var selectedMovie = Movie()
-    var cinemas = [Cinema]()
-    var theatres = [Theatre]()
-    var ref: DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        getMovieData()
+        
+        navigationItem.title = "The Movie - "
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 2
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 0 {
+            return 136
+        } else {
+            return UITableViewAutomaticDimension
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "MovieBCell", for: indexPath) as! MovieBCell
-            cell.infoTitle.text = selectedMovie.name!
-            cell.infoImage.downloadedFrom(link: selectedMovie.image!)
-            cell.infoImage.layer.cornerRadius = 5
-            cell.infoImage.clipsToBounds = true
+            let cell = MovieDetailCell.init(style: .default, reuseIdentifier: "Header")
+            let movie = selectedMovie
+            cell.movie = movie
             return cell
         } else if indexPath.row == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "MovieInfoCell", for: indexPath) as! MovieInfoCell
-            cell.movieInfoTitle.text = " Movie Info"
-            cell.movieInfoDescription.text = selectedMovie.info
+            let cell = MovieDetailCell.init(style: .default, reuseIdentifier: "Plot")
+            let movie = selectedMovie
+            cell.movie = movie
             return cell
-        } else if indexPath.row == 2 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TrailerCell", for: indexPath) as! TrailerCell
-            cell.trailerTitle.text = " Trailers"
-            cell.webView.loadHTMLString("<iframe width=\"100%\" height=\"100%\" src=\"\(selectedMovie.trailer!)\" frameborder=\"0\" gesture=\"media\" allow=\"encrypted-media\" allowfullscreen></iframe>", baseURL: nil)
-            return cell
-        } else {
+        }  else {
             return UITableViewCell()
         }
     }
@@ -72,12 +71,12 @@ class UpcomingMovieInfoController: UITableViewController {
 //                    }
 //                    self.tableView.reloadData()
 //                })
-//                
-//                
+//
+//
 //                theatreRef.child(theatreKey as! String).observe(DataEventType.value, with: {(tSnap) in
 //                    var theatreDict = tSnap.value as! [String:AnyObject]
 //                    if let theatreName = theatreDict["name"], let theatreShowtimes = theatreDict["showtimes"], let theatreType = theatreDict["theatreTypeID"] {
-//                        
+//
 //                        var movieDict = tSnap.childSnapshot(forPath: "movies/\(self.selectedMovie.key!)").value as! [String:AnyObject]
 //                        if  let startDate = movieDict["startDate"],
 //                            let weeksInTheatre = movieDict["weeksInTheatre"] {
@@ -95,3 +94,4 @@ class UpcomingMovieInfoController: UITableViewController {
 //        })
 //    }
 }
+
