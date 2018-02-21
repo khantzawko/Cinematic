@@ -31,7 +31,7 @@ class MovieDetailCell: UITableViewCell {
         }
     }
 
-    let movieImage: UIImageView = {
+    private let movieImage: UIImageView = {
         let imageView = UIImageView(image:#imageLiteral(resourceName: "loading"))
         imageView.contentMode = .scaleAspectFit
         imageView.layer.cornerRadius = 5
@@ -40,7 +40,7 @@ class MovieDetailCell: UITableViewCell {
         return imageView
     }()
     
-    let movieName: UILabel = {
+    private let movieName: UILabel = {
         let label = UILabel()
         label.text = "Movie Name"
         label.font = UIFont.boldSystemFont(ofSize: 18)
@@ -60,7 +60,7 @@ class MovieDetailCell: UITableViewCell {
         return button
     }()
     
-    let moviePlot: UITextView = {
+    private let moviePlot: UITextView = {
         let textView = UITextView()
         textView.isEditable = false
         textView.isScrollEnabled = false
@@ -70,7 +70,7 @@ class MovieDetailCell: UITableViewCell {
         return textView
     }()
     
-    let cinemaLabel: UILabel = {
+    private let cinemaLabel: UILabel = {
         let label = UILabel()
         label.text = "Cinemas"
         label.font = UIFont.boldSystemFont(ofSize: 16)
@@ -78,7 +78,7 @@ class MovieDetailCell: UITableViewCell {
         return label
     }()
     
-    let cinemaCollectionView: UICollectionView = {
+    lazy var cinemaCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10)
@@ -151,7 +151,7 @@ class MovieDetailCell: UITableViewCell {
             cinemaCollectionView.showsVerticalScrollIndicator = false
             cinemaCollectionView.delegate = self
             cinemaCollectionView.dataSource = self
-            cinemaCollectionView.register(CinemaCollectionCell.self, forCellWithReuseIdentifier: "CinemaCollectionViewCell")
+            cinemaCollectionView.register(CinemaCollectionCell.self, forCellWithReuseIdentifier: "CinemaCollectionCell")
             setupCinemaLayout()
         }
     }

@@ -28,6 +28,7 @@ class MovieDetailController: UITableViewController {
         let rightBarButton = UIBarButtonItem(image: #imageLiteral(resourceName: "movie-ticket"), style: .plain, target: self, action: #selector(pressedRightBarButton))
         navigationItem.rightBarButtonItem = rightBarButton
         tableView.register(MovieDetailCell.self, forCellReuseIdentifier: "MovieDetail")
+//        tableView.separatorStyle = .none
         
         getMovieData()
         selectedIndexPath = IndexPath(row: 0, section: 0)
@@ -42,11 +43,14 @@ class MovieDetailController: UITableViewController {
     }
     
     @objc private func pressedRightBarButton() {
-        let ptc = PurchaseTicketController()
-        ptc.selectedMovie = selectedMovie
-        ptc.selectedCinema = cinemas[(selectedIndexPath?.row)!]
-        ptc.selectedTheatre = theatres[(selectedIndexPath?.row)!]
-        navigationController?.pushViewController(ptc, animated: true)
+        let mdtc = MovieDateTimeController()
+        
+        print(theatres[(selectedIndexPath?.row)!])
+        
+        mdtc.selectedMovie = selectedMovie
+        mdtc.selectedCinema = filteredCinemas[(selectedIndexPath?.row)!]
+        mdtc.selectedTheatre = filteredTheatres[(selectedIndexPath?.row)!]
+        navigationController?.pushViewController(mdtc, animated: true)
     }
     
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -182,7 +186,7 @@ extension MovieDetailCell: UICollectionViewDelegate, UICollectionViewDataSource 
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CinemaCollectionViewCell", for: indexPath) as! CinemaCollectionCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CinemaCollectionCell", for: indexPath) as! CinemaCollectionCell
         cell.cinemaName.text = filteredCinemas[indexPath.row].name
         
         if indexPath == selectedIndexPath && selectedIndexPath != nil {

@@ -15,8 +15,24 @@ class QRCodeController: UIViewController {
     var QRString = String()
     var movieName = String()
     
+//    private let QRImageView: UIImageView = {
+//        let imageView = UIImageView()
+//        imageView.backgroundColor = .orange
+//        imageView.translatesAutoresizingMaskIntoConstraints = false
+//        return imageView
+//    }()
+//
+//    private func setupLayout() {
+//        QRImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+//        QRImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+//        QRImageView.widthAnchor.constraint(equalTo: <#T##NSLayoutAnchor<NSLayoutDimension>#>)
+//    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        view.addSubview(QRImageView)
+//        setupLayout()
         
         let image = generateQRCode(from: QRString)
         QRImage.image = image
@@ -33,7 +49,6 @@ class QRCodeController: UIViewController {
             
             let scaleX = QRImage.frame.size.width / qrCodeImage.extent.size.width
             let scaleY = QRImage.frame.size.height / qrCodeImage.extent.size.height
-            
             
             let transform = CGAffineTransform(scaleX: scaleX, y: scaleY)
             

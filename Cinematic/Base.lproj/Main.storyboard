@@ -86,7 +86,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XDk-y4-xli" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-295.19999999999999" y="1694.3028485757122"/>
+            <point key="canvasLocation" x="-297" y="1767"/>
         </scene>
         <!--Profile-->
         <scene sceneID="yho-7o-O3M">
@@ -118,7 +118,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EeK-7C-grA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="578" y="1694"/>
+            <point key="canvasLocation" x="578" y="1767"/>
         </scene>
         <!--In Theatre-->
         <scene sceneID="nB3-Yz-QmS">
@@ -141,132 +141,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TyU-tj-seH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1349.5999999999999" y="-179.46026986506749"/>
-        </scene>
-        <!--Purchase Ticket-->
-        <scene sceneID="Rb4-Z2-QDS">
-            <objects>
-                <tableViewController id="d1s-hO-7PG" customClass="PurchaseTicketController" customModule="Cinematic" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="i3s-z0-lZW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LabelTitleCell" rowHeight="39" id="FYp-tA-fbo" customClass="LabelTitleCell" customModule="Cinematic" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="39"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FYp-tA-fbo" id="3aP-xo-xk6">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="39"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Tickets &amp; Showtimes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dag-Iv-Pwb">
-                                            <rect key="frame" x="0.0" y="6" width="375" height="30"/>
-                                            <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="30" id="qTJ-Qp-g2V"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="Dag-Iv-Pwb" firstAttribute="leading" secondItem="3aP-xo-xk6" secondAttribute="leading" id="Ckg-zr-SAt"/>
-                                        <constraint firstAttribute="trailing" secondItem="Dag-Iv-Pwb" secondAttribute="trailing" id="Cs2-Co-ZrX"/>
-                                        <constraint firstItem="Dag-Iv-Pwb" firstAttribute="top" secondItem="3aP-xo-xk6" secondAttribute="top" constant="6" id="rfJ-ua-Hi6"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="ticketShowTimesTitle" destination="Dag-Iv-Pwb" id="Gbr-Q5-BMl"/>
-                                </connections>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TicketCell" rowHeight="91" id="kAE-3s-4I9" customClass="TicketCell" customModule="Cinematic" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="67" width="375" height="91"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kAE-3s-4I9" id="R5J-6b-wOR">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="91"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose cinemas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mGl-f0-waS">
-                                            <rect key="frame" x="4" y="0.0" width="371" height="27"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yTg-pM-Zut">
-                                            <rect key="frame" x="0.0" y="29" width="375" height="60"/>
-                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="60" id="mNJ-Td-vFS"/>
-                                            </constraints>
-                                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="5" minimumInteritemSpacing="5" id="gX4-Ks-2ok">
-                                                <size key="itemSize" width="100" height="50"/>
-                                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="5"/>
-                                            </collectionViewFlowLayout>
-                                            <cells>
-                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionHorizontalCell" id="Wtg-ct-Thb" customClass="CollectionHorizontalCell" customModule="Cinematic" customModuleProvider="target">
-                                                    <rect key="frame" x="5" y="5" width="100" height="50"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="50"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wYw-pu-dxj">
-                                                                <rect key="frame" x="31.5" y="17" width="37" height="17"/>
-                                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                        </subviews>
-                                                    </view>
-                                                    <constraints>
-                                                        <constraint firstItem="wYw-pu-dxj" firstAttribute="centerY" secondItem="Wtg-ct-Thb" secondAttribute="centerY" id="Kd8-Uy-w3n"/>
-                                                        <constraint firstItem="wYw-pu-dxj" firstAttribute="centerX" secondItem="Wtg-ct-Thb" secondAttribute="centerX" id="Nbr-rj-3Dj"/>
-                                                    </constraints>
-                                                    <connections>
-                                                        <outlet property="ticketContentLabel" destination="wYw-pu-dxj" id="trc-ZU-F56"/>
-                                                    </connections>
-                                                </collectionViewCell>
-                                            </cells>
-                                            <connections>
-                                                <outlet property="dataSource" destination="kAE-3s-4I9" id="D24-KA-0Gk"/>
-                                                <outlet property="delegate" destination="kAE-3s-4I9" id="3zu-e7-3Ix"/>
-                                            </connections>
-                                        </collectionView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="yTg-pM-Zut" secondAttribute="trailing" id="IQK-yr-xjy"/>
-                                        <constraint firstItem="yTg-pM-Zut" firstAttribute="top" secondItem="mGl-f0-waS" secondAttribute="bottom" constant="2" id="U8M-oo-2lv"/>
-                                        <constraint firstAttribute="trailing" secondItem="mGl-f0-waS" secondAttribute="trailing" id="gLf-1V-gjj"/>
-                                        <constraint firstAttribute="bottom" secondItem="yTg-pM-Zut" secondAttribute="bottom" constant="2" id="lhF-Wb-NOF"/>
-                                        <constraint firstItem="mGl-f0-waS" firstAttribute="top" secondItem="R5J-6b-wOR" secondAttribute="top" id="tN6-uy-gH6"/>
-                                        <constraint firstItem="yTg-pM-Zut" firstAttribute="leading" secondItem="R5J-6b-wOR" secondAttribute="leading" id="v5q-1m-GsA"/>
-                                        <constraint firstItem="mGl-f0-waS" firstAttribute="leading" secondItem="R5J-6b-wOR" secondAttribute="leading" constant="4" id="vpQ-r8-Tby"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="collectionView" destination="yTg-pM-Zut" id="Ayk-9d-Eer"/>
-                                    <outlet property="ticketContentTitle" destination="mGl-f0-waS" id="rmJ-gU-KYX"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="d1s-hO-7PG" id="EjO-CD-8AB"/>
-                            <outlet property="delegate" destination="d1s-hO-7PG" id="ZpY-p7-DUc"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Purchase Ticket" largeTitleDisplayMode="always" id="NCA-Ah-ks6">
-                        <barButtonItem key="rightBarButtonItem" title="Cart" image="cart" id="mfb-uo-QYL">
-                            <connections>
-                                <segue destination="7U8-U5-vmg" kind="show" identifier="ToCart" id="En4-b3-tVa"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Yfr-U5-Mi5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2826.4000000000001" y="-182.15892053973016"/>
         </scene>
         <!--Cart-->
         <scene sceneID="JCa-uo-Cuc">
@@ -338,7 +212,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X7g-H5-kdr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3633" y="-183"/>
+            <point key="canvasLocation" x="2145" y="-179"/>
         </scene>
         <!--View Seats Controller-->
         <scene sceneID="Z8d-mV-fNM">
@@ -482,7 +356,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cart" width="23" height="22"/>
         <image name="movie" width="21" height="21"/>
         <image name="movie-ticket" width="25" height="25"/>
         <image name="profile" width="21" height="22"/>

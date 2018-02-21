@@ -14,10 +14,11 @@
 		141CE4D9202A4375002F8041 /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141CE4D8202A4375002F8041 /* OrderCell.swift */; };
 		142031EC1FF83154007A3CF3 /* ViewSeatsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142031EB1FF83154007A3CF3 /* ViewSeatsController.swift */; };
 		142031EE1FF9132A007A3CF3 /* SeatsPlanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142031ED1FF9132A007A3CF3 /* SeatsPlanCell.swift */; };
-		1421C13E1FEC5B630028DA9D /* LabelTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1421C13D1FEC5B630028DA9D /* LabelTitleCell.swift */; };
-		1421C1421FEC5E3D0028DA9D /* TicketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1421C1411FEC5E3D0028DA9D /* TicketCell.swift */; };
-		1421C1441FEC71A90028DA9D /* SeatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1421C1431FEC71A90028DA9D /* SeatCell.swift */; };
 		142B0B4A1FDFD46D00B94FE1 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142B0B491FDFD46D00B94FE1 /* MovieCell.swift */; };
+		145A25FD203CF9260033410F /* MovieDateTimeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145A25FC203CF9260033410F /* MovieDateTimeController.swift */; };
+		145A25FF203CF9550033410F /* MovieDateTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145A25FE203CF9550033410F /* MovieDateTimeCell.swift */; };
+		145A2601203D09010033410F /* MovieDateCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145A2600203D09010033410F /* MovieDateCollectionCell.swift */; };
+		145A2603203D09150033410F /* MovieTimeCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145A2602203D09150033410F /* MovieTimeCollectionCell.swift */; };
 		145A7C311FDFC16B005599AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145A7C301FDFC16B005599AA /* AppDelegate.swift */; };
 		145A7C361FDFC16B005599AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 145A7C341FDFC16B005599AA /* Main.storyboard */; };
 		145A7C391FDFC16B005599AA /* Cinematic.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 145A7C371FDFC16B005599AA /* Cinematic.xcdatamodeld */; };
@@ -34,7 +35,6 @@
 		1475EA8B201530A6003A7D5A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1475EA8A201530A6003A7D5A /* GoogleService-Info.plist */; };
 		148ADA1F202674A30053BF27 /* UpcomingMovieDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148ADA1E202674A30053BF27 /* UpcomingMovieDetailController.swift */; };
 		149CAAFA200C9638003553CA /* CartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149CAAF9200C9638003553CA /* CartController.swift */; };
-		14DE45111FEC4F0D0034D2C1 /* PurchaseTicketController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DE45101FEC4F0D0034D2C1 /* PurchaseTicketController.swift */; };
 		14E340552028E5B00040C21F /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E3404E2028E5AB0040C21F /* CheckoutViewController.swift */; };
 		14E340562028E5B00040C21F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E3404F2028E5AB0040C21F /* SettingsViewController.swift */; };
 		14E340572028E5B00040C21F /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E340502028E5AD0040C21F /* Buttons.swift */; };
@@ -72,10 +72,11 @@
 		141CE4D8202A4375002F8041 /* OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
 		142031EB1FF83154007A3CF3 /* ViewSeatsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSeatsController.swift; sourceTree = "<group>"; };
 		142031ED1FF9132A007A3CF3 /* SeatsPlanCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatsPlanCell.swift; sourceTree = "<group>"; };
-		1421C13D1FEC5B630028DA9D /* LabelTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTitleCell.swift; sourceTree = "<group>"; };
-		1421C1411FEC5E3D0028DA9D /* TicketCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCell.swift; sourceTree = "<group>"; };
-		1421C1431FEC71A90028DA9D /* SeatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatCell.swift; sourceTree = "<group>"; };
 		142B0B491FDFD46D00B94FE1 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
+		145A25FC203CF9260033410F /* MovieDateTimeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDateTimeController.swift; sourceTree = "<group>"; };
+		145A25FE203CF9550033410F /* MovieDateTimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDateTimeCell.swift; sourceTree = "<group>"; };
+		145A2600203D09010033410F /* MovieDateCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDateCollectionCell.swift; sourceTree = "<group>"; };
+		145A2602203D09150033410F /* MovieTimeCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTimeCollectionCell.swift; sourceTree = "<group>"; };
 		145A7C2D1FDFC16B005599AA /* Cinematic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cinematic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		145A7C301FDFC16B005599AA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		145A7C351FDFC16B005599AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -98,7 +99,6 @@
 		1475EA8A201530A6003A7D5A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		148ADA1E202674A30053BF27 /* UpcomingMovieDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingMovieDetailController.swift; sourceTree = "<group>"; };
 		149CAAF9200C9638003553CA /* CartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartController.swift; sourceTree = "<group>"; };
-		14DE45101FEC4F0D0034D2C1 /* PurchaseTicketController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseTicketController.swift; sourceTree = "<group>"; };
 		14E3404E2028E5AB0040C21F /* CheckoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
 		14E3404F2028E5AB0040C21F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		14E340502028E5AD0040C21F /* Buttons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
@@ -201,17 +201,17 @@
 		14890CF51FE878DE007B59D5 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				14647EAB203C0ED200AE88C9 /* CollectionHorizontalCell.swift */,
 				140CFDDA201D3C6F003194CF /* Models.swift */,
 				142B0B491FDFD46D00B94FE1 /* MovieCell.swift */,
 				14647EA7203BE76D00AE88C9 /* MovieDetailCell.swift */,
-				141CE4D8202A4375002F8041 /* OrderCell.swift */,
+				145A25FE203CF9550033410F /* MovieDateTimeCell.swift */,
 				14647EA9203BE7D300AE88C9 /* CinemaCollectionCell.swift */,
+				145A2600203D09010033410F /* MovieDateCollectionCell.swift */,
+				145A2602203D09150033410F /* MovieTimeCollectionCell.swift */,
+				141CE4D8202A4375002F8041 /* OrderCell.swift */,
 				142031ED1FF9132A007A3CF3 /* SeatsPlanCell.swift */,
-				1421C1431FEC71A90028DA9D /* SeatCell.swift */,
 				146E5F491FFE96500078957E /* CartCell.swift */,
-				1421C13D1FEC5B630028DA9D /* LabelTitleCell.swift */,
-				1421C1411FEC5E3D0028DA9D /* TicketCell.swift */,
+				14647EAB203C0ED200AE88C9 /* CollectionHorizontalCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -221,7 +221,7 @@
 			children = (
 				145A7C611FDFCEAF005599AA /* MovieController.swift */,
 				14647EA5203BE70400AE88C9 /* MovieDetailController.swift */,
-				14DE45101FEC4F0D0034D2C1 /* PurchaseTicketController.swift */,
+				145A25FC203CF9260033410F /* MovieDateTimeController.swift */,
 				149CAAF9200C9638003553CA /* CartController.swift */,
 				142031EB1FF83154007A3CF3 /* ViewSeatsController.swift */,
 				14F8552020090902008452B4 /* ProfileController.swift */,
@@ -566,17 +566,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				1406ECDC201CF7060085DCA3 /* Extensions.swift in Sources */,
+				145A2603203D09150033410F /* MovieTimeCollectionCell.swift in Sources */,
 				142031EE1FF9132A007A3CF3 /* SeatsPlanCell.swift in Sources */,
+				145A2601203D09010033410F /* MovieDateCollectionCell.swift in Sources */,
 				145A7C311FDFC16B005599AA /* AppDelegate.swift in Sources */,
 				148ADA1F202674A30053BF27 /* UpcomingMovieDetailController.swift in Sources */,
+				145A25FF203CF9550033410F /* MovieDateTimeCell.swift in Sources */,
 				14E340572028E5B00040C21F /* Buttons.swift in Sources */,
-				1421C1441FEC71A90028DA9D /* SeatCell.swift in Sources */,
 				142031EC1FF83154007A3CF3 /* ViewSeatsController.swift in Sources */,
 				14E3405A2028E5B00040C21F /* MyAPIClient.swift in Sources */,
-				1421C13E1FEC5B630028DA9D /* LabelTitleCell.swift in Sources */,
 				14F8552120090902008452B4 /* ProfileController.swift in Sources */,
 				14647EAC203C0ED200AE88C9 /* CollectionHorizontalCell.swift in Sources */,
-				1421C1421FEC5E3D0028DA9D /* TicketCell.swift in Sources */,
 				14647EA6203BE70400AE88C9 /* MovieDetailController.swift in Sources */,
 				14E340592028E5B00040C21F /* CheckoutRowView.swift in Sources */,
 				14E340582028E5B00040C21F /* PaymentContextFooterView.swift in Sources */,
@@ -590,10 +590,10 @@
 				149CAAFA200C9638003553CA /* CartController.swift in Sources */,
 				145A7C621FDFCEAF005599AA /* MovieController.swift in Sources */,
 				14647EAA203BE7D300AE88C9 /* CinemaCollectionCell.swift in Sources */,
-				14DE45111FEC4F0D0034D2C1 /* PurchaseTicketController.swift in Sources */,
 				141CE4D9202A4375002F8041 /* OrderCell.swift in Sources */,
 				140CFDDB201D3C6F003194CF /* Models.swift in Sources */,
 				14E340562028E5B00040C21F /* SettingsViewController.swift in Sources */,
+				145A25FD203CF9260033410F /* MovieDateTimeController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

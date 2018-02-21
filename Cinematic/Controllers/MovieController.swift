@@ -90,12 +90,6 @@ class MovieController: UITableViewController {
         let mdc = MovieDetailController()
         mdc.selectedMovie = filteredMovies[indexPath.row]
         navigationController?.pushViewController(mdc, animated: true)
-        
-        
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let mic = storyboard.instantiateViewController(withIdentifier: "MovieInfo") as! MovieInfoController
-//        mic.selectedMovie = filteredMovies[indexPath.row]
-//        navigationController?.pushViewController(mic, animated: true)
     }
 }
 
