@@ -13,7 +13,7 @@ class MovieDetailCell: UITableViewCell {
     var movie: Movie? {
         didSet {
             guard let unwrappedMovie = movie else { return }
-            movieImage.downloadedFrom(link: unwrappedMovie.image)
+            movieImageView.downloadedFrom(link: unwrappedMovie.image)
             movieName.text = unwrappedMovie.name
             
             let headerStyle = NSMutableParagraphStyle()
@@ -31,7 +31,7 @@ class MovieDetailCell: UITableViewCell {
         }
     }
 
-    private let movieImage: UIImageView = {
+    private let movieImageView: UIImageView = {
         let imageView = UIImageView(image:#imageLiteral(resourceName: "loading"))
         imageView.contentMode = .scaleAspectFit
         imageView.layer.cornerRadius = 5
@@ -96,16 +96,16 @@ class MovieDetailCell: UITableViewCell {
     }
     
     private func setupLayout() {
-        movieImage.widthAnchor.constraint(equalToConstant: 80).isActive = true
-        movieImage.heightAnchor.constraint(equalToConstant: 120).isActive = true
-        movieImage.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        movieImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
+        movieImageView.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        movieImageView.heightAnchor.constraint(equalToConstant: 120).isActive = true
+        movieImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        movieImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
         
-        movieName.leadingAnchor.constraint(equalTo: movieImage.trailingAnchor, constant: 10).isActive = true
+        movieName.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: 10).isActive = true
         movieName.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
         movieName.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
-        movieTrailer.leadingAnchor.constraint(equalTo: movieImage.trailingAnchor, constant: 10).isActive = true
+        movieTrailer.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: 10).isActive = true
         movieTrailer.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8).isActive = true
         movieTrailer.widthAnchor.constraint(equalToConstant: 80).isActive = true
         movieTrailer.heightAnchor.constraint(equalToConstant: 20).isActive = true
@@ -137,7 +137,7 @@ class MovieDetailCell: UITableViewCell {
         selectionStyle = .none
         
         if reuseIdentifier == "Header" {
-            addSubview(movieImage)
+            addSubview(movieImageView)
             addSubview(movieName)
             addSubview(movieTrailer)
             setupLayout()

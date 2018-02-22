@@ -44,9 +44,6 @@ class MovieDetailController: UITableViewController {
     
     @objc private func pressedRightBarButton() {
         let mdtc = MovieDateTimeController()
-        
-        print(theatres[(selectedIndexPath?.row)!])
-        
         mdtc.selectedMovie = selectedMovie
         mdtc.selectedCinema = filteredCinemas[(selectedIndexPath?.row)!]
         mdtc.selectedTheatre = filteredTheatres[(selectedIndexPath?.row)!]

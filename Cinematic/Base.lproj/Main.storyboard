@@ -56,7 +56,7 @@
             </objects>
             <point key="canvasLocation" x="1349.5999999999999" y="547.37631184407803"/>
         </scene>
-        <!--Profile Controller-->
+        <!--Profile-->
         <scene sceneID="Sa2-uL-LVA">
             <objects>
                 <tableViewController id="pAo-AY-MIE" customClass="ProfileController" customModule="Cinematic" customModuleProvider="target" sceneMemberID="viewController">
@@ -64,61 +64,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="OrderCell" id="dei-dO-xXQ" customClass="OrderCell" customModule="Cinematic" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="136"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dei-dO-xXQ" id="uro-zS-eTI">
-                                    <rect key="frame" x="0.0" y="0.0" width="341" height="135.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="Nmf-2D-DGG" kind="show" identifier="QRCode" id="kqb-j9-B7O"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="pAo-AY-MIE" id="Ght-gt-gau"/>
                             <outlet property="delegate" destination="pAo-AY-MIE" id="5YT-ah-fYz"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="3Kf-Kd-sjf"/>
+                    <navigationItem key="navigationItem" title="Profile" id="3Kf-Kd-sjf"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XDk-y4-xli" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-297" y="1767"/>
-        </scene>
-        <!--Profile-->
-        <scene sceneID="yho-7o-O3M">
-            <objects>
-                <viewController id="Nmf-2D-DGG" customClass="QRCodeController" customModule="Cinematic" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="q1L-Pm-FGu">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hBh-Sc-XPC">
-                                <rect key="frame" x="112" y="266" width="150" height="150"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="Cfz-X0-TR3"/>
-                                    <constraint firstAttribute="height" constant="150" id="hlr-Nr-3kl"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="hBh-Sc-XPC" firstAttribute="centerY" secondItem="EW5-Pz-gbB" secondAttribute="centerY" id="AnH-iV-OIC"/>
-                            <constraint firstItem="hBh-Sc-XPC" firstAttribute="centerX" secondItem="EW5-Pz-gbB" secondAttribute="centerX" id="FKn-Bd-afH"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="EW5-Pz-gbB"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Profile" id="OkX-AY-f4R"/>
-                    <connections>
-                        <outlet property="QRImage" destination="hBh-Sc-XPC" id="N6T-aQ-XIX"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EeK-7C-grA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="578" y="1767"/>
         </scene>
         <!--In Theatre-->
         <scene sceneID="nB3-Yz-QmS">
@@ -212,7 +167,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X7g-H5-kdr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2145" y="-179"/>
+            <point key="canvasLocation" x="2144" y="203"/>
         </scene>
         <!--View Seats Controller-->
         <scene sceneID="Z8d-mV-fNM">
@@ -295,7 +250,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mgM-Yf-ANA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1350" y="1251"/>
+            <point key="canvasLocation" x="579" y="1767"/>
         </scene>
         <!--In Theatre-->
         <scene sceneID="p7c-h1-MaR">

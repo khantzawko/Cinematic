@@ -142,10 +142,9 @@ class ProfileController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.navigationBar.prefersLargeTitles = true
-        
         navigationItem.title = "Profile"
-        
+        tableView.register(ProfileCell.self, forCellReuseIdentifier: "ProfileCell")
+
         if let user = UserDefaults.standard.string(forKey: "name") {
             navigationItem.title = user
             getReceiptData(email: UserDefaults.standard.string(forKey: "email")!)
@@ -249,8 +248,6 @@ class ProfileController: UITableViewController {
                         self.movies.append(movie)
                     }
                 })
-                
-//                print(self.receipts)
             }
         })
     }
@@ -260,31 +257,48 @@ class ProfileController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = OrderCell(style: .default, reuseIdentifier: "OrderCell")
-        cell.movieImage.downloadedFrom(link: movies[indexPath.row].image!)
-        cell.movieName.text = movies[indexPath.row].name!
-        cell.ticketInfo.text =  "\(cinemas[indexPath.row].name!) • \(receipts[indexPath.row].ticketInfo!)"
-        cell.purchasedDate.text = receipts[indexPath.row].movieTime!
-        cell.receiptCode.text = "Order #: \(receipts[indexPath.row].receiptCode!)"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! ProfileCell
+        cell.movie = movies[indexPath.row]
+        cell.movieInfoText = "\nCinema: \(cinemas[indexPath.row].name!)\nShowtime: \(receipts[indexPath.row].movieTime!)\nPurchasedDate: \(Date().fullDateFromString(date: receipts[indexPath.row].purchasedDate!))\nReceiptCode#: \(receipts[indexPath.row].receiptCode!)"
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "QRCode", sender: indexPath.row)
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 136
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "QRCode" {
-            let row = sender as! Int
-            let qrc: QRCodeController = segue.destination as! QRCodeController
-            qrc.QRString = receipts[row].receiptCode
-            qrc.movieName = ("\(movies[row].name!) Ticket")
-        }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let qrc = QRCodeController()
+        qrc.QRString = receipts[indexPath.row].receiptCode
+        qrc.movieName = movies[indexPath.row].name!
+        navigationController?.pushViewController(qrc, animated: true)
     }
+    
+//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = OrderCell(style: .default, reuseIdentifier: "OrderCell")
+//
+//        cell.movieImage.downloadedFrom(link: movies[indexPath.row].image!)
+//        cell.movieName.text = movies[indexPath.row].name!
+//        cell.ticketInfo.text =  "\(cinemas[indexPath.row].name!) • \(receipts[indexPath.row].ticketInfo!)"
+//        cell.purchasedDate.text = receipts[indexPath.row].movieTime!
+//
+//        let purchasedDate = Date().fullDateFromString(date: receipts[indexPath.row].purchasedDate!)
+//        cell.receiptCode.text = "Purchased on: \(purchasedDate)"
+//        return cell
+//    }
+//
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        tableView.deselectRow(at: indexPath, animated: true)
+//        performSegue(withIdentifier: "QRCode", sender: indexPath.row)
+//    }
+//
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "QRCode" {
+//            let row = sender as! Int
+//            let qrc: QRCodeController = segue.destination as! QRCodeController
+//            qrc.QRString = receipts[row].receiptCode
+//            qrc.movieName = ("\(movies[row].name!) Ticket")
+//        }
+//    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 }

@@ -23,7 +23,7 @@ class MovieDateTimeController: UITableViewController {
         super.viewDidLoad()
         
         navigationController?.navigationBar.prefersLargeTitles = false
-        navigationItem.title = "The Movie - "
+        navigationItem.title = selectedMovie.name
         let rightBarButton = UIBarButtonItem(image: #imageLiteral(resourceName: "cart"), style: .plain, target: self, action: #selector(pressedRightBarButton))
         navigationItem.rightBarButtonItem = rightBarButton
         

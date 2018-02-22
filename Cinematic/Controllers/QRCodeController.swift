@@ -9,34 +9,51 @@
 import UIKit
 
 class QRCodeController: UIViewController {
-
-    @IBOutlet weak var QRImage: UIImageView!
     
     var QRString = String()
     var movieName = String()
     
-//    private let QRImageView: UIImageView = {
-//        let imageView = UIImageView()
-//        imageView.backgroundColor = .orange
-//        imageView.translatesAutoresizingMaskIntoConstraints = false
-//        return imageView
-//    }()
-//
-//    private func setupLayout() {
-//        QRImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-//        QRImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-//        QRImageView.widthAnchor.constraint(equalTo: <#T##NSLayoutAnchor<NSLayoutDimension>#>)
-//    }
+    private let movieNameAndCode: UITextView = {
+        let textView = UITextView()
+        textView.isScrollEnabled = false
+        textView.isUserInteractionEnabled = false
+        textView.isSelectable = false
+        textView.isEditable = false
+        textView.font = UIFont.boldSystemFont(ofSize: 18)
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.textAlignment = .center
+        return textView
+    }()
+    
+    private let QRImageView: UIImageView = {
+        let imageView = UIImageView(image:#imageLiteral(resourceName: "loading"))
+        imageView.backgroundColor = .orange
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+
+    private func setupLayout() {
+        QRImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        QRImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        QRImageView.widthAnchor.constraint(equalToConstant: view.frame.size.width * 0.6).isActive = true
+        QRImageView.heightAnchor.constraint(equalToConstant: view.frame.size.width * 0.6).isActive = true
+        
+        movieNameAndCode.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        movieNameAndCode.topAnchor.constraint(equalTo: QRImageView.topAnchor, constant: -60).isActive = true
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        view.addSubview(QRImageView)
-//        setupLayout()
-        
+        navigationItem.title = "QRCode"
+        view.backgroundColor = .white
+
         let image = generateQRCode(from: QRString)
-        QRImage.image = image
-        title = movieName
+        QRImageView.image = image
+        movieNameAndCode.text = "\(movieName)\n\(QRString)"
+        view.addSubview(movieNameAndCode)
+        view.addSubview(QRImageView)
+        setupLayout()
     }
     
     func generateQRCode(from string: String) -> UIImage? {
@@ -47,8 +64,8 @@ class QRCodeController: UIViewController {
             
             guard let qrCodeImage = filter.outputImage else {return nil}
             
-            let scaleX = QRImage.frame.size.width / qrCodeImage.extent.size.width
-            let scaleY = QRImage.frame.size.height / qrCodeImage.extent.size.height
+            let scaleX = (view.frame.size.width * 0.6) / qrCodeImage.extent.size.width
+            let scaleY = (view.frame.size.width * 0.6) / qrCodeImage.extent.size.height
             
             let transform = CGAffineTransform(scaleX: scaleX, y: scaleY)
             

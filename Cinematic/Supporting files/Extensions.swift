@@ -32,6 +32,8 @@ extension UIImageView {
 extension Date {
     func daysFromStartDate(startDate: String, numberOfWeeks: Int) -> [String] {
         let today = Date()
+        let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: today)!
+
         let fullFormatter = DateFormatter()
         fullFormatter.dateFormat = "dd-MMM-yyyy"
         let startDate: Date = fullFormatter.date(from: startDate)!
@@ -40,17 +42,17 @@ extension Date {
         
         if today >= startDate {
             
-            let components = Calendar.current.dateComponents([.year, .month, .day], from: startDate, to: today)
+            let components = Calendar.current.dateComponents([.year, .month, .day], from: startDate, to: yesterday)
             let formatter = DateComponentsFormatter()
             formatter.allowedUnits = [.day]
             var numOfDays: String = formatter.string(from: components)!
             numOfDays.remove(at: numOfDays.index(before: numOfDays.endIndex))
-            daysLeft = (7 * numberOfWeeks) - Int(numOfDays)! - 1
-            
+            daysLeft = (7 * numberOfWeeks) - Int(numOfDays)!
+                        
             if daysLeft > 0 {
                 
-                for day in 0...daysLeft {
-                    let date: Date = Calendar.current.date(byAdding: .day, value: day, to: today)!
+                for day in 1..<daysLeft {
+                    let date: Date = Calendar.current.date(byAdding: .day, value: day, to: yesterday)!
                     dates.append(fullFormatter.string(from: date))
                 }
             }
@@ -58,9 +60,9 @@ extension Date {
             return dates
 
         } else {
-            daysLeft = (7 * numberOfWeeks) - 1
+            daysLeft = (7 * numberOfWeeks)
             
-            for day in 0...daysLeft {
+            for day in 1...daysLeft {
                 let date: Date = Calendar.current.date(byAdding: .day, value: day, to: startDate)!
                 dates.append(fullFormatter.string(from: date))
             }
@@ -87,9 +89,12 @@ extension Date {
         
         let sDate = formatter.date(from: startDate)!
         let eDate = formatter.date(from: endDate)!
+        
+        // adding one day to end date since the date is on thursday
+        let eDatePlusOne = Calendar.current.date(byAdding: .day, value: 1, to: eDate)!
         let today = Date()
         
-        if sDate < today && today < eDate {
+        if sDate < today && today < eDatePlusOne {
             return true
         } else {
             return false
@@ -122,7 +127,7 @@ extension Date {
         dateFormatter.dateFormat = "dd-MMM-yyyy"
         
         let sDate = dateFormatter.date(from: startDate)!
-        let eDate = Calendar.current.date(byAdding: .day, value: (7*numOfWeek)-1, to: sDate)!
+        let eDate = Calendar.current.date(byAdding: .day, value: (7*numOfWeek), to: sDate)!
         let today = Date()
         
         if today < eDate {
@@ -137,5 +142,17 @@ extension Date {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
         
         return dateFormatter.string(from: Date())
+    }
+    
+    func fullDateFromString(date: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+        
+        let fullDateFormatter = DateFormatter()
+        fullDateFormatter.dateFormat = "dd-MMM-yyyy HH:mm"
+        
+        let fDate = dateFormatter.date(from: date)!
+
+        return fullDateFormatter.string(from: fDate)
     }
 }
