@@ -34,6 +34,8 @@
 		1475EA8B201530A6003A7D5A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1475EA8A201530A6003A7D5A /* GoogleService-Info.plist */; };
 		148ADA1F202674A30053BF27 /* UpcomingMovieDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148ADA1E202674A30053BF27 /* UpcomingMovieDetailController.swift */; };
 		149CAAFA200C9638003553CA /* CartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149CAAF9200C9638003553CA /* CartController.swift */; };
+		14B2BB142040044000B2EA6E /* CachedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B2BB132040044000B2EA6E /* CachedImageView.swift */; };
+		14B2BB16204005C700B2EA6E /* DiscardableImageCacheItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B2BB15204005C700B2EA6E /* DiscardableImageCacheItem.swift */; };
 		14E340552028E5B00040C21F /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E3404E2028E5AB0040C21F /* CheckoutViewController.swift */; };
 		14E340562028E5B00040C21F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E3404F2028E5AB0040C21F /* SettingsViewController.swift */; };
 		14E340572028E5B00040C21F /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E340502028E5AD0040C21F /* Buttons.swift */; };
@@ -97,6 +99,8 @@
 		1475EA8A201530A6003A7D5A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		148ADA1E202674A30053BF27 /* UpcomingMovieDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingMovieDetailController.swift; sourceTree = "<group>"; };
 		149CAAF9200C9638003553CA /* CartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartController.swift; sourceTree = "<group>"; };
+		14B2BB132040044000B2EA6E /* CachedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedImageView.swift; sourceTree = "<group>"; };
+		14B2BB15204005C700B2EA6E /* DiscardableImageCacheItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscardableImageCacheItem.swift; sourceTree = "<group>"; };
 		14E3404E2028E5AB0040C21F /* CheckoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
 		14E3404F2028E5AB0040C21F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		14E340502028E5AD0040C21F /* Buttons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
@@ -232,6 +236,8 @@
 		14890CF71FE8790C007B59D5 /* Supporting files */ = {
 			isa = PBXGroup;
 			children = (
+				14B2BB15204005C700B2EA6E /* DiscardableImageCacheItem.swift */,
+				14B2BB132040044000B2EA6E /* CachedImageView.swift */,
 				1406ECDB201CF7060085DCA3 /* Extensions.swift */,
 				1475EA8A201530A6003A7D5A /* GoogleService-Info.plist */,
 				145A7C3A1FDFC16B005599AA /* Assets.xcassets */,
@@ -580,7 +586,9 @@
 				141CE4D7202A1717002F8041 /* QRCodeController.swift in Sources */,
 				145A7C391FDFC16B005599AA /* Cinematic.xcdatamodeld in Sources */,
 				14F855232009091B008452B4 /* UpcomingMovieController.swift in Sources */,
+				14B2BB142040044000B2EA6E /* CachedImageView.swift in Sources */,
 				14647EA8203BE76D00AE88C9 /* MovieDetailCell.swift in Sources */,
+				14B2BB16204005C700B2EA6E /* DiscardableImageCacheItem.swift in Sources */,
 				146E5F4A1FFE96500078957E /* CartCell.swift in Sources */,
 				142B0B4A1FDFD46D00B94FE1 /* MovieCell.swift in Sources */,
 				149CAAFA200C9638003553CA /* CartController.swift in Sources */,

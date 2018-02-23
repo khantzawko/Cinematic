@@ -15,7 +15,9 @@ class MovieCell: UITableViewCell {
     var movie: Movie? {
         didSet {
             guard let unwrappedMovie = movie else { return }
-            movieImageView.downloadedFrom(link: unwrappedMovie.image)
+//            movieImageView.downloadedFrom(link: unwrappedMovie.image)
+            movieImageView.image = #imageLiteral(resourceName: "loading")
+            movieImageView.loadImage(urlString: unwrappedMovie.image)
             
             let attributedText = NSMutableAttributedString(string: unwrappedMovie.name, attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18)])
             attributedText.append(NSAttributedString(string: "\n\(unwrappedMovie.duration!) mins", attributes: [NSAttributedStringKey.font: UIFont.italicSystemFont(ofSize: 13), NSAttributedStringKey.foregroundColor: UIColor.gray]))
@@ -25,8 +27,8 @@ class MovieCell: UITableViewCell {
         }
     }
     
-    private let movieImageView: UIImageView = {
-        let imageView = UIImageView(image:#imageLiteral(resourceName: "loading"))
+    private let movieImageView: CachedImageView = {
+        let imageView = CachedImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.layer.cornerRadius = 5
         imageView.clipsToBounds = true
@@ -62,7 +64,7 @@ class MovieCell: UITableViewCell {
         movieImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         movieImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
         
-        movieName.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: 10).isActive = true
+        movieName.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: 5).isActive = true
         movieName.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30).isActive = true
         movieName.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         

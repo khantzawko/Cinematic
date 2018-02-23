@@ -19,7 +19,7 @@ class QRCodeController: UIViewController {
         textView.isUserInteractionEnabled = false
         textView.isSelectable = false
         textView.isEditable = false
-        textView.font = UIFont.boldSystemFont(ofSize: 18)
+        textView.font = UIFont.boldSystemFont(ofSize: 20)
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.textAlignment = .center
         return textView

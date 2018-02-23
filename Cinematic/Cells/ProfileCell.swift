@@ -16,7 +16,8 @@ class ProfileCell: UITableViewCell {
         didSet {
             guard let unwrappedMovie = movie else {return}
             movieImageView.image = #imageLiteral(resourceName: "loading")
-            movieImageView.downloadedFrom(link: unwrappedMovie.image)
+//            movieImageView.downloadedFrom(link: unwrappedMovie.image)
+            movieImageView.loadImage(urlString: unwrappedMovie.image)
             
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.lineSpacing = 3
@@ -37,8 +38,9 @@ class ProfileCell: UITableViewCell {
         }
     }
     
-    private let movieImageView: UIImageView = {
-        let imageView = UIImageView(image:#imageLiteral(resourceName: "loading"))
+    private let movieImageView: CachedImageView = {
+        let imageView = CachedImageView()
+        imageView.image = #imageLiteral(resourceName: "loading")
         imageView.contentMode = .scaleAspectFit
         imageView.layer.cornerRadius = 5
         imageView.clipsToBounds = true
@@ -62,9 +64,9 @@ class ProfileCell: UITableViewCell {
         movieImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         movieImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
         
-        movieInfoTextView.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: 8).isActive = true
+        movieInfoTextView.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: 5).isActive = true
         movieInfoTextView.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
-        movieInfoTextView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25).isActive = true
+        movieInfoTextView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30).isActive = true
         movieInfoTextView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8).isActive = true
     }
     

@@ -13,7 +13,9 @@ class MovieDetailCell: UITableViewCell {
     var movie: Movie? {
         didSet {
             guard let unwrappedMovie = movie else { return }
-            movieImageView.downloadedFrom(link: unwrappedMovie.image)
+//            movieImageView.downloadedFrom(link: unwrappedMovie.image)
+            movieImageView.loadImage(urlString: unwrappedMovie.image)
+
             movieName.text = unwrappedMovie.name
             
             let headerStyle = NSMutableParagraphStyle()
@@ -31,8 +33,9 @@ class MovieDetailCell: UITableViewCell {
         }
     }
 
-    private let movieImageView: UIImageView = {
-        let imageView = UIImageView(image:#imageLiteral(resourceName: "loading"))
+    private let movieImageView: CachedImageView = {
+        let imageView = CachedImageView()
+        imageView.image = #imageLiteral(resourceName: "loading")
         imageView.contentMode = .scaleAspectFit
         imageView.layer.cornerRadius = 5
         imageView.clipsToBounds = true
