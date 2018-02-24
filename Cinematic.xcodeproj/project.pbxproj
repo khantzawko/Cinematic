@@ -14,6 +14,7 @@
 		142031EC1FF83154007A3CF3 /* ViewSeatsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142031EB1FF83154007A3CF3 /* ViewSeatsController.swift */; };
 		142031EE1FF9132A007A3CF3 /* SeatsPlanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142031ED1FF9132A007A3CF3 /* SeatsPlanCell.swift */; };
 		142B0B4A1FDFD46D00B94FE1 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142B0B491FDFD46D00B94FE1 /* MovieCell.swift */; };
+		144A32E220411FF30097482F /* VideoPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144A32E120411FF30097482F /* VideoPlayerController.swift */; };
 		145A25FD203CF9260033410F /* MovieDateTimeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145A25FC203CF9260033410F /* MovieDateTimeController.swift */; };
 		145A25FF203CF9550033410F /* MovieDateTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145A25FE203CF9550033410F /* MovieDateTimeCell.swift */; };
 		145A2601203D09010033410F /* MovieDateCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145A2600203D09010033410F /* MovieDateCollectionCell.swift */; };
@@ -73,6 +74,7 @@
 		142031EB1FF83154007A3CF3 /* ViewSeatsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSeatsController.swift; sourceTree = "<group>"; };
 		142031ED1FF9132A007A3CF3 /* SeatsPlanCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatsPlanCell.swift; sourceTree = "<group>"; };
 		142B0B491FDFD46D00B94FE1 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
+		144A32E120411FF30097482F /* VideoPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerController.swift; sourceTree = "<group>"; };
 		145A25FC203CF9260033410F /* MovieDateTimeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDateTimeController.swift; sourceTree = "<group>"; };
 		145A25FE203CF9550033410F /* MovieDateTimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDateTimeCell.swift; sourceTree = "<group>"; };
 		145A2600203D09010033410F /* MovieDateCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDateCollectionCell.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 			children = (
 				145A7C611FDFCEAF005599AA /* MovieController.swift */,
 				14647EA5203BE70400AE88C9 /* MovieDetailController.swift */,
+				144A32E120411FF30097482F /* VideoPlayerController.swift */,
 				145A25FC203CF9260033410F /* MovieDateTimeController.swift */,
 				149CAAF9200C9638003553CA /* CartController.swift */,
 				14F855222009091B008452B4 /* UpcomingMovieController.swift */,
@@ -577,6 +580,7 @@
 				145A25FF203CF9550033410F /* MovieDateTimeCell.swift in Sources */,
 				14E340572028E5B00040C21F /* Buttons.swift in Sources */,
 				142031EC1FF83154007A3CF3 /* ViewSeatsController.swift in Sources */,
+				144A32E220411FF30097482F /* VideoPlayerController.swift in Sources */,
 				14E3405A2028E5B00040C21F /* MyAPIClient.swift in Sources */,
 				14F8552120090902008452B4 /* ProfileController.swift in Sources */,
 				14647EA6203BE70400AE88C9 /* MovieDetailController.swift in Sources */,

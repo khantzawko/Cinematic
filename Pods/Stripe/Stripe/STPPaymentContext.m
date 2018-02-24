@@ -582,9 +582,10 @@ typedef NS_ENUM(NSUInteger, STPPaymentContextState) {
         else if ([self requestPaymentShouldPresentShippingViewController]) {
             [self presentShippingViewControllerWithNewState:STPPaymentContextStateRequestingPayment];
         }
-        else if ([self.selectedPaymentMethod isKindOfClass:[STPCard class]]) {
+        else if ([self.selectedPaymentMethod isKindOfClass:[STPCard class]] ||
+                 [self.selectedPaymentMethod isKindOfClass:[STPSource class]]) {
             self.state = STPPaymentContextStateRequestingPayment;
-            STPPaymentResult *result = [[STPPaymentResult alloc] initWithSource:(STPCard *)self.selectedPaymentMethod];
+            STPPaymentResult *result = [[STPPaymentResult alloc] initWithSource:(id<STPSourceProtocol>)self.selectedPaymentMethod];
             [self.delegate paymentContext:self didCreatePaymentResult:result completion:^(NSError * _Nullable error) {
                 stpDispatchToMainThreadIfNecessary(^{
                     if (error) {
@@ -625,19 +626,35 @@ typedef NS_ENUM(NSUInteger, STPPaymentContextState) {
                     [customerContext updateCustomerWithShippingAddress:self.shippingAddress completion:nil];
                 }
             };
-            STPApplePayTokenHandlerBlock applePayTokenHandler = ^(STPToken *token, STPErrorBlock tokenCompletion) {
-                [self.apiAdapter attachSourceToCustomer:token completion:^(NSError *tokenError) {
+            STPApplePaySourceHandlerBlock applePaySourceHandler = ^(id<STPSourceProtocol> source, STPErrorBlock completion) {
+                [self.apiAdapter attachSourceToCustomer:source completion:^(NSError *attachSourceError) {
                     stpDispatchToMainThreadIfNecessary(^{
-                        if (tokenError) {
-                            tokenCompletion(tokenError);
+                        if (attachSourceError) {
+                            completion(attachSourceError);
                         } else {
-                            STPPaymentResult *result = [[STPPaymentResult alloc] initWithSource:token.card];
+                            id<STPSourceProtocol> paymentResultSource = source;
+                            /**
+                             When createCardSources is false, the SDK:
+                             1. Sends the token to customers/[id]/sources. This
+                             adds token.card to the customer's sources list.
+                             Surprisingly, attaching token.card to the customer
+                             will fail.
+                             2. Returns token.card to didCreatePaymentResult,
+                             where the user tells their backend to create a charge.
+                             A charge request with the token ID and customer ID
+                             will fail because the token is not linked to the
+                             customer (the card is).
+                             */
+                            if ([source isKindOfClass:[STPToken class]]) {
+                                paymentResultSource = ((STPToken *)source).card;
+                            }
+                            STPPaymentResult *result = [[STPPaymentResult alloc] initWithSource:paymentResultSource];
                             [self.delegate paymentContext:self didCreatePaymentResult:result completion:^(NSError * error) {
                                 // for Apple Pay, the didFinishWithStatus callback is fired later when Apple Pay VC finishes
                                 if (error) {
-                                    tokenCompletion(error);
+                                    completion(error);
                                 } else {
-                                    tokenCompletion(nil);
+                                    completion(nil);
                                 }
                             }];
                         }
@@ -648,10 +665,11 @@ typedef NS_ENUM(NSUInteger, STPPaymentContextState) {
             paymentAuthVC = [PKPaymentAuthorizationViewController
                              stp_controllerWithPaymentRequest:paymentRequest
                              apiClient:self.apiClient
+                             createSource:self.configuration.createCardSources
                              onShippingAddressSelection:shippingAddressHandler
                              onShippingMethodSelection:shippingMethodHandler
                              onPaymentAuthorization:paymentHandler
-                             onTokenCreation:applePayTokenHandler
+                             onTokenCreation:applePaySourceHandler
                              onFinish:^(STPPaymentStatus status, NSError * _Nullable error) {
                                  [self.hostViewController dismissViewControllerAnimated:[self transitionAnimationsEnabled]
                                                                              completion:^{

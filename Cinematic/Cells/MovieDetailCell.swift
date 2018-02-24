@@ -29,7 +29,7 @@ class MovieDetailCell: UITableViewCell {
             
             moviePlot.attributedText = attributedText
             
-//            unwrappedMovie.trailer == "nil" ? (movieTrailer.isEnabled = false) : (movieTrailer.isEnabled = true)
+            unwrappedMovie.trailer == "nil" ? (movieTrailer.isHidden = true) : (movieTrailer.isHidden = false)
         }
     }
 
@@ -95,7 +95,9 @@ class MovieDetailCell: UITableViewCell {
     
     @objc private func pressedTrailer(_ sender: UIButton) {
         guard let unwrappedMovie = movie else { return }
-        print(unwrappedMovie.trailer)
+        let videoPlayerController = VideoPlayerController()
+        videoPlayerController.trailerURL = unwrappedMovie.trailer
+        window?.rootViewController?.present(videoPlayerController, animated: true, completion: nil)
     }
     
     private func setupLayout() {
