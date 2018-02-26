@@ -10,6 +10,7 @@
 		0DE103935051731A470B36B7 /* Pods_CinematicUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 557100EF59D3F91B31C5AD6B /* Pods_CinematicUITests.framework */; };
 		1406ECDC201CF7060085DCA3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1406ECDB201CF7060085DCA3 /* Extensions.swift */; };
 		140CFDDB201D3C6F003194CF /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140CFDDA201D3C6F003194CF /* Models.swift */; };
+		141AA3C7204289DF00D8B4AB /* SeatsPlanController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141AA3C6204289DF00D8B4AB /* SeatsPlanController.swift */; };
 		141CE4D7202A1717002F8041 /* QRCodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141CE4D6202A1717002F8041 /* QRCodeController.swift */; };
 		142031EC1FF83154007A3CF3 /* ViewSeatsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142031EB1FF83154007A3CF3 /* ViewSeatsController.swift */; };
 		142031EE1FF9132A007A3CF3 /* SeatsPlanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142031ED1FF9132A007A3CF3 /* SeatsPlanCell.swift */; };
@@ -70,6 +71,7 @@
 		1406ECDB201CF7060085DCA3 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		140CFDDA201D3C6F003194CF /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		14185AFD1FE881D300D7EA08 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		141AA3C6204289DF00D8B4AB /* SeatsPlanController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatsPlanController.swift; sourceTree = "<group>"; };
 		141CE4D6202A1717002F8041 /* QRCodeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeController.swift; sourceTree = "<group>"; };
 		142031EB1FF83154007A3CF3 /* ViewSeatsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSeatsController.swift; sourceTree = "<group>"; };
 		142031ED1FF9132A007A3CF3 /* SeatsPlanCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatsPlanCell.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				14647EA5203BE70400AE88C9 /* MovieDetailController.swift */,
 				144A32E120411FF30097482F /* VideoPlayerController.swift */,
 				145A25FC203CF9260033410F /* MovieDateTimeController.swift */,
+				141AA3C6204289DF00D8B4AB /* SeatsPlanController.swift */,
 				149CAAF9200C9638003553CA /* CartController.swift */,
 				14F855222009091B008452B4 /* UpcomingMovieController.swift */,
 				148ADA1E202674A30053BF27 /* UpcomingMovieDetailController.swift */,
@@ -574,6 +577,7 @@
 				1406ECDC201CF7060085DCA3 /* Extensions.swift in Sources */,
 				145A2603203D09150033410F /* MovieTimeCollectionCell.swift in Sources */,
 				142031EE1FF9132A007A3CF3 /* SeatsPlanCell.swift in Sources */,
+				141AA3C7204289DF00D8B4AB /* SeatsPlanController.swift in Sources */,
 				145A2601203D09010033410F /* MovieDateCollectionCell.swift in Sources */,
 				145A7C311FDFC16B005599AA /* AppDelegate.swift in Sources */,
 				148ADA1F202674A30053BF27 /* UpcomingMovieDetailController.swift in Sources */,

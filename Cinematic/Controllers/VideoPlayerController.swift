@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import YouTubePlayer
 
 class VideoPlayerController: UIViewController {
     

@@ -92,6 +92,7 @@ class MovieDateTimeCell: UITableViewCell {
     lazy var selectSeatButton: UIButton = {
         let button = UIButton()
         button.setTitle("+", for: .normal)
+        button.titleEdgeInsets.top = -4
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
         button.backgroundColor = UIColor(red:1.00, green:0.14, blue:0.40, alpha:1.0)
@@ -103,7 +104,8 @@ class MovieDateTimeCell: UITableViewCell {
 
     
     @objc private func pressedSelectSeat() {
-        print("pressed select seats")
+        let seatsPlanController = SeatsPlanController()
+        window?.rootViewController?.present(seatsPlanController, animated: true, completion: nil)
     }
     
     private func setupLayout() {
