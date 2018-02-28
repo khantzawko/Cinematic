@@ -55,7 +55,7 @@ class MovieController: UITableViewController {
             if !self.movies.isEmpty {
                 for movie in self.movies {
                     if movie.startDate != "nil" && movie.endDate != "nil" {
-                        if Date().isTodayInBetweenStartDateAndEndDate(startDate: movie.startDate, endDate: movie.endDate) {
+                        if Date().isTodayInBetweenStartDateAndEndDate(startDate: movie.startDate!, endDate: movie.endDate!) {
                             if !self.filteredMovies.contains(where: {$0.key == movie.key}) {
                                 self.filteredMovies.append(movie)
                             }
@@ -78,7 +78,7 @@ class MovieController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        ratings = filteredMovies[indexPath.row].rating
+        ratings = filteredMovies[indexPath.row].rating!
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
         let movie = filteredMovies[indexPath.row]
         cell.movie = movie

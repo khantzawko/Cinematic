@@ -14,7 +14,7 @@ class MovieDetailCell: UITableViewCell {
         didSet {
             guard let unwrappedMovie = movie else { return }
 //            movieImageView.downloadedFrom(link: unwrappedMovie.image)
-            movieImageView.loadImage(urlString: unwrappedMovie.image)
+            movieImageView.loadImage(urlString: unwrappedMovie.image!)
 
             movieName.text = unwrappedMovie.name
             

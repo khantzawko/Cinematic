@@ -54,7 +54,7 @@ class UpcomingMovieController: UITableViewController {
             if !self.movies.isEmpty {
                 for movie in self.movies {
                     if movie.startDate != "nil" && movie.endDate != "nil" {
-                        if Date().isStartDateIsGreaterThanNextFriday(startDate: movie.startDate) {
+                        if Date().isStartDateIsGreaterThanNextFriday(startDate: movie.startDate!) {
                             if !self.filteredMovies.contains(where: {$0.key == movie.key}) {
                                 self.filteredMovies.append(movie)
                             }
@@ -76,7 +76,7 @@ class UpcomingMovieController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        ratings = filteredMovies[indexPath.row].rating
+        ratings = filteredMovies[indexPath.row].rating!
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
         let movie = filteredMovies[indexPath.row]

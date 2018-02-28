@@ -13,7 +13,7 @@ class MovieDateTimeCell: UITableViewCell {
     var movie: Movie? {
         didSet {
             guard let unwrappedMovie = movie else { return }
-            movieImage.downloadedFrom(link: unwrappedMovie.image)
+            movieImage.downloadedFrom(link: unwrappedMovie.image!)
             movieName.text = unwrappedMovie.name
         }
     }

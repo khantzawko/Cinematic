@@ -17,9 +17,9 @@ class MovieCell: UITableViewCell {
             guard let unwrappedMovie = movie else { return }
 //            movieImageView.downloadedFrom(link: unwrappedMovie.image)
             movieImageView.image = #imageLiteral(resourceName: "loading")
-            movieImageView.loadImage(urlString: unwrappedMovie.image)
+            movieImageView.loadImage(urlString: unwrappedMovie.image!)
             
-            let attributedText = NSMutableAttributedString(string: unwrappedMovie.name, attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18)])
+            let attributedText = NSMutableAttributedString(string: unwrappedMovie.name!, attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18)])
             attributedText.append(NSAttributedString(string: "\n\(unwrappedMovie.duration!) mins", attributes: [NSAttributedStringKey.font: UIFont.italicSystemFont(ofSize: 13), NSAttributedStringKey.foregroundColor: UIColor.gray]))
             
             movieName.attributedText = attributedText

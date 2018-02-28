@@ -199,14 +199,14 @@ class ProfileController: UITableViewController {
                 let cinemaKey = postDict["cinemaID"] {
                 
                 self.receipts.append(Receipt(key: snapshot.key,
-                                             amount: receiptAmount as! Int,
-                                             email: receiptEmail as! String,
-                                             purchasedDate: receiptPurchasedDate as! String,
-                                             receiptCode: receiptCode as! String,
-                                             ticketInfo: receiptTicketInfo as! String,
-                                             movieTime: movieTime as! String,
-                                             movieID: movieKey as! String,
-                                             cinemaID: cinemaKey as! String))
+                                             amount: receiptAmount as? Int,
+                                             email: receiptEmail as? String,
+                                             purchasedDate: receiptPurchasedDate as? String,
+                                             receiptCode: receiptCode as? String,
+                                             ticketInfo: receiptTicketInfo as? String,
+                                             movieTime: movieTime as? String,
+                                             movieID: movieKey as? String,
+                                             cinemaID: cinemaKey as? String))
                 
                 cinemaRef.child(cinemaKey as! String).observe(DataEventType.value, with: {(cSnap) in
                     var cinemaDict = cSnap.value as! [String:AnyObject]
@@ -259,7 +259,7 @@ class ProfileController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! ProfileCell
         cell.movie = movies[indexPath.row]
-        cell.movieInfoText = "\nCinema: \(cinemas[indexPath.row].name!)\nShowtime: \(receipts[indexPath.row].movieTime!)\nPurchasedDate: \(Date().fullDateFromString(date: receipts[indexPath.row].purchasedDate!))\nReceiptCode#: \(receipts[indexPath.row].receiptCode!)"
+        cell.movieInfoText = "\nCinema: \(cinemas[indexPath.row].name)\nShowtime: \(receipts[indexPath.row].movieTime)\nPurchasedDate: \(Date().fullDateFromString(date: receipts[indexPath.row].purchasedDate!))\nReceiptCode#: \(receipts[indexPath.row].receiptCode!)"
         return cell
     }
     
@@ -269,7 +269,7 @@ class ProfileController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let qrc = QRCodeController()
-        qrc.QRString = receipts[indexPath.row].receiptCode
+        qrc.QRString = receipts[indexPath.row].receiptCode!
         qrc.movieName = movies[indexPath.row].name!
         navigationController?.pushViewController(qrc, animated: true)
     }

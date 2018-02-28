@@ -17,12 +17,12 @@ class ProfileCell: UITableViewCell {
             guard let unwrappedMovie = movie else {return}
             movieImageView.image = #imageLiteral(resourceName: "loading")
 //            movieImageView.downloadedFrom(link: unwrappedMovie.image)
-            movieImageView.loadImage(urlString: unwrappedMovie.image)
+            movieImageView.loadImage(urlString: unwrappedMovie.image!)
             
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.lineSpacing = 3
             
-            attributedText = NSMutableAttributedString(string: unwrappedMovie.name, attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18), NSAttributedStringKey.paragraphStyle: paragraphStyle])
+            attributedText = NSMutableAttributedString(string: unwrappedMovie.name!, attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18), NSAttributedStringKey.paragraphStyle: paragraphStyle])
         }
     }
     

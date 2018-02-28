@@ -225,7 +225,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
                            amount: paymentContext.paymentAmount,
                            ticketInfo: ticketInfo.text!,
                            movieTime: "\(selectedDate) (\(selectedTime))",
-                           movieKey: selectedMovie.key,
+                           movieKey: selectedMovie.key!,
                            cinemaKey: selectedCinema.key!)
             
         case .userCancellation:
