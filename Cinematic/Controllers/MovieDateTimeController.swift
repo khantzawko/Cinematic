@@ -15,9 +15,12 @@ private var showtimes = [String]()
 
 class MovieDateTimeController: UITableViewController {
     
+    let settingsVC = SettingsViewController()
+
     var selectedMovie = Movie()
     var selectedCinema = Cinema()
     var selectedTheatre = Theatre()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +41,15 @@ class MovieDateTimeController: UITableViewController {
     }
     
     @objc private func pressedRightBarButton() {
-        print("pressed right bar button")
+        let checkoutViewController = CheckoutViewController(product: "\(selectedMovie.name!) ticket",
+            price: 1000,
+            settings: self.settingsVC.settings,
+            movie: selectedMovie,
+            cinema: selectedCinema,
+            date: dates[(selectedIndexPathDate?.row)!],
+            time: showtimes[(selectedIndexPathTime?.row)!])
+        
+        self.navigationController?.pushViewController(checkoutViewController, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -102,9 +113,7 @@ extension MovieDateTimeCell: UICollectionViewDataSource, UICollectionViewDelegat
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-//        self.movieDateCollectionView.label
-        
+                
         if tag == 99 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieDateCollectionCell", for: indexPath) as! MovieDateCollectionCell
             cell.movieDate.text = Date().dayAndMonthFormat(date: dates[indexPath.row])
