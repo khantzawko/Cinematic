@@ -10,6 +10,8 @@ import UIKit
 
 class MovieDateTimeCell: UITableViewCell {
     
+    private let attributedText = NSMutableAttributedString(string: "Select Seats:", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 16)])
+    
     var movie: Movie? {
         didSet {
             guard let unwrappedMovie = movie else { return }
@@ -18,18 +20,14 @@ class MovieDateTimeCell: UITableViewCell {
         }
     }
     
-    private let attributedText = NSMutableAttributedString(string: "Select Seats:", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 16)])
-    
     var selectedTickets: String? {
         didSet {
             attributedText.append(NSAttributedString(string: "\n\nSeats: \(selectedTickets!)", attributes: [NSAttributedStringKey.font: UIFont.italicSystemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.gray]))
-
         }
     }
     var selectedTicketsPrice: CGFloat? {
         didSet {
             attributedText.append(NSAttributedString(string: "\nTotal: $\(selectedTicketsPrice!/100)", attributes: [NSAttributedStringKey.font: UIFont.italicSystemFont(ofSize: 15), NSAttributedStringKey.foregroundColor: UIColor.gray]))
-            
             selectSeatInfo.attributedText = attributedText
         }
     }

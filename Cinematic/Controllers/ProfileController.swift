@@ -306,6 +306,7 @@ class ProfileController: UITableViewController {
                 let receiptPurchasedDate = postDict["purchasedDate"],
                 let receiptCode = postDict["receiptCode"],
                 let receiptTicketInfo = postDict["ticketInfo"],
+                let receiptSeatInfo = postDict["seatInfo"],
                 let movieTime = postDict["movieTime"],
                 let movieKey = postDict["movieID"],
                 let cinemaKey = postDict["cinemaID"] {
@@ -316,6 +317,7 @@ class ProfileController: UITableViewController {
                                              purchasedDate: receiptPurchasedDate as! String,
                                              receiptCode: receiptCode as! String,
                                              ticketInfo: receiptTicketInfo as! String,
+                                             seatInfo: receiptSeatInfo as! String,
                                              movieTime: movieTime as! String,
                                              movieID: movieKey as! String,
                                              cinemaID: cinemaKey as! String))
@@ -371,7 +373,7 @@ class ProfileController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! ProfileCell
         cell.movie = movies[indexPath.row]
-        cell.movieInfoText = "\nCinema: \(cinemas[indexPath.row].name ?? "Cinema")\nShowtime: \(receipts[indexPath.row].movieTime)\nPurchasedDate: \(Date().fullDateFromString(date: receipts[indexPath.row].purchasedDate))\nReceiptCode#: \(receipts[indexPath.row].receiptCode)"
+        cell.movieInfoText = "\nCinema: \(cinemas[indexPath.row].name ?? "Cinema")\nSeats: \(receipts[indexPath.row].seatInfo)\nShowtime: \(receipts[indexPath.row].movieTime)\nPurchasedDate: \(Date().fullDateFromString(date: receipts[indexPath.row].purchasedDate))\nReceiptCode#: \(receipts[indexPath.row].receiptCode)"
         return cell
     }
     

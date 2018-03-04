@@ -22,7 +22,7 @@ class ProfileCell: UITableViewCell {
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.lineSpacing = 3
             
-            attributedText = NSMutableAttributedString(string: unwrappedMovie.name!, attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18), NSAttributedStringKey.paragraphStyle: paragraphStyle])
+            attributedText = NSMutableAttributedString(string: unwrappedMovie.name!, attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 16), NSAttributedStringKey.paragraphStyle: paragraphStyle])
         }
     }
     
@@ -65,9 +65,9 @@ class ProfileCell: UITableViewCell {
         movieImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
         
         movieInfoTextView.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: 5).isActive = true
-        movieInfoTextView.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
+        movieInfoTextView.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
         movieInfoTextView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30).isActive = true
-        movieInfoTextView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8).isActive = true
+        movieInfoTextView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {

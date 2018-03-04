@@ -45,6 +45,7 @@ struct Receipt {
     var purchasedDate: String
     var receiptCode: String
     var ticketInfo: String
+    var seatInfo: String
     var movieTime: String
     var movieID: String
     var cinemaID: String
