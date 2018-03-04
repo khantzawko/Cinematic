@@ -18,6 +18,22 @@ class MovieDateTimeCell: UITableViewCell {
         }
     }
     
+    private let attributedText = NSMutableAttributedString(string: "Select Seats:", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 16)])
+    
+    var selectedTickets: String? {
+        didSet {
+            attributedText.append(NSAttributedString(string: "\n\nSeats: \(selectedTickets!)", attributes: [NSAttributedStringKey.font: UIFont.italicSystemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.gray]))
+
+        }
+    }
+    var selectedTicketsPrice: CGFloat? {
+        didSet {
+            attributedText.append(NSAttributedString(string: "\nTotal: $\(selectedTicketsPrice!/100)", attributes: [NSAttributedStringKey.font: UIFont.italicSystemFont(ofSize: 15), NSAttributedStringKey.foregroundColor: UIColor.gray]))
+            
+            selectSeatInfo.attributedText = attributedText
+        }
+    }
+    
     private let movieImage: UIImageView = {
         let imageView = UIImageView(image:#imageLiteral(resourceName: "loading"))
         imageView.contentMode = .scaleAspectFit
@@ -75,11 +91,9 @@ class MovieDateTimeCell: UITableViewCell {
         return collectionView
     }()
     
-    private let selectSeatInfo: UITextView = {
+    private var selectSeatInfo: UITextView = {
         let textView = UITextView()
         let attributedText = NSMutableAttributedString(string: "Select Seats:", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 16)])
-        attributedText.append(NSAttributedString(string: "\n\nSeats selected: a1, b2, c3, d4", attributes: [NSAttributedStringKey.font: UIFont.italicSystemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.gray]))
-        attributedText.append(NSAttributedString(string: "\nTotal: 45$", attributes: [NSAttributedStringKey.font: UIFont.italicSystemFont(ofSize: 15), NSAttributedStringKey.foregroundColor: UIColor.gray]))
         textView.attributedText = attributedText
         textView.isEditable = false
         textView.isScrollEnabled = false
@@ -101,7 +115,6 @@ class MovieDateTimeCell: UITableViewCell {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-
     
     @objc private func pressedSelectSeat() {
         let seatsPlanController = SeatsPlanController()
@@ -191,7 +204,6 @@ class MovieDateTimeCell: UITableViewCell {
         } else if reuseIdentifier == "Seat" {
             addSubview(selectSeatInfo)
             addSubview(selectSeatButton)
-            
             setupSelectSeatLayout()
         }
     }

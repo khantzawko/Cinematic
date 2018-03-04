@@ -14,16 +14,131 @@ class MovieController: UITableViewController {
     var movies = [Movie]()
     var filteredMovies = [Movie]()
     var ref: DatabaseReference!
+    
+    var customView: UIView!
+    var labelsArray:[UILabel] = []
+    var isAnimating = false
+    var currentColorIndex = 0
+    var currentLabelIndex = 0
+    var timer: Timer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(MovieCell.self, forCellReuseIdentifier: "MovieCell")
+        
+        refreshControl = UIRefreshControl()
+        refreshControl?.backgroundColor = .clear
+        refreshControl?.tintColor = .clear
+        loadCustomRefreshContents()
         getMovieData()
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        self.navigationController?.navigationBar.prefersLargeTitles = true
-//    }
+    func loadCustomRefreshContents() {
+        let refreshContents = Bundle.main.loadNibNamed("CustomView", owner: self, options: nil)!
+
+        customView = refreshContents[0] as! UIView
+        customView.frame = (refreshControl?.bounds)!
+        
+        for i in 0..<customView.subviews.count {
+            labelsArray.append(customView.viewWithTag(i + 1) as! UILabel)
+        }
+        
+        refreshControl?.addSubview(customView)
+    }
+    
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if (refreshControl?.isRefreshing)! {
+            if !isAnimating {
+                doSomething()
+                getMovieData()
+                animateRefreshStep1()
+            }
+        }
+    }
+    
+    func animateRefreshStep1() {
+        isAnimating = true
+        
+        UIView.animate(withDuration: 0.1, delay: 0.0, options: .curveLinear, animations: {() -> Void in
+            
+            self.labelsArray[self.currentLabelIndex].transform = CGAffineTransform(rotationAngle: CGFloat.pi / 4)
+            self.labelsArray[self.currentLabelIndex].textColor = self.getNextColor()
+            
+        }, completion: {(finished) -> Void in
+            
+            UIView.animate(withDuration: 0.05, delay: 0.0, options: .curveLinear, animations: {() -> Void in
+            
+            self.labelsArray[self.currentLabelIndex].transform = CGAffineTransform.identity
+            self.labelsArray[self.currentLabelIndex].textColor = .black
+            
+            }, completion: {(finished) -> Void in
+            
+                self.currentLabelIndex = self.currentLabelIndex + 1
+                
+                if self.currentLabelIndex < self.labelsArray.count {
+                    self.animateRefreshStep1()
+                } else {
+                    self.animateRefreshStep2()
+                }
+            })
+        })
+    }
+    
+    func animateRefreshStep2() {
+        UIView.animate(withDuration: 0.1, delay: 0.0, options: .curveLinear, animations: { () -> Void in
+            
+            for i in 0..<self.labelsArray.count {
+                self.labelsArray[i].transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+            }
+            
+        }, completion: { (finished) -> Void in
+            UIView.animate(withDuration: 0.1, delay: 0.0, options: .curveLinear, animations: { () -> Void in
+                
+                for i in 0..<self.labelsArray.count {
+                    self.labelsArray[i].transform = CGAffineTransform.identity
+                }
+                
+            }, completion: { (finished) -> Void in
+                if (self.refreshControl?.isRefreshing)! {
+                    self.currentLabelIndex = 0
+                    self.animateRefreshStep1()
+                }
+                else {
+                    self.isAnimating = false
+                    self.currentLabelIndex = 0
+                    
+                    for i in 0..<self.labelsArray.count {
+                        self.labelsArray[i].textColor = .black
+                        self.labelsArray[i].transform = .identity
+                    }
+                }
+            })
+        })
+    }
+    
+    func getNextColor() -> UIColor {
+        var colorsArray: [UIColor] = [.magenta, .brown, .yellow, .red, .green, .blue, .orange, .yellow, .cyan]
+        
+        if currentColorIndex == colorsArray.count {
+            currentColorIndex = 0
+        }
+        
+        let returnColor = colorsArray[currentColorIndex]
+        currentColorIndex = currentColorIndex + 1
+        
+        return returnColor
+    }
+    
+    func doSomething() {
+        timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(endOfWork), userInfo: nil, repeats: true)
+    }
+    
+    @objc func endOfWork() {
+        refreshControl?.endRefreshing()
+        
+        timer.invalidate()
+        timer = nil
+    }
     
     func getMovieData() {
         ref = Database.database().reference().child("movies")

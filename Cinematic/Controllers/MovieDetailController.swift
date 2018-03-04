@@ -28,9 +28,7 @@ class MovieDetailController: UITableViewController {
         let rightBarButton = UIBarButtonItem(image: #imageLiteral(resourceName: "movie-ticket"), style: .plain, target: self, action: #selector(pressedRightBarButton))
         navigationItem.rightBarButtonItem = rightBarButton
         tableView.register(MovieDetailCell.self, forCellReuseIdentifier: "MovieDetail")
-//        tableView.separatorStyle = .none
         
-        getMovieData()
         selectedIndexPath = IndexPath(row: 0, section: 0)
     }
     
@@ -39,6 +37,10 @@ class MovieDetailController: UITableViewController {
             self.navigationItem.rightBarButtonItem?.isEnabled = false
         } else {
             self.navigationItem.rightBarButtonItem?.isEnabled = true
+        }
+        
+        DispatchQueue.main.async {
+            self.getMovieData()
         }
     }
     
@@ -49,16 +51,7 @@ class MovieDetailController: UITableViewController {
         mdtc.selectedTheatre = filteredTheatres[(selectedIndexPath?.row)!]
         navigationController?.pushViewController(mdtc, animated: true)
     }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//
-//        if segue.identifier == "ToPurchaseTicket" {
-//            let ptv: PurchaseTicketController = segue.destination as! PurchaseTicketController
-//            ptv.selectedMovie = selectedMovie
-//            ptv.selectedCinema = cinemas[(selectedIndexPath?.row)!]
-//            ptv.selectedTheatre = theatres[(selectedIndexPath?.row)!]
-//        }
-//    }
+
     
     func getMovieData() {
         filteredCinemas.removeAll()

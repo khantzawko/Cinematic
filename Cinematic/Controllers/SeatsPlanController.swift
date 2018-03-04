@@ -8,7 +8,13 @@
 
 import UIKit
 
+private var selectedTickets: [String] = []
+private var selectedTicketsPrice: CGFloat = 0
+
 class SeatsPlanController: UIViewController {
+    
+    var alphabets = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+    
     
     private let closeButton: UIButton = {
         let button = UIButton()
@@ -51,7 +57,21 @@ class SeatsPlanController: UIViewController {
     }
     
     @objc func pressedConfirmButton() {
-        print("Pressed Confirm")
+        print("Pressed Confirm", "\(selectedTickets)")
+        
+        var selectedTicketsString = String()
+        
+        for i in 0..<selectedTickets.count {
+            
+            if i == 0 {
+                selectedTicketsString += selectedTickets[i]
+            } else {
+                selectedTicketsString += ", \(selectedTickets[i])"
+            }
+        }
+        
+        movieDateTimeSelectedTickets = selectedTicketsString
+        movieDateTimeSelectedTicketsPrice = selectedTicketsPrice
         dismiss(animated: true, completion: nil)
     }
     
@@ -65,13 +85,14 @@ class SeatsPlanController: UIViewController {
         seatsScrollView.addSubview(seatView)
         seatsScrollView.contentSize = seatContentSize
         
-        let seatPattern  =  "__aaaa_aaaaaa__n" +
-                            "__aauu_aaaaaa__n" +
-                            "__aaaa_aauuua__n" +
-                            "__uuaa_aaaaaa__n"
+        let seatPattern  =  "__aaaa_aaaaaaa__n" +
+                            "__aauu_aaaaaaa__n" +
+                            "__aaaa_aauuuaa__n" +
+                            "__uuaa_aaaaaaa__n"
 
         var row = 0
         var column = 0
+        var columnForTitle = 1
         let seatWidth = 30
         let seatHeight = 30
         let startingPointYCoord = 80
@@ -101,14 +122,17 @@ class SeatsPlanController: UIViewController {
             if char == "_" {
                 column += 1
             } else if char == "u" {
-                seatView.setUnvailableSeat(origin: seatPoint, size: seatSize)
+                seatView.setUnvailableSeat(origin: seatPoint, size: seatSize, title: "\(alphabets[row])\(columnForTitle)")
                 column += 1
+                columnForTitle += 1
             } else if char == "a" {
-                seatView.setAvailableSeat(origin: seatPoint, size: seatSize)
+                seatView.setAvailableSeat(origin: seatPoint, size: seatSize, title: "\(alphabets[row])\(columnForTitle)")
                 column += 1
+                columnForTitle += 1
             } else if char == "n" {
                 row += 1
                 column = 0
+                columnForTitle = 1
             } else {
                 
             }
@@ -165,11 +189,12 @@ class SeatView: UIView {
         addSubview(label)
     }
     
-    func setAvailableSeat(origin: CGPoint, size: CGSize) {
+    func setAvailableSeat(origin: CGPoint, size: CGSize, title: String) {
         let seatFrame = CGRect(origin: origin, size: size)
         let seat = UIButton()
         seat.backgroundColor = .green
-        seat.setTitle("a", for: .normal)
+        seat.setTitle(title, for: .normal)
+        seat.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         seat.addTarget(self, action: #selector(pressedSeats), for: .touchUpInside)
         seat.layer.cornerRadius = 5
         seat.frame = seatFrame
@@ -177,20 +202,27 @@ class SeatView: UIView {
     }
     
     @objc private func pressedSeats(_ sender: UIButton) {
-        
         if sender.backgroundColor == .green {
             sender.backgroundColor = .blue
+            selectedTickets.append((sender.titleLabel?.text)!)
+            selectedTicketsPrice += 1000
         } else {
             sender.backgroundColor = .green
+            selectedTickets.remove(at: selectedTickets.index(of: (sender.titleLabel?.text)!)!)
+            
+            if selectedTicketsPrice > 0 {
+                selectedTicketsPrice -= 1000
+            }
         }
     }
     
-    func setUnvailableSeat(origin: CGPoint, size: CGSize) {
+    func setUnvailableSeat(origin: CGPoint, size: CGSize, title: String)  {
         let seatFrame = CGRect(origin: origin, size: size)
         let seat = UIButton()
         seat.backgroundColor = .orange
         seat.isEnabled = false
-        seat.setTitle("u", for: .normal)
+        seat.setTitle(title, for: .normal)
+        seat.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
         seat.layer.cornerRadius = 5
         seat.frame = seatFrame
         addSubview(seat)
@@ -201,9 +233,10 @@ class SeatView: UIView {
     }
 }
 
-class Seat: UIButton {
-    var row: Int = 0
-    var column: Int = 0
-    var available: Bool = true
-    var price: Float = 0.0
-}
+//class Seat: UIButton {
+//    var row: Int = 0
+//    var column: Int = 0
+//    var available: Bool = true
+//    var price: Float = 0.0
+//}
+

@@ -39,13 +39,13 @@ struct Movie {
 }
 
 struct Receipt {
-    var key: String?
-    var amount: Int?
-    var email: String?
-    var purchasedDate: String?
-    var receiptCode: String?
-    var ticketInfo: String?
-    var movieTime: String?
-    var movieID: String?
-    var cinemaID: String?
+    var key: String
+    var amount: Int
+    var email: String
+    var purchasedDate: String
+    var receiptCode: String
+    var ticketInfo: String
+    var movieTime: String
+    var movieID: String
+    var cinemaID: String
 }

@@ -52,7 +52,7 @@ open class CachedImageView: UIImageView {
      */
     
     open func loadImage(urlString: String, completion: (() -> ())? = nil) {
-        image = nil
+        image = #imageLiteral(resourceName: "loading")
         
         self.urlStringForChecking = urlString
         

@@ -15,7 +15,6 @@ class MovieCell: UITableViewCell {
     var movie: Movie? {
         didSet {
             guard let unwrappedMovie = movie else { return }
-//            movieImageView.downloadedFrom(link: unwrappedMovie.image)
             movieImageView.image = #imageLiteral(resourceName: "loading")
             movieImageView.loadImage(urlString: unwrappedMovie.image!)
             
@@ -29,6 +28,7 @@ class MovieCell: UITableViewCell {
     
     private let movieImageView: CachedImageView = {
         let imageView = CachedImageView()
+        imageView.shouldUseEmptyImage = true
         imageView.contentMode = .scaleAspectFit
         imageView.layer.cornerRadius = 5
         imageView.clipsToBounds = true
@@ -134,6 +134,7 @@ class MovieCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         accessoryType = .disclosureIndicator
+        selectionStyle = .none
         addSubview(movieImageView)
         addSubview(movieName)
         addSubview(movieGenre)

@@ -39,10 +39,10 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     let buyButton: BuyButton
     let rowHeight: CGFloat = 44
     let ticketInfo = UILabel()
+    let seatInfo = UILabel()
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     let numberFormatter: NumberFormatter
     let shippingString: String
-    var product = ""
     var paymentInProgress: Bool = false {
         didSet {
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
@@ -66,7 +66,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     var selectedDate = String()
     var selectedTime = String()
 
-    init(product: String, price: Int, settings: Settings, movie: Movie, cinema: Cinema, date: String, time: String) {
+    init(ticketInfo: String, seatInfo: String, price: Int, settings: Settings, movie: Movie, cinema: Cinema, date: String, time: String) {
 
         let stripePublishableKey = self.stripePublishableKey
         let backendBaseURL = self.backendBaseURL
@@ -74,8 +74,8 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         assert(stripePublishableKey.hasPrefix("pk_"), "You must set your Stripe publishable key at the top of CheckoutViewController.swift to run this app.")
         assert(backendBaseURL != nil, "You must set your backend base url at the top of CheckoutViewController.swift to run this app.")
 
-        self.product = product
-        self.ticketInfo.text = product
+        self.ticketInfo.text = ticketInfo
+        self.seatInfo.text = seatInfo
         self.theme = settings.theme
         self.selectedMovie = movie
         self.selectedCinema = cinema
@@ -156,11 +156,14 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         self.activityIndicator.activityIndicatorViewStyle = red < 0.5 ? .white : .gray
         self.navigationItem.title = "Cinematic Payment"
 
-        self.ticketInfo.font = UIFont.systemFont(ofSize: 24)
+        self.ticketInfo.font = UIFont.systemFont(ofSize: 18)
+        self.seatInfo.font = UIFont.italicSystemFont(ofSize: 16)
+        self.seatInfo.textColor = .gray
         self.view.addSubview(self.totalRow)
         self.view.addSubview(self.paymentRow)
         self.view.addSubview(self.shippingRow)
         self.view.addSubview(self.ticketInfo)
+        self.view.addSubview(self.seatInfo)
         self.view.addSubview(self.buyButton)
         self.view.addSubview(self.activityIndicator)
         self.activityIndicator.alpha = 0
@@ -182,14 +185,12 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         }
         let width = self.view.bounds.width - (insets.left + insets.right)
         self.ticketInfo.sizeToFit()
-        self.ticketInfo.center = CGPoint(x: width/2.0,
-                                           y: self.ticketInfo.bounds.height/2.0 + rowHeight + 80)
-        self.paymentRow.frame = CGRect(x: insets.left, y: self.ticketInfo.frame.maxY + rowHeight,
-                                       width: width, height: rowHeight)
-        self.shippingRow.frame = CGRect(x: insets.left, y: self.paymentRow.frame.maxY,
-                                        width: width, height: rowHeight)
-        self.totalRow.frame = CGRect(x: insets.left, y: self.shippingRow.frame.maxY,
-                                     width: width, height: rowHeight)
+        self.ticketInfo.center = CGPoint(x: width/2.0, y: self.ticketInfo.bounds.height/2.0 + rowHeight + 80)
+        self.seatInfo.sizeToFit()
+        self.seatInfo.center = CGPoint(x: width/2.0, y: ticketInfo.frame.maxY + 15)
+        self.paymentRow.frame = CGRect(x: insets.left, y: self.seatInfo.frame.maxY + rowHeight, width: width, height: rowHeight)
+        self.shippingRow.frame = CGRect(x: insets.left, y: self.paymentRow.frame.maxY, width: width, height: rowHeight)
+        self.totalRow.frame = CGRect(x: insets.left, y: self.shippingRow.frame.maxY, width: width, height: rowHeight)
         self.buyButton.frame = CGRect(x: insets.left, y: 0, width: 88, height: 44)
         self.buyButton.center = CGPoint(x: width/2.0, y: self.totalRow.frame.maxY + rowHeight*1.5)
         self.activityIndicator.center = self.buyButton.center
@@ -224,6 +225,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
             putReceiptData(email: (paymentContext.shippingAddress?.email)!,
                            amount: paymentContext.paymentAmount,
                            ticketInfo: ticketInfo.text!,
+                           seatInfo: seatInfo.text!,
                            movieTime: "\(selectedDate) (\(selectedTime))",
                            movieKey: selectedMovie.key!,
                            cinemaKey: selectedCinema.key!)
@@ -273,7 +275,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         self.present(alertController, animated: true, completion: nil)
     }
     
-    func putReceiptData(email: String, amount: Int, ticketInfo: String, movieTime: String, movieKey: String, cinemaKey: String) {
+    func putReceiptData(email: String, amount: Int, ticketInfo: String, seatInfo: String, movieTime: String, movieKey: String, cinemaKey: String) {
         ref = Database.database().reference()
         let key = ref.childByAutoId().key
         let receiptCode = randomString(length: 6)
@@ -285,6 +287,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
                     "purchasedDate": purchasedDate,
                     "receiptCode": receiptCode,
                     "ticketInfo": ticketInfo,
+                    "seatInfo": seatInfo,
                     "movieTime": movieTime,
                     "movieID": movieKey,
                     "cinemaID": cinemaKey] as [String : Any]

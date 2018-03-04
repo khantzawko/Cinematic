@@ -12,6 +12,8 @@ private var selectedIndexPathDate: IndexPath?
 private var selectedIndexPathTime: IndexPath?
 private var dates = [String]()
 private var showtimes = [String]()
+var movieDateTimeSelectedTickets: String = "Press + to select some tickets"
+var movieDateTimeSelectedTicketsPrice: CGFloat = 0
 
 class MovieDateTimeController: UITableViewController {
     
@@ -20,10 +22,16 @@ class MovieDateTimeController: UITableViewController {
     var selectedMovie = Movie()
     var selectedCinema = Cinema()
     var selectedTheatre = Theatre()
+    
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("did load")
+        
+        movieDateTimeSelectedTickets = "Press + to select some tickets"
+        movieDateTimeSelectedTicketsPrice = 0
         
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationItem.title = selectedMovie.name
@@ -41,8 +49,9 @@ class MovieDateTimeController: UITableViewController {
     }
     
     @objc private func pressedRightBarButton() {
-        let checkoutViewController = CheckoutViewController(product: "\(selectedMovie.name!) ticket",
-            price: 1000,
+        let checkoutViewController = CheckoutViewController(ticketInfo: "\(selectedMovie.name!) Ticket",
+            seatInfo: movieDateTimeSelectedTickets,
+            price: Int(movieDateTimeSelectedTicketsPrice),
             settings: self.settingsVC.settings,
             movie: selectedMovie,
             cinema: selectedCinema,
@@ -53,11 +62,12 @@ class MovieDateTimeController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if dates.isEmpty {
+        if dates.isEmpty || movieDateTimeSelectedTicketsPrice <= 0 {
             self.navigationItem.rightBarButtonItem?.isEnabled = false
         } else {
             self.navigationItem.rightBarButtonItem?.isEnabled = true
         }
+        tableView.reloadData()
     }
     
     func reloadCollectionView() {
@@ -94,6 +104,8 @@ class MovieDateTimeController: UITableViewController {
             return cell
         } else if indexPath.row == 3 {
             let cell = MovieDateTimeCell.init(style: .default, reuseIdentifier: "Seat")
+            cell.selectedTickets = movieDateTimeSelectedTickets
+            cell.selectedTicketsPrice = movieDateTimeSelectedTicketsPrice
             return cell
         } else {
             return UITableViewCell()

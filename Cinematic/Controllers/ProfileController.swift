@@ -17,20 +17,20 @@ class ProfileController: UITableViewController {
     var cinemas = [Cinema]()
     var movies = [Movie]()
     
+    var customView: UIView!
+    var labelsArray:[UILabel] = []
+    var isAnimating = false
+    var currentColorIndex = 0
+    var currentLabelIndex = 0
+    var timer: Timer!
+    
     private struct Const {
-        /// Image height/width for Large NavBar state
         static let ImageSizeForLargeState: CGFloat = 40
-        /// Margin from right anchor of safe area to right anchor of Image
         static let ImageRightMargin: CGFloat = 16
-        /// Margin from bottom anchor of NavBar to bottom anchor of Image for Large NavBar state
-        static let ImageBottomMarginForLargeState: CGFloat = 6
-        /// Margin from bottom anchor of NavBar to bottom anchor of Image for Small NavBar state
-        static let ImageBottomMarginForSmallState: CGFloat = 10
-        /// Image height/width for Small NavBar state
+        static let ImageBottomMarginForLargeState: CGFloat = 8
+        static let ImageBottomMarginForSmallState: CGFloat = 2
         static let ImageSizeForSmallState: CGFloat = 32
-        /// Height of NavBar for Small state. Usually it's just 44
         static let NavBarHeightSmallState: CGFloat = 44
-        /// Height of NavBar for Large state. Usually it's just 96.5 but if you have a custom font for the title, please make sure to edit this value since it changes the height for Large state of NavBar
         static let NavBarHeightLargeState: CGFloat = 96.5
     }
     
@@ -170,6 +170,122 @@ class ProfileController: UITableViewController {
             imageView.heightAnchor.constraint(equalToConstant: Const.ImageSizeForLargeState),
             imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor)
             ])
+        
+        refreshControl = UIRefreshControl()
+        refreshControl?.backgroundColor = .clear
+        refreshControl?.tintColor = .clear
+        loadCustomRefreshContents()
+    }
+    
+    func loadCustomRefreshContents() {
+        let refreshContents = Bundle.main.loadNibNamed("CustomView", owner: self, options: nil)!
+        
+        customView = refreshContents[0] as! UIView
+        customView.frame = (refreshControl?.bounds)!
+        
+        for i in 0..<customView.subviews.count {
+            labelsArray.append(customView.viewWithTag(i + 1) as! UILabel)
+        }
+        
+        refreshControl?.addSubview(customView)
+    }
+    
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if (refreshControl?.isRefreshing)! {
+            if !isAnimating {
+                doSomething()
+                
+//                if let email = UserDefaults.standard.string(forKey: "email") {
+//                    getReceiptData(email: email)
+//                }
+//
+                animateRefreshStep1()
+            }
+        }
+    }
+    
+    func animateRefreshStep1() {
+        isAnimating = true
+        
+        UIView.animate(withDuration: 0.1, delay: 0.0, options: .curveLinear, animations: {() -> Void in
+            
+            self.labelsArray[self.currentLabelIndex].transform = CGAffineTransform(rotationAngle: CGFloat.pi / 4)
+            self.labelsArray[self.currentLabelIndex].textColor = self.getNextColor()
+            
+        }, completion: {(finished) -> Void in
+            
+            UIView.animate(withDuration: 0.05, delay: 0.0, options: .curveLinear, animations: {() -> Void in
+                
+                self.labelsArray[self.currentLabelIndex].transform = CGAffineTransform.identity
+                self.labelsArray[self.currentLabelIndex].textColor = .black
+                
+            }, completion: {(finished) -> Void in
+                
+                self.currentLabelIndex = self.currentLabelIndex + 1
+                
+                if self.currentLabelIndex < self.labelsArray.count {
+                    self.animateRefreshStep1()
+                } else {
+                    self.animateRefreshStep2()
+                }
+            })
+        })
+    }
+    
+    func animateRefreshStep2() {
+        UIView.animate(withDuration: 0.1, delay: 0.0, options: .curveLinear, animations: { () -> Void in
+            
+            for i in 0..<self.labelsArray.count {
+                self.labelsArray[i].transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+            }
+            
+        }, completion: { (finished) -> Void in
+            UIView.animate(withDuration: 0.1, delay: 0.0, options: .curveLinear, animations: { () -> Void in
+                
+                for i in 0..<self.labelsArray.count {
+                    self.labelsArray[i].transform = CGAffineTransform.identity
+                }
+                
+            }, completion: { (finished) -> Void in
+                if (self.refreshControl?.isRefreshing)! {
+                    self.currentLabelIndex = 0
+                    self.animateRefreshStep1()
+                }
+                else {
+                    self.isAnimating = false
+                    self.currentLabelIndex = 0
+                    
+                    for i in 0..<self.labelsArray.count {
+                        self.labelsArray[i].textColor = .black
+                        self.labelsArray[i].transform = .identity
+                    }
+                }
+            })
+        })
+    }
+    
+    func getNextColor() -> UIColor {
+        var colorsArray: [UIColor] = [.magenta, .brown, .yellow, .red, .green, .blue, .orange, .yellow, .cyan]
+        
+        if currentColorIndex == colorsArray.count {
+            currentColorIndex = 0
+        }
+        
+        let returnColor = colorsArray[currentColorIndex]
+        currentColorIndex = currentColorIndex + 1
+        
+        return returnColor
+    }
+    
+    func doSomething() {
+        timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(endOfWork), userInfo: nil, repeats: true)
+    }
+    
+    @objc func endOfWork() {
+        refreshControl?.endRefreshing()
+        
+        timer.invalidate()
+        timer = nil
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -178,10 +294,6 @@ class ProfileController: UITableViewController {
     
     func getReceiptData(email: String) {
         ref = Database.database().reference().child("receipts")
-        
-//        receipts.removeAll()
-//        movies.removeAll()
-//        cinemas.removeAll()
         
         let movieRef = Database.database().reference().child("movies")
         let cinemaRef = Database.database().reference().child("cinema")
@@ -199,14 +311,14 @@ class ProfileController: UITableViewController {
                 let cinemaKey = postDict["cinemaID"] {
                 
                 self.receipts.append(Receipt(key: snapshot.key,
-                                             amount: receiptAmount as? Int,
-                                             email: receiptEmail as? String,
-                                             purchasedDate: receiptPurchasedDate as? String,
-                                             receiptCode: receiptCode as? String,
-                                             ticketInfo: receiptTicketInfo as? String,
-                                             movieTime: movieTime as? String,
-                                             movieID: movieKey as? String,
-                                             cinemaID: cinemaKey as? String))
+                                             amount: receiptAmount as! Int,
+                                             email: receiptEmail as! String,
+                                             purchasedDate: receiptPurchasedDate as! String,
+                                             receiptCode: receiptCode as! String,
+                                             ticketInfo: receiptTicketInfo as! String,
+                                             movieTime: movieTime as! String,
+                                             movieID: movieKey as! String,
+                                             cinemaID: cinemaKey as! String))
                 
                 cinemaRef.child(cinemaKey as! String).observe(DataEventType.value, with: {(cSnap) in
                     var cinemaDict = cSnap.value as! [String:AnyObject]
@@ -259,7 +371,7 @@ class ProfileController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! ProfileCell
         cell.movie = movies[indexPath.row]
-        cell.movieInfoText = "\nCinema: \(cinemas[indexPath.row].name)\nShowtime: \(receipts[indexPath.row].movieTime)\nPurchasedDate: \(Date().fullDateFromString(date: receipts[indexPath.row].purchasedDate!))\nReceiptCode#: \(receipts[indexPath.row].receiptCode!)"
+        cell.movieInfoText = "\nCinema: \(cinemas[indexPath.row].name ?? "Cinema")\nShowtime: \(receipts[indexPath.row].movieTime)\nPurchasedDate: \(Date().fullDateFromString(date: receipts[indexPath.row].purchasedDate))\nReceiptCode#: \(receipts[indexPath.row].receiptCode)"
         return cell
     }
     
@@ -269,36 +381,8 @@ class ProfileController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let qrc = QRCodeController()
-        qrc.QRString = receipts[indexPath.row].receiptCode!
+        qrc.QRString = receipts[indexPath.row].receiptCode
         qrc.movieName = movies[indexPath.row].name!
         navigationController?.pushViewController(qrc, animated: true)
     }
-    
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = OrderCell(style: .default, reuseIdentifier: "OrderCell")
-//
-//        cell.movieImage.downloadedFrom(link: movies[indexPath.row].image!)
-//        cell.movieName.text = movies[indexPath.row].name!
-//        cell.ticketInfo.text =  "\(cinemas[indexPath.row].name!) • \(receipts[indexPath.row].ticketInfo!)"
-//        cell.purchasedDate.text = receipts[indexPath.row].movieTime!
-//
-//        let purchasedDate = Date().fullDateFromString(date: receipts[indexPath.row].purchasedDate!)
-//        cell.receiptCode.text = "Purchased on: \(purchasedDate)"
-//        return cell
-//    }
-//
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
-//        performSegue(withIdentifier: "QRCode", sender: indexPath.row)
-//    }
-//
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "QRCode" {
-//            let row = sender as! Int
-//            let qrc: QRCodeController = segue.destination as! QRCodeController
-//            qrc.QRString = receipts[row].receiptCode
-//            qrc.movieName = ("\(movies[row].name!) Ticket")
-//        }
-//    }
-
 }
