@@ -9,6 +9,7 @@
 import UIKit
 
 class MovieTimeCollectionCell: UICollectionViewCell {
+    
     let movieTime: UILabel = {
         let label = UILabel()
         label.text = "Time"
@@ -28,7 +29,7 @@ class MovieTimeCollectionCell: UICollectionViewCell {
         
         layer.cornerRadius = 15
         layer.borderWidth = 2
-        layer.borderColor = UIColor(red:1.00, green:0.14, blue:0.40, alpha:1.0).cgColor
+        layer.borderColor = UIColor.cinematicPink
         layer.backgroundColor = UIColor.white.cgColor
         addSubview(movieTime)
         setupLayout()

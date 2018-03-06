@@ -26,16 +26,17 @@ class UpcomingMovieController: UITableViewController {
         super.viewDidLoad()
         tableView.register(MovieCell.self, forCellReuseIdentifier: "MovieCell")
 
-        refreshControl = UIRefreshControl()
-        refreshControl?.backgroundColor = .clear
-        refreshControl?.tintColor = .clear
         loadCustomRefreshContents()
         getMovieData()
     }
     
-    func loadCustomRefreshContents() {
-        let refreshContents = Bundle.main.loadNibNamed("CustomView", owner: self, options: nil)!
+    private func loadCustomRefreshContents() {
         
+        refreshControl = UIRefreshControl()
+        refreshControl?.backgroundColor = .clear
+        refreshControl?.tintColor = .clear
+        
+        let refreshContents = Bundle.main.loadNibNamed("CustomView", owner: self, options: nil)!
         customView = refreshContents[0] as! UIView
         customView.frame = (refreshControl?.bounds)!
         
@@ -56,7 +57,7 @@ class UpcomingMovieController: UITableViewController {
         }
     }
     
-    func animateRefreshStep1() {
+    private func animateRefreshStep1() {
         isAnimating = true
         
         UIView.animate(withDuration: 0.1, delay: 0.0, options: .curveLinear, animations: {() -> Void in
@@ -84,7 +85,7 @@ class UpcomingMovieController: UITableViewController {
         })
     }
     
-    func animateRefreshStep2() {
+    private func animateRefreshStep2() {
         UIView.animate(withDuration: 0.1, delay: 0.0, options: .curveLinear, animations: { () -> Void in
             
             for i in 0..<self.labelsArray.count {
@@ -116,7 +117,7 @@ class UpcomingMovieController: UITableViewController {
         })
     }
     
-    func getNextColor() -> UIColor {
+    private func getNextColor() -> UIColor {
         var colorsArray: [UIColor] = [.magenta, .brown, .yellow, .red, .green, .blue, .orange, .yellow, .cyan]
         
         if currentColorIndex == colorsArray.count {
@@ -129,18 +130,18 @@ class UpcomingMovieController: UITableViewController {
         return returnColor
     }
     
-    func doSomething() {
+    private func doSomething() {
         timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(endOfWork), userInfo: nil, repeats: true)
     }
     
-    @objc func endOfWork() {
+    @objc private func endOfWork() {
         refreshControl?.endRefreshing()
         
         timer.invalidate()
         timer = nil
     }
     
-    func getMovieData() {
+    private func getMovieData() {
         
         ref = Database.database().reference().child("movies")
         

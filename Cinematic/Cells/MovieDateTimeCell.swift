@@ -22,12 +22,17 @@ class MovieDateTimeCell: UITableViewCell {
     
     var selectedTickets: String? {
         didSet {
-            attributedText.append(NSAttributedString(string: "\n\nSeats: \(selectedTickets!)", attributes: [NSAttributedStringKey.font: UIFont.italicSystemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.gray]))
+            attributedText.append(NSAttributedString(string: "\n\nSeats: \(selectedTickets!)",
+                attributes: [NSAttributedStringKey.font: UIFont.italicSystemFont(ofSize: 14),
+                             NSAttributedStringKey.foregroundColor: UIColor.gray]))
         }
     }
+    
     var selectedTicketsPrice: CGFloat? {
         didSet {
-            attributedText.append(NSAttributedString(string: "\nTotal: $\(selectedTicketsPrice!/100)", attributes: [NSAttributedStringKey.font: UIFont.italicSystemFont(ofSize: 15), NSAttributedStringKey.foregroundColor: UIColor.gray]))
+            attributedText.append(NSAttributedString(string: "\nTotal: $\(selectedTicketsPrice!/100)",
+                attributes: [NSAttributedStringKey.font: UIFont.italicSystemFont(ofSize: 15),
+                             NSAttributedStringKey.foregroundColor: UIColor.gray]))
             selectSeatInfo.attributedText = attributedText
         }
     }

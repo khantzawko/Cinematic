@@ -56,7 +56,7 @@ class QRCodeController: UIViewController {
         setupLayout()
     }
     
-    func generateQRCode(from string: String) -> UIImage? {
+    private func generateQRCode(from string: String) -> UIImage? {
         let data = string.data(using: String.Encoding.ascii)
         
         if let filter = CIFilter(name: "CIQRCodeGenerator") {

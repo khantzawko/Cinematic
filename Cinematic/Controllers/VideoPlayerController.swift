@@ -50,7 +50,7 @@ class VideoPlayerController: UIViewController {
         trailerWebView.heightAnchor.constraint(equalToConstant: view.frame.width*9/12).isActive = true
     }
     
-    @objc func pressedCloseButton() {
+    @objc private func pressedCloseButton() {
         dismiss(animated: true, completion: nil)
     }
 

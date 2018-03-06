@@ -69,7 +69,7 @@ class ProfileController: UITableViewController {
         moveAndResizeImage(for: height)
     }
     
-    func getUserNameAndEmail() {
+    private func getUserNameAndEmail() {
         
         let alertController = UIAlertController(title: "Welcome to Cinematic!", message: "Please enter your info:", preferredStyle: .alert)
         
@@ -104,7 +104,7 @@ class ProfileController: UITableViewController {
         self.present(alertController, animated: true, completion: nil)
     }
     
-    @objc func pressedProfileImage() {
+    @objc private func pressedProfileImage() {
         
         var alertMessage = String()
         var isSignIn = Bool()
@@ -129,7 +129,11 @@ class ProfileController: UITableViewController {
                 UserDefaults.standard.removeObject(forKey: "email")
                 self.navigationItem.title = "Profile"
                 self.cinemas.removeAll()
-                self.tableView.reloadData()
+                self.receipts.removeAll()
+                self.movies.removeAll()
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
             
         })
@@ -177,7 +181,7 @@ class ProfileController: UITableViewController {
         loadCustomRefreshContents()
     }
     
-    func loadCustomRefreshContents() {
+    private func loadCustomRefreshContents() {
         let refreshContents = Bundle.main.loadNibNamed("CustomView", owner: self, options: nil)!
         
         customView = refreshContents[0] as! UIView
@@ -195,6 +199,8 @@ class ProfileController: UITableViewController {
             if !isAnimating {
                 doSomething()
                 
+//                LEFT TO LOAD DATA FROM PULL TO REFRESH
+                
 //                if let email = UserDefaults.standard.string(forKey: "email") {
 //                    getReceiptData(email: email)
 //                }
@@ -204,7 +210,7 @@ class ProfileController: UITableViewController {
         }
     }
     
-    func animateRefreshStep1() {
+    private func animateRefreshStep1() {
         isAnimating = true
         
         UIView.animate(withDuration: 0.1, delay: 0.0, options: .curveLinear, animations: {() -> Void in
@@ -232,7 +238,7 @@ class ProfileController: UITableViewController {
         })
     }
     
-    func animateRefreshStep2() {
+    private func animateRefreshStep2() {
         UIView.animate(withDuration: 0.1, delay: 0.0, options: .curveLinear, animations: { () -> Void in
             
             for i in 0..<self.labelsArray.count {
@@ -264,7 +270,7 @@ class ProfileController: UITableViewController {
         })
     }
     
-    func getNextColor() -> UIColor {
+    private func getNextColor() -> UIColor {
         var colorsArray: [UIColor] = [.magenta, .brown, .yellow, .red, .green, .blue, .orange, .yellow, .cyan]
         
         if currentColorIndex == colorsArray.count {
@@ -277,11 +283,11 @@ class ProfileController: UITableViewController {
         return returnColor
     }
     
-    func doSomething() {
+    private func doSomething() {
         timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(endOfWork), userInfo: nil, repeats: true)
     }
     
-    @objc func endOfWork() {
+    @objc private func endOfWork() {
         refreshControl?.endRefreshing()
         
         timer.invalidate()
@@ -292,7 +298,7 @@ class ProfileController: UITableViewController {
         super.viewDidAppear(true)
     }
     
-    func getReceiptData(email: String) {
+    private func getReceiptData(email: String) {
         ref = Database.database().reference().child("receipts")
         
         let movieRef = Database.database().reference().child("movies")
@@ -334,7 +340,9 @@ class ProfileController: UITableViewController {
                         self.cinemas.append(cinema)
                     }
                     
-                    self.tableView.reloadData()
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
                 })
                 
                 movieRef.child(movieKey as! String).observe(DataEventType.value, with: {(mSnap) in

@@ -29,6 +29,10 @@ extension UIImageView {
     }
 }
 
+extension UIColor {
+    static let cinematicPink = UIColor(red:1.00, green:0.14, blue:0.40, alpha:1.0).cgColor
+}
+
 extension Date {
     func daysFromStartDate(startDate: String, numberOfWeeks: Int) -> [String] {
         let today = Date()

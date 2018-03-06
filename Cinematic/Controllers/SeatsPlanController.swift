@@ -13,8 +13,7 @@ private var selectedTicketsPrice: CGFloat = 0
 
 class SeatsPlanController: UIViewController {
     
-    var alphabets = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
-    
+    private var alphabets = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
     
     private let closeButton: UIButton = {
         let button = UIButton()
@@ -52,11 +51,11 @@ class SeatsPlanController: UIViewController {
         confirmButton.frame = CGRect(x: confirmButtonXCoord, y: 10, width: 100, height: 30)
     }
     
-    @objc func pressedCloseButton() {
+    @objc private func pressedCloseButton() {
         dismiss(animated: true, completion: nil)
     }
     
-    @objc func pressedConfirmButton() {
+    @objc private func pressedConfirmButton() {
         print("Pressed Confirm", "\(selectedTickets)")
         
         var selectedTicketsString = String()
@@ -173,7 +172,7 @@ class SeatView: UIView {
         backgroundColor = .gray
     }
     
-    func setScreenLayout(contentWidth: CGFloat) {
+    internal func setScreenLayout(contentWidth: CGFloat) {
         
         let viewWidth = contentWidth
         let cinemaScreenWidth = contentWidth * 0.4
@@ -189,7 +188,7 @@ class SeatView: UIView {
         addSubview(label)
     }
     
-    func setAvailableSeat(origin: CGPoint, size: CGSize, title: String) {
+    internal func setAvailableSeat(origin: CGPoint, size: CGSize, title: String) {
         let seatFrame = CGRect(origin: origin, size: size)
         let seat = UIButton()
         seat.backgroundColor = .green
@@ -216,7 +215,7 @@ class SeatView: UIView {
         }
     }
     
-    func setUnvailableSeat(origin: CGPoint, size: CGSize, title: String)  {
+    internal func setUnvailableSeat(origin: CGPoint, size: CGSize, title: String)  {
         let seatFrame = CGRect(origin: origin, size: size)
         let seat = UIButton()
         seat.backgroundColor = .orange

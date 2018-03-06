@@ -18,18 +18,14 @@ var movieDateTimeSelectedTicketsPrice: CGFloat = 0
 class MovieDateTimeController: UITableViewController {
     
     let settingsVC = SettingsViewController()
-
+    
     var selectedMovie = Movie()
     var selectedCinema = Cinema()
     var selectedTheatre = Theatre()
-    
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("did load")
-        
+                
         movieDateTimeSelectedTickets = "Press + to select some tickets"
         movieDateTimeSelectedTicketsPrice = 0
         
@@ -70,7 +66,7 @@ class MovieDateTimeController: UITableViewController {
         tableView.reloadData()
     }
     
-    func reloadCollectionView() {
+    private func reloadCollectionView() {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "MovieDateTimeCell") as! MovieDateTimeCell
         cell.movieDateCollectionView.reloadData()
         cell.movieTimeCollectionView.reloadData()
@@ -131,7 +127,7 @@ extension MovieDateTimeCell: UICollectionViewDataSource, UICollectionViewDelegat
             cell.movieDate.text = Date().dayAndMonthFormat(date: dates[indexPath.row])
             
             if indexPath == selectedIndexPathDate && selectedIndexPathDate != nil {
-                cell.layer.backgroundColor = UIColor(red:1.00, green:0.14, blue:0.40, alpha:1.0).cgColor
+                cell.layer.backgroundColor = UIColor.cinematicPink
                 cell.movieDate.textColor = .white
             } else {
                 cell.layer.backgroundColor = UIColor.white.cgColor
@@ -144,7 +140,7 @@ extension MovieDateTimeCell: UICollectionViewDataSource, UICollectionViewDelegat
             cell.movieTime.text = showtimes[indexPath.row]
             
             if indexPath == selectedIndexPathTime && selectedIndexPathTime != nil {
-                cell.layer.backgroundColor = UIColor(red:1.00, green:0.14, blue:0.40, alpha:1.0).cgColor
+                cell.layer.backgroundColor = UIColor.cinematicPink
                 cell.movieTime.textColor = .white
             } else {
                 cell.layer.backgroundColor = UIColor.white.cgColor
@@ -173,14 +169,14 @@ extension MovieDateTimeCell: UICollectionViewDataSource, UICollectionViewDelegat
         
         if tag == 99 {
             let cell = collectionView.cellForItem(at: indexPath) as! MovieDateCollectionCell
-            cell.layer.backgroundColor = UIColor(red:1.00, green:0.14, blue:0.40, alpha:1.0).cgColor
+            cell.layer.backgroundColor = UIColor.cinematicPink
             cell.movieDate.textColor = .white
             collectionView.reloadData()
         }
         
         if tag == 100 {
             let cell = collectionView.cellForItem(at: indexPath) as! MovieTimeCollectionCell
-            cell.layer.backgroundColor = UIColor(red:1.00, green:0.14, blue:0.40, alpha:1.0).cgColor
+            cell.layer.backgroundColor = UIColor.cinematicPink
             cell.movieTime.textColor = .white
             collectionView.reloadData()
         }

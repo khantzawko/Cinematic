@@ -53,7 +53,7 @@ class MovieDetailController: UITableViewController {
     }
 
     
-    func getMovieData() {
+    private func getMovieData() {
         filteredCinemas.removeAll()
         filteredTheatres.removeAll()
         ref = Database.database().reference().child("movies/\(selectedMovie.key!)/theatres")
@@ -158,7 +158,7 @@ class MovieDetailController: UITableViewController {
         }
     }
     
-    func reloadCollectionView() {
+    private func reloadCollectionView() {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "MovieDetail") as! MovieDetailCell
         cell.cinemaCollectionView.reloadData()
         
@@ -171,6 +171,7 @@ class MovieDetailController: UITableViewController {
 }
 
 extension MovieDetailCell: UICollectionViewDelegate, UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return filteredCinemas.count
     }
@@ -180,7 +181,7 @@ extension MovieDetailCell: UICollectionViewDelegate, UICollectionViewDataSource 
         cell.cinemaName.text = filteredCinemas[indexPath.row].name
         
         if indexPath == selectedIndexPath && selectedIndexPath != nil {
-            cell.layer.backgroundColor = UIColor(red:1.00, green:0.14, blue:0.40, alpha:1.0).cgColor
+            cell.layer.backgroundColor = UIColor.cinematicPink
             cell.cinemaName.textColor = .white
         } else {
             cell.layer.backgroundColor = UIColor.white.cgColor
@@ -199,7 +200,7 @@ extension MovieDetailCell: UICollectionViewDelegate, UICollectionViewDataSource 
         }
         
         let cell = collectionView.cellForItem(at: indexPath) as! CinemaCollectionCell
-        cell.layer.backgroundColor = UIColor(red:1.00, green:0.14, blue:0.40, alpha:1.0).cgColor
+        cell.layer.backgroundColor = UIColor.cinematicPink
         cell.cinemaName.textColor = .white
         collectionView.reloadData()
     }
